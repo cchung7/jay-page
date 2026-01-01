@@ -61,7 +61,7 @@ export function Footer() {
                         Digital Engineering Portfolio.
                     </p>
                     <p className="text-[10px] font-semibold text-muted-foreground/40 uppercase tracking-widest">
-                        © {currentYear} Jay Chung. All rights reserved.
+                        © {currentYear} Jay's Page. All rights reserved.
                     </p>
                 </div>
             </div>
