@@ -33,10 +33,17 @@ export const HeroSection = () => {
                 >
                     <div className="relative group">
                         <div className="absolute inset-0 bg-accent/20 rounded-full blur-2xl group-hover:bg-accent/30 transition-all duration-700" />
-                        <div className="relative h-40 w-40 rounded-full border-4 border-background flex items-center justify-center bg-secondary overflow-hidden">
-                            {/* Placeholder for headshot - using initials like spec if image not provided */}
-                            <span className="font-heading font-black text-6xl text-primary select-none group-hover:scale-110 transition-transform duration-500">JC</span>
+
+                        <div className="relative h-40 w-40 rounded-full border-4 border-background bg-secondary overflow-hidden">
+                        <Image
+                            src="/images/jay_pic.jpg"
+                            alt="Jay Chung headshot"
+                            fill
+                            priority
+                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
                         </div>
+
                         <div className="absolute -bottom-2 -right-2 h-10 w-10 bg-accent rounded-full border-4 border-background flex items-center justify-center">
                             <Zap className="h-5 w-5 text-white fill-current" />
                         </div>
