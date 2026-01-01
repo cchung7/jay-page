@@ -1,4 +1,4 @@
 export const experience = [
-  { company: "Tech Dynamic", role: "Sr. Product Engineer", period: "2021 — PRESENT", desc: "Leading the architectural redesign of core enterprise suites. Reduced bundle size by 45%.", tags: ["Next.js", "AWS", "Architecture"] },
-  { company: "Cloud Vision", role: "Web Systems Lead", period: "2019 — 2021", desc: "Orchestrated global deployment pipelines for high-traffic media platforms.", tags: ["React", "Kubernetes", "Redis"] },
+  { company: "U.S. Army", role: "RET - 68C", period: "Dec 2019 — Nov 2021", desc: "LPN", tags: [] },
+  { company: "BTI Solutions", role: "Engineer I", period: "Jun 2015 — Sep 2015", desc: "QA Testing & Prototype Development.", tags: ["Behavior-Driven Development (BDD)", "Black-Box Testing"] },
 ];

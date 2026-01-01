@@ -15,14 +15,14 @@ export const AboutSection = () => {
                     <div className="lg:col-span-12 space-y-6">
                         <div className="flex items-center gap-1">
                             <Separator className="w-8 md:w-12 bg-accent h-1" />
-                            <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">The Philosophy</h2>
+                            <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent"></h2>
                         </div>
                         <div className="max-w-4xl space-y-2">
                             <p className="text-4xl md:text-5xl font-semibold leading-[1.2] tracking-tight text-foreground">
                                 Great engineering is the <span className="text-muted-foreground/40 italic">silent architect</span> of human ambition
                             </p>
                             <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl font-medium">
-                                I specialize in bridging the gap between high-level architectural design and ground-level implementation. My process is rooted in sound engineering principles, structural integrity, and aesthetic creativity.
+                                I specialize in bridging the gap between high-level architectural design and ground-level implementation. My process is rooted in technical depth, aesthetic creativity, and structural integrity.
                             </p>
                         </div>
                     </div>

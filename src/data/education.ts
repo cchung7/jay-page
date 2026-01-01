@@ -1,4 +1,4 @@
 export const education = [
-  { school: "Stanford University", degree: "M.S. Computer Science", period: "2017 — 2019", honors: "Summa Cum Laude" },
-  { school: "UC Berkeley", degree: "B.S. Software Engineering", period: "2013 — 2017", honors: "Regents' Scholar" },
+  { school: "University of Texas at Dallas", degree: "B.S. Software Engineering", period: "Dec 2025", honors: "" },
+  { school: "University of Texas at Dallas", degree: "B.S. Biochemistry", period: "Aug 2019", honors: "" },
 ];
