@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Twitter, Linkedin, Zap } from "lucide-react";
+import { Github, Linkedin, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function Footer() {
@@ -22,7 +22,7 @@ export function Footer() {
                         </div>
                     </div>
                     <h4 className="font-heading font-black text-2xl tracking-tighter uppercase italic text-foreground">
-                        Frisco <span className="text-muted-foreground/60">Fighter.</span>
+                        Jay <span className="text-muted-foreground/60">Chung</span>
                     </h4>
                 </div>
 
@@ -38,7 +38,6 @@ export function Footer() {
                 <div className="flex gap-2 py-4">
                     {[
                         { Icon: Github, href: "#", label: "GitHub" },
-                        { Icon: Twitter, href: "#", label: "Twitter" },
                         { Icon: Linkedin, href: "#", label: "LinkedIn" }
                     ].map(({ Icon, href, label }) => (
                         <Link
@@ -59,10 +58,10 @@ export function Footer() {
                 <div className="space-y-3">
                     <p className="text-[11px] font-bold text-muted-foreground/60 uppercase tracking-widest whitespace-nowrap">
                         {/* Built with <span className="text-red-500 animate-pulse">❤️</span> by */}
-                        An Architectural Digital Suite.
+                        Digital Engineering Portfolio.
                     </p>
                     <p className="text-[10px] font-semibold text-muted-foreground/40 uppercase tracking-widest">
-                        © {currentYear} Frisco Fighter. All rights reserved.
+                        © {currentYear} Jay Chung. All rights reserved.
                     </p>
                 </div>
             </div>

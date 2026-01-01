@@ -1,7 +1,9 @@
 "use client";
 
+import { Separator } from "@/components/ui/separator";
+
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mail, MapPin, Rocket, Twitter } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Rocket, Linkedin } from "lucide-react";
 
 export const ContactSection = () => {
   return (
@@ -11,6 +13,10 @@ export const ContactSection = () => {
             {/* Contact Info */}
             <div className="lg:col-span-5 space-y-3">
               <div className="space-y-6">
+                <div className="flex items-center gap-1">
+                  <Separator className="w-8 md:w-12 bg-accent h-1" />
+                  <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent"></h2>
+                </div>
                 <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">Availability</h2>
                 <h3 className="text-5xl font-black tracking-tighter italic">Lets build <br /> the future.</h3>
                 <p className="text-lg text-muted-foreground font-medium max-w-sm leading-relaxed">
@@ -20,9 +26,9 @@ export const ContactSection = () => {
 
               <div className="space-y-6">
                 {[
-                  { icon: Mail, label: "Digital Mail", value: "hello@friscofighter.dev" },
-                  { icon: Twitter, label: "Dispatch Briefs", value: "@friscofighter" },
-                  { icon: MapPin, label: "Headquarters", value: "San Francisco, CA" }
+                  { icon: Mail, label: "E-Mail", value: "chung_chul@yahoo.com" },
+                  { icon: Linkedin, label: "Linkedin", value: "@friscofighter" },
+                  { icon: MapPin, label: "Headquarters", value: "Dallas, TX" }
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-6 group cursor-pointer">
                     <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-all transform group-hover:scale-105 active:scale-95 duration-500 shadow-minimal group-hover:shadow-xl">
@@ -54,12 +60,12 @@ export const ContactSection = () => {
                     <input type="email" placeholder="john@example.com" className="w-full bg-transparent border-none p-2 text-xl font-bold placeholder:text-muted-foreground/20 focus:ring-0" />
                   </div>
                   <div className="space-y-2 border-b-2 border-border/60 focus-within:border-accent transition-colors pb-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60 ml-1">Project Brief</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60 ml-1">Project Description</label>
                     <textarea placeholder="The vision..." className="w-full bg-transparent border-none p-2 text-xl font-bold placeholder:text-muted-foreground/20 focus:ring-0min-h-37.5 resize-none" />
                   </div>
                 </div>
                 <Button className="w-full h-12 cursor-pointer rounded-full bg-primary text-primary-foreground font-black uppercase tracking-[0.25em] text-sm group shadow-xl transition-all hover:[&>svg]:translate-x-1">
-                  Send Dispatch <ArrowRight size={16} className="ml-2 transition-transform" />
+                  Send Message <ArrowRight size={16} className="ml-2 transition-transform" />
                 </Button>
 
               </form>

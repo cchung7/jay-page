@@ -16,7 +16,7 @@ import { useCart } from "@/lib/cart-context";
 import { CartDrawer } from "@/components/cart-drawer";
 
 const navLinks = [
-    { name: "About", href: "/#about", icon: User },
+    { name: "Home", href: "/#about", icon: User },
     { name: "Experience", href: "/#experience", icon: Briefcase },
     // { name: "Projects", href: "/#projects", icon: Code },
     { name: "Shop", href: "/shop", icon: ShoppingBag },
@@ -76,7 +76,7 @@ export function Navbar() {
                         FF
                     </motion.div> */}
                     <span className="font-heading font-black text-sm sm:text-base md:text-2xl tracking-tighter uppercase whitespace-nowrap">
-                        Frisco <span className="text-accent italic">Fighter.</span>
+                        Jay <span className="text-accent italic">Chung</span>
                     </span>
                 </Link>
 

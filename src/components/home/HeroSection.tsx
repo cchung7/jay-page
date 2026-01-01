@@ -58,7 +58,7 @@ export const HeroSection = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="bg-linear-to-b from-primary via-primary to-primary/60 bg-clip-text text-transparent leading-[1.1]"
                     >
-                        Crafting Digital <br /> <span className="text-accent italic">Software</span>
+                        Crafting Digital <br /> <span className="text-accent italic">Masterpieces</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0 }}
