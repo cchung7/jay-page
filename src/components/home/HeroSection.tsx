@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, ArrowRight, Zap } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import * as React from "react";
 
 export const HeroSection = () => {
