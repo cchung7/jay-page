@@ -76,7 +76,7 @@ export function Navbar() {
                         FF
                     </motion.div> */}
                     <span className="font-heading font-black text-sm sm:text-base md:text-2xl tracking-tighter uppercase whitespace-nowrap">
-                        Jay's <span className="text-accent italic">Page</span>
+                        Jay Chung <span className="text-accent italic">Software Engineer</span>
                     </span>
                 </Link>
 

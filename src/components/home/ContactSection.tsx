@@ -27,7 +27,7 @@ export const ContactSection = () => {
               <div className="space-y-6">
                 {[
                   { icon: Mail, label: "E-Mail", value: "chung_chul@yahoo.com" },
-                  { icon: Linkedin, label: "Linkedin", value: "@friscofighter" },
+                  { icon: Linkedin, label: "Linkedin", value: "www.linkedin.com/in/chul-w-chung", linkText: "Jay Chung" },
                   { icon: MapPin, label: "Headquarters", value: "Dallas, TX" }
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-6 group cursor-pointer">
