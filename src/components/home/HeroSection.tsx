@@ -58,7 +58,7 @@ export const HeroSection = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="bg-linear-to-b from-primary via-primary to-primary/60 bg-clip-text text-transparent leading-[1.1]"
                     >
-                        Crafting Digital <br /> <span className="text-accent italic">Masterpieces.</span>
+                        Crafting AI-Driven <br /> <span className="text-accent italic">Software.</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0 }}
@@ -66,7 +66,7 @@ export const HeroSection = () => {
                         transition={{ duration: 0.8, delay: 0.4 }}
                         className="text-muted-foreground text-xl md:text-2xl font-medium max-w-2xl mx-auto"
                     >
-                        Full-stack engineering meets architectural integrity. I build scalable digital ecosystems with a focus on human experience.
+                        Full-stack engineering meets architectural integrity. I build scalable, AI-driven systems centered on human experience.
                     </motion.p>
                 </div>
 
@@ -82,7 +82,7 @@ export const HeroSection = () => {
                         </Link>
                     </Button>
                     <Button asChild size="lg" variant="secondary" className="h-14 px-10 rounded-full font-black uppercase tracking-widest hover:scale-105 hover:bg-secondary/80 transition-all">
-                        <Link href="#contact">Get in Touch</Link>
+                        <Link href="#contact">Contact Me</Link>
                     </Button>
                 </motion.div>
             </motion.div>

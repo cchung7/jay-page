@@ -22,7 +22,7 @@ export const AboutSection = () => {
                                 Great engineering is the <span className="text-muted-foreground/40 italic">silent architect</span> of human ambition
                             </p>
                             <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl font-medium">
-                                I specialize in bridging the gap between high-level architectural design and ground-level execution. My process is rooted in technical depth, aesthetic precision, and structural integrity.
+                                I specialize in bridging the gap between high-level architectural design and ground-level implementation. My process is rooted in sound engineering principles, structural integrity, and aesthetic creativity.
                             </p>
                         </div>
                     </div>
