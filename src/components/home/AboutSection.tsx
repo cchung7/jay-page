@@ -1,49 +1,47 @@
 "use client";
 
-// import { Separator } from "@/components/ui/separator";
-import { AnimatedCounter } from "../shared/AnimatedCounter";
+import { motion } from "framer-motion";
 
 export const AboutSection = () => {
-    return (
-        <section
-            id="about"
-            className="py-8 md:py-12 pb-30 px-6 bg-background relative overflow-hidden"
-        >
-            <div className="container max-w-6xl mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-start">
-                    {/* Left Column - Concept */}
-                    <div className="lg:col-span-12 space-y-6">
-                        {/* <div className="flex items-center gap-1">
-                            <Separator className="w-8 md:w-12 bg-accent h-1" />
-                            <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent"></h2>
-                        </div> */}
-                        <div className="max-w-4xl space-y-2">
-                            <p className="text-4xl md:text-5xl font-semibold leading-[1.2] tracking-tight text-foreground">
-                                Great engineering is the <span className="text-muted-foreground/40 italic">silent architect</span> of human ambition
-                            </p>
-                            <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl font-medium">
-                                I specialize in bridging the gap between high-level architectural design and ground-level implementation. My process is rooted in technical depth, aesthetic creativity, and structural integrity.
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Stats Grid */}
-                    <div className="lg:col-span-12 grid grid-cols-2 md:grid-cols-4 gap-2">
-                        {[
-                            { label: "Projects Deployed", value: 3, suffix: "+" },
-                            { label: "Systems Designed", value: 3, suffix: "+" },
-                            { label: "Technologies Used", value: 10, suffix: "+" }
-                        ].map((stat, ) => (
-                            <div key={stat.label} className="p-8 rounded-3xl bg-secondary/30 border border-border/40 hover:border-accent/40 transition-all duration-500 group">
-                                <div className="text-5xl font-heading font-black tracking-tighter text-foreground mb-2 group-hover:text-accent transition-colors">
-                                    <AnimatedCounter value={stat.value} />{stat.suffix}
-                                </div>
-                                <p className="text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground">{stat.label}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+  return (
+    <section
+      id="about"
+      className="py-8 md:py-12 pb-20 px-6 bg-background relative overflow-hidden"
+    >
+      {/* OUTER WRAPPER — centers the whole section content */}
+      <div className="flex justify-center">
+        {/* WIDTH-CONSTRAINED CONTAINER */}
+        <div className="w-full max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start"
+          >
+            {/* LEFT COLUMN */}
+            <div className="lg:col-span-5 space-y-4 text-left">
+              <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
+                About
+              </h2>
+              <h3 className="text-4xl md:text-5xl font-black tracking-tight">
+                Engineering with Intent
+              </h3>
             </div>
-        </section>
-    );
+
+            {/* RIGHT COLUMN */}
+            <div className="lg:col-span-7 space-y-6 text-left">
+              <p className="text-muted-foreground leading-relaxed font-medium">
+                Great engineering is the silent architect of human ambition.
+              </p>
+              <p className="text-muted-foreground leading-relaxed font-medium">
+                I specialize in bridging the gap between high-level architectural design and implementation. 
+                My process is rooted in sound technique, aesthetic creativity, and structural integrity.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
 };

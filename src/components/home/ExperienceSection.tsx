@@ -29,7 +29,7 @@ export const ExperienceSection = () => {
   }, []);
 
   return (
-    <section id="experience" className="py-8 md:py-12 pb-30 px-6 bg-secondary/10">
+    <section id="experience" className="py-8 md:py-12 pb-20 px-6 bg-secondary/10">
       <div className="container max-w-6xl mx-auto space-y-6">
           <div className="text-center space-y-1">
             <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">Core Competency</h2>

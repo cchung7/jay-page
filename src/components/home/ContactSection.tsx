@@ -5,7 +5,7 @@ import { ArrowRight, Mail, MapPin, Rocket, Linkedin } from "lucide-react";
 
 export const ContactSection = () => {
   return (
-    <section id="contact" className="py-8 md:py-12 px-6 bg-background">
+    <section id="contact" className="py-8 md:py-12 pb-10 px-6 bg-background">
       <div className="container max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Contact Info */}
