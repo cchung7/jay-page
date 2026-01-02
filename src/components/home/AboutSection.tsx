@@ -7,7 +7,7 @@ export const AboutSection = () => {
     return (
         <section
             id="about"
-            className="py-8 md:py-12 px-6 bg-background relative overflow-hidden"
+            className="py-8 md:py-12 pb-30 px-6 bg-background relative overflow-hidden"
         >
             <div className="container max-w-6xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-start">
