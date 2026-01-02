@@ -1,7 +1,5 @@
 "use client";
 
-import { Separator } from "@/components/ui/separator";
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, MapPin, Rocket, Linkedin } from "lucide-react";
 
@@ -13,10 +11,6 @@ export const ContactSection = () => {
             {/* Contact Info */}
             <div className="lg:col-span-5 space-y-3">
               <div className="space-y-6">
-                <div className="flex items-center gap-1">
-                  <Separator className="w-8 md:w-12 bg-accent h-1" />
-                  <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent"></h2>
-                </div>
                 <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">Availability</h2>
                 <h3 className="text-5xl font-black tracking-tighter italic">Lets build <br /> the future.</h3>
                 <p className="text-lg text-muted-foreground font-medium max-w-sm leading-relaxed">
@@ -51,10 +45,6 @@ export const ContactSection = () => {
 
               <form className="relative z-10 space-y-10">
                 <div className="space-y-6">
-                  <div className="flex items-center gap-1">
-                    <Separator className="w-8 md:w-12 bg-accent h-1" />
-                    <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent"></h2>
-                  </div>
                   <div className="space-y-2 border-b-2 border-border/60 focus-within:border-accent transition-colors pb-2">
                     <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60 ml-1">Full Name</label>
                     <input type="text" placeholder="John Doe" className="w-full bg-transparent border-none p-2 text-xl font-bold placeholder:text-muted-foreground/20 focus:ring-0" />

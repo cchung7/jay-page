@@ -30,10 +30,9 @@ export const AboutSection = () => {
                     {/* Stats Grid */}
                     <div className="lg:col-span-12 grid grid-cols-2 md:grid-cols-4 gap-2">
                         {[
-                            { label: "Projects Built", value: 120, suffix: "+" },
-                            { label: "Lines of Code", value: 240, suffix: "K" },
-                            { label: "Global Reach", value: 45, suffix: "M" },
-                            { label: "Awards Earned", value: 12, suffix: "" }
+                            { label: "Projects Deployed", value: 3, suffix: "+" },
+                            { label: "Systems Designed", value: 3, suffix: "+" },
+                            { label: "Technologies Used", value: 10, suffix: "+" }
                         ].map((stat, ) => (
                             <div key={stat.label} className="p-8 rounded-3xl bg-secondary/30 border border-border/40 hover:border-accent/40 transition-all duration-500 group">
                                 <div className="text-5xl font-heading font-black tracking-tighter text-foreground mb-2 group-hover:text-accent transition-colors">

@@ -58,7 +58,7 @@ export const HeroSection = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="bg-linear-to-b from-primary via-primary to-primary/60 bg-clip-text text-transparent leading-[1.1]"
                     >
-                        Hi, may name is <br /> <span className="text-accent italic">Jay Chung</span>
+                        Hi, My Name's <br /> <span className="text-accent italic">Jay Chung</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0 }}
@@ -66,7 +66,7 @@ export const HeroSection = () => {
                         transition={{ duration: 0.8, delay: 0.4 }}
                         className="text-muted-foreground text-xl md:text-2xl font-medium max-w-2xl mx-auto"
                     >
-                        I'm a full-stack engineer with an emphasis on network engineering. I build scalable, intelligent systems centered on the human experience.
+                        I'm a full-stack developer who builds scalable, intelligent systems centered on human experience.
                     </motion.p>
                 </div>
 
