@@ -58,10 +58,10 @@ export function Footer() {
                 <div className="space-y-3">
                     <p className="text-[11px] font-bold text-muted-foreground/60 uppercase tracking-widest whitespace-nowrap">
                         {/* Built with <span className="text-red-500 animate-pulse">❤️</span> by */}
-                        Digital Engineering Portfolio.
+                        Jay's Engineering Portfolio
                     </p>
                     <p className="text-[10px] font-semibold text-muted-foreground/40 uppercase tracking-widest">
-                        © {currentYear} Jay's Page. All rights reserved.
+                        © {currentYear} Jay Chung. All rights reserved.
                     </p>
                 </div>
             </div>

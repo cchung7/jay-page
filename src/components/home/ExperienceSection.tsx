@@ -45,7 +45,7 @@ export const ExperienceSection = () => {
 
           <Tabs.Root value={activeTab} onValueChange={setActiveTab} className="w-full">
             <Tabs.List className="flex flex-wrap justify-center gap-2 mb-4 p-2 bg-secondary/50 backdrop-blur-md rounded-2xl border border-border/40 max-w-fit mx-auto">
-              <Tabs.Trigger value="work" className="px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest text-muted-foreground data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-lg transition-all">Work</Tabs.Trigger>
+              <Tabs.Trigger value="work" className="px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest text-muted-foreground data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-lg transition-all">Experience</Tabs.Trigger>
               <Tabs.Trigger value="projects" className="px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest text-muted-foreground data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-lg transition-all">Projects</Tabs.Trigger>
               <Tabs.Trigger value="skills" className="px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest text-muted-foreground data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-lg transition-all">Skills</Tabs.Trigger>
               <Tabs.Trigger value="edu" className="px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest text-muted-foreground data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-lg transition-all">Education</Tabs.Trigger>

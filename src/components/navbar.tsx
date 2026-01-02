@@ -75,9 +75,14 @@ export function Navbar() {
                     >
                         FF
                     </motion.div> */}
+                    <div className="flex flex-col leading-none">
                     <span className="font-heading font-black text-sm sm:text-base md:text-2xl tracking-tighter uppercase whitespace-nowrap">
-                        Jay Chung <span className="text-accent italic">Software Engineer</span>
+                        Jay Chung
                     </span>
+                    <span className="text-[10px] sm:text-xs md:text-sm font-black uppercase tracking-[0.35em] text-accent italic whitespace-nowrap">
+                        Software Engineer
+                    </span>
+                    </div>
                 </Link>
 
                 {/* Center Links (Desktop) */}
