@@ -118,12 +118,12 @@ export const ExperienceSection = () => {
                         <div key={item} className="flex flex-col gap-2">
                           <div className="flex justify-between text-[10px] font-black uppercase tracking-widest">
                             <span>{item}</span>
-                            <span className="text-accent">Expert</span>
+                            <span className="text-accent">Intermediate</span>
                           </div>
                           <div className="h-1.5 w-full bg-secondary rounded-full overflow-hidden">
                             <motion.div
                               initial={{ width: 0 }}
-                              whileInView={{ width: "90%" }}
+                              whileInView={{ width: "40%" }}
                               transition={{ duration: 1, delay: i * 0.1 }}
                               className="h-full bg-linear-to-r from-accent to-accent/60"
                             />
