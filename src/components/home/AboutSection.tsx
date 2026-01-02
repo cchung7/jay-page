@@ -1,6 +1,6 @@
 "use client";
 
-import { Separator } from "@/components/ui/separator";
+// import { Separator } from "@/components/ui/separator";
 import { AnimatedCounter } from "../shared/AnimatedCounter";
 
 export const AboutSection = () => {
@@ -13,10 +13,10 @@ export const AboutSection = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-start">
                     {/* Left Column - Concept */}
                     <div className="lg:col-span-12 space-y-6">
-                        <div className="flex items-center gap-1">
+                        {/* <div className="flex items-center gap-1">
                             <Separator className="w-8 md:w-12 bg-accent h-1" />
                             <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent"></h2>
-                        </div>
+                        </div> */}
                         <div className="max-w-4xl space-y-2">
                             <p className="text-4xl md:text-5xl font-semibold leading-[1.2] tracking-tight text-foreground">
                                 Great engineering is the <span className="text-muted-foreground/40 italic">silent architect</span> of human ambition

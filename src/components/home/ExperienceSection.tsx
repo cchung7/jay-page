@@ -1,7 +1,4 @@
 "use client";
-
-import { Separator } from "@/components/ui/separator";
-
 import * as React from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import { Card, CardContent } from "@/components/ui/card";
@@ -34,10 +31,6 @@ export const ExperienceSection = () => {
   return (
     <section id="experience" className="py-8 md:py-12 px-6 bg-secondary/10">
       <div className="container max-w-6xl mx-auto space-y-6">
-          <div className="flex items-center gap-1">
-            <Separator className="w-8 md:w-12 bg-accent h-1" />
-            <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent"></h2>
-          </div>
           <div className="text-center space-y-1">
             <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">Core Competency</h2>
             <h3 className="text-5xl font-black tracking-tighter">The Technical Stack</h3>
