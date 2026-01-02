@@ -20,7 +20,7 @@ export const HeroSection = () => {
     return (
         <section
             ref={containerRef}
-            className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-20"
+            className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-20 pb-40"
         >
             <motion.div
                 style={{ opacity, scale }}
