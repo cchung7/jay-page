@@ -1,6 +1,6 @@
 "use client";
 
-import { Separator } from "@/components/ui/separator";
+// import { Separator } from "@/components/ui/separator";
 
 import * as React from "react";
 import * as Tabs from "@radix-ui/react-tabs";
@@ -43,7 +43,7 @@ export const ExperienceSection = () => {
     <section id="experience" className="py-8 md:py-12 px-6 bg-secondary/10">
       <div className="container max-w-6xl mx-auto space-y-6">
         <div className="flex items-center gap-1">
-          <Separator className="w-8 md:w-12 bg-accent h-1" />
+          {/* <Separator className="w-8 md:w-12 bg-accent h-1" /> */}
           <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent"></h2>
         </div>
 
@@ -51,7 +51,7 @@ export const ExperienceSection = () => {
           <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
             Core Competency
           </h2>
-          <h3 className="text-5xl md:text-6xl font-black tracking-tighter">The Technical Stack</h3>
+          <h3 className="text-5xl md:text-5xl font-black tracking-tighter">The Technical Stack</h3>
         </div>
 
         <Tabs.Root value={activeTab} onValueChange={setActiveTab} className="w-full">

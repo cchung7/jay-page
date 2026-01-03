@@ -1,5 +1,6 @@
 "use client";
 
+import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
 
 export const AboutSection = () => {
@@ -17,6 +18,11 @@ export const AboutSection = () => {
             viewport={{ once: true }}
             className="space-y-10"
           >
+
+            <div className="flex items-center gap-1">
+              <Separator className="w-8 md:w-12 bg-accent h-1" />
+            </div>
+
             {/* HEADER (centered, stacked, above the paragraphs) */}
             <header className="text-center space-y-3">
               <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
@@ -30,12 +36,12 @@ export const AboutSection = () => {
             {/* BODY (below header) */}
             <div className="mx-auto w-full max-w-4xl space-y-6 text-left">
               <p className="text-center text-3xl md:text-4xl font-semibold leading-[1.2] tracking-tight text-foreground">
-                  Great engineering is the <span className="text-muted-foreground/40 italic">silent architect</span> of human ambition
+                  Great engineering is the <span className="text-muted-foreground/45 italic">silent architect</span> of human ambition.
               </p>
               <p className="text-center text-muted-foreground leading-relaxed font-medium">
-                I specialize in bridging the gap between high-level architectural
-                design and implementation. My process is rooted in technical
-                depth, structural integrity, and aesthetic creativity.
+                I specialize in bridging the gap between architectural design
+                and low-level execution. My process is rooted in structural integrity 
+                and aesthetic creativity.
               </p>
             </div>
           </motion.div>
