@@ -49,7 +49,7 @@ export const ExperienceSection = () => {
 
         <div className="text-center space-y-1">
           <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
-            Experience
+            Career
           </h2>
           <h3 className="text-5xl md:text-5xl font-black tracking-tighter">The Technical Stack</h3>
         </div>
@@ -63,7 +63,7 @@ export const ExperienceSection = () => {
                        max-w-fit mx-auto"
           >
             <Tabs.Trigger value="work" className={triggerClass}>
-              Career
+              Experience
             </Tabs.Trigger>
             <Tabs.Trigger value="projects" className={triggerClass}>
               Projects
