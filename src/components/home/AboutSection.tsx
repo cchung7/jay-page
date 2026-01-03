@@ -47,6 +47,9 @@ export const AboutSection = () => {
           </motion.div>
         </div>
       </div>
+      <div className="flex items-center gap-1">
+        <Separator className="w-8 md:w-12 bg-accent h-1" />
+      </div>
     </section>
   );
 };

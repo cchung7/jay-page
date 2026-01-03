@@ -13,7 +13,7 @@ export const ContactSection = () => {
           <div className="lg:col-span-5 space-y-10">
             <div className="space-y-6 text-center lg:text-left">
               <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
-                Availability
+                Contact
               </h2>
 
               <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic">
@@ -27,23 +27,21 @@ export const ContactSection = () => {
             </div>
 
             {/* HORIZONTAL CONTACT ITEMS */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="mx-auto grid w-full max-w-sm grid-cols-2 justify-items-center gap-10 sm:max-w-none sm:grid-cols-3 sm:gap-6">
               {[
                 {
                   icon: Mail,
                   label: "E-Mail",
-                  value: "Jay Chung",
                   href: "mailto:chung_chul@yahoo.com",
                   external: false,
                 },
                 {
                   icon: Linkedin,
                   label: "LinkedIn",
-                  value: "Jay Chung",
                   href: "https://www.linkedin.com/in/chul-w-chung",
                   external: true,
                 },
-                // { icon: MapPin, label: "Headquarters", value: "Dallas, TX" },
+                // { icon: MapPin, label: "Headquarters", href: "#", external: false },
               ].map((item, i) => {
                 const Icon = item.icon;
 
@@ -52,46 +50,21 @@ export const ContactSection = () => {
                     key={i}
                     className="flex flex-col items-center text-center gap-3 group"
                   >
-                    {/* Icon becomes clickable link if href exists */}
-                    {item.href ? (
-                      <Link
-                        href={item.href}
-                        target={item.external ? "_blank" : undefined}
-                        rel={item.external ? "noopener noreferrer" : undefined}
-                        aria-label={item.label}
-                        className="block"
-                      >
-                        <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-all transform group-hover:scale-105 active:scale-95 duration-500 shadow-minimal group-hover:shadow-xl">
-                          <Icon className="h-6 w-6" />
-                        </div>
-                      </Link>
-                    ) : (
-                      <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary transition-all duration-500 shadow-minimal">
+                    <Link
+                      href={item.href}
+                      target={item.external ? "_blank" : undefined}
+                      rel={item.external ? "noopener noreferrer" : undefined}
+                      aria-label={item.label}
+                      className="block"
+                    >
+                      <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-all transform group-hover:scale-105 active:scale-95 duration-500 shadow-minimal group-hover:shadow-xl">
                         <Icon className="h-6 w-6" />
                       </div>
-                    )}
+                    </Link>
 
-                    <div className="space-y-0.5">
-                      <p className="text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/50">
-                        {item.label}
-                      </p>
-
-                      {/* Text stays as your label/hyperlink display */}
-                      {item.external ? (
-                        <a
-                          href={item.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-lg font-bold tracking-tight hover:text-accent transition-colors underline underline-offset-4 decoration-border/60 hover:decoration-accent"
-                        >
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="text-lg font-bold tracking-tight">
-                          {item.value}
-                        </p>
-                      )}
-                    </div>
+                    <p className="text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/50">
+                      {item.label}
+                    </p>
                   </div>
                 );
               })}
@@ -105,14 +78,14 @@ export const ContactSection = () => {
             </div>
 
             <form className="relative z-10 space-y-10">
-              {/* FORM TITLE (kept) */}
+              {/* FORM TITLE */}
               <div className="text-center lg:text-left">
-                <h3 className="text-5xl font-black tracking-tighter italic text-foreground">
+                <h3 className="text-center text-3xl md:text-4xl font-black tracking-tight text-foreground">
                   Let&apos;s Connect:
                 </h3>
               </div>
 
-              {/* FORM CONTENTS (kept) */}
+              {/* FORM CONTENTS */}
               <div className="space-y-6">
                 <div className="space-y-2 border-b-2 border-border/60 focus-within:border-accent transition-colors pb-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60 ml-1">
@@ -148,8 +121,7 @@ export const ContactSection = () => {
               </div>
 
               <Button className="w-full h-12 cursor-pointer rounded-full bg-primary text-primary-foreground font-black uppercase tracking-[0.25em] text-sm group shadow-xl transition-all hover:[&>svg]:translate-x-1">
-                Send Message{" "}
-                <ArrowRight size={16} className="ml-2 transition-transform" />
+                Send Message <ArrowRight size={16} className="ml-2 transition-transform" />
               </Button>
             </form>
           </div>

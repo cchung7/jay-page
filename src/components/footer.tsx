@@ -50,7 +50,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="space-y-2">
           <p className="text-[11px] font-bold text-muted-foreground/60 uppercase tracking-widest whitespace-nowrap">
-            Jay’s Portfolio & Shop
+            Jay’s Professional Portfolio
           </p>
           <p className="text-[10px] font-semibold text-muted-foreground/40 uppercase tracking-widest">
             © {currentYear} Jay Chung. All rights reserved.
