@@ -33,7 +33,7 @@ export const ExperienceSection = () => {
       <div className="container max-w-6xl mx-auto space-y-6">
           <div className="text-center space-y-1">
             <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">Core Competency</h2>
-            <h3 className="text-5xl font-black tracking-tighter">The Technical Stack</h3>
+            <h3 className="text-4xl md:text-5xl font-black tracking-tighter">The Technical Stack</h3>
           </div>
 
           <Tabs.Root value={activeTab} onValueChange={setActiveTab} className="w-full">

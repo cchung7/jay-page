@@ -29,11 +29,10 @@ export const AboutSection = () => {
 
             {/* BODY (below header) */}
             <div className="mx-auto w-full max-w-4xl space-y-6 text-left">
-              <p className="text-muted-foreground leading-relaxed font-medium">
-                Great engineering is the silent architect of human ambition.
+              <p className="text-center text-4xl md:text-5xl font-semibold leading-[1.2] tracking-tight text-foreground">
+                  Great engineering is the <span className="text-muted-foreground/40 italic">silent architect</span> of human ambition
               </p>
-
-              <p className="text-muted-foreground leading-relaxed font-medium">
+              <p className="text-center text-muted-foreground leading-relaxed font-medium">
                 I specialize in bridging the gap between high-level architectural
                 design and implementation. My process is rooted in sound
                 technique, aesthetic creativity, and structural integrity.
