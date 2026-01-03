@@ -1,90 +1,63 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import { Github, Linkedin, Zap } from "lucide-react";
-import { motion } from "framer-motion";
+import { Github, Linkedin } from "lucide-react";
 
 export function Footer() {
-    const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear();
 
-    return (
-        <footer className="w-full bg-secondary/30 border-t border-border/40 py-6 px-6">
-            <div className="container max-w-6xl mx-auto flex flex-col items-center gap-3 text-center">
-                
-                {/* Brand */}
-                <div className="flex flex-col items-center gap-1 group">
-                    <div className="relative">
-                        {/* Glow */}
-                        <div className="absolute inset-0 bg-accent/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+  return (
+    <footer
+      className="w-full bg-secondary/30 border-t border-border/40 mt-10 py-6 px-6"
+    >
+      <div className="container max-w-6xl mx-auto flex flex-col items-center gap-4 text-center">
 
-                        {/* Headshot */}
-                        <div className="relative h-14 w-14 rounded-2xl overflow-hidden shadow-lg shadow-accent/20 group-hover:scale-110 transition-transform duration-300">
-                            <Image
-                                src="/images/jay_pic.jpg"
-                                alt="Jay Chung headshot"
-                                fill
-                                priority
-                                className="object-cover"
-                            />
-                        </div>
+        {/* Navigation */}
+        <nav className="flex flex-wrap justify-center gap-4 text-sm font-black uppercase tracking-[0.2em] text-muted-foreground">
+          <Link href="/#about" className="hover:text-accent transition-colors hover:scale-105 transform">
+            About
+          </Link>
+          <Link href="/#experience" className="hover:text-accent transition-colors hover:scale-105 transform">
+            Experience
+          </Link>
+          <Link href="/shop" className="hover:text-accent transition-colors hover:scale-105 transform">
+            Shop
+          </Link>
+          <Link href="/#contact" className="hover:text-accent transition-colors hover:scale-105 transform">
+            Contact
+          </Link>
+        </nav>
 
-                        {/* Lightning badge */}
-                        <div className="absolute -bottom-1 -right-1 h-5 w-5 bg-background rounded-full flex items-center justify-center border-2 border-secondary">
-                            <Zap size={16} className="text-accent fill-current" />
-                        </div>
-                    </div>
+        {/* Socials */}
+        <div className="flex gap-3 py-2">
+          {[
+            { Icon: Github, href: "#", label: "GitHub" },
+            { Icon: Linkedin, href: "#", label: "LinkedIn" },
+          ].map(({ Icon, href, label }) => (
+            <Link
+              key={label}
+              href={href}
+              title={label}
+              className="h-12 w-12 rounded-full border border-border/60 flex items-center justify-center transition-all duration-300 group hover:shadow-lg hover:shadow-accent/20"
+            >
+              <div className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center transition-colors duration-300 group-hover:bg-accent">
+                <Icon className="h-6 w-6 text-muted-foreground group-hover:text-white group-hover:scale-110 transition-all" />
+              </div>
+            </Link>
+          ))}
+        </div>
 
-                    <h4 className="font-heading font-black text-2xl tracking-tighter uppercase italic text-foreground">
-                        Jay <span className="text-muted-foreground/60">Chung</span>
-                    </h4>
-                </div>
+        {/* Copyright */}
+        <div className="space-y-2">
+          <p className="text-[11px] font-bold text-muted-foreground/60 uppercase tracking-widest whitespace-nowrap">
+            Jay’s Portfolio & Shop
+          </p>
+          <p className="text-[10px] font-semibold text-muted-foreground/40 uppercase tracking-widest">
+            © {currentYear} Jay Chung. All rights reserved.
+          </p>
+        </div>
 
-                {/* Navigation */}
-                <nav className="flex flex-wrap justify-center gap-4 text-sm font-black uppercase tracking-[0.2em] text-muted-foreground">
-                    <Link href="/#about" className="hover:text-accent transition-colors hover:scale-105 transform">
-                        About
-                    </Link>
-                    <Link href="/#experience" className="hover:text-accent transition-colors hover:scale-105 transform">
-                        Experience
-                    </Link>
-                    <Link href="/shop" className="hover:text-accent transition-colors hover:scale-105 transform">
-                        Shop
-                    </Link>
-                    <Link href="/#contact" className="hover:text-accent transition-colors hover:scale-105 transform">
-                        Contact
-                    </Link>
-                </nav>
-
-                {/* Socials */}
-                <div className="flex gap-2 py-4">
-                    {[
-                        { Icon: Github, href: "#", label: "GitHub" },
-                        { Icon: Linkedin, href: "#", label: "LinkedIn" }
-                    ].map(({ Icon, href, label }) => (
-                        <Link
-                            key={label}
-                            href={href}
-                            title={label}
-                            className="h-12 w-12 rounded-full bg-transparent border border-border/60 flex items-center justify-center transition-all duration-300 group hover:shadow-lg hover:shadow-accent/20"
-                        >
-                            <div className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center transition-colors duration-300 group-hover:bg-accent">
-                                <Icon className="h-6 w-6 text-muted-foreground group-hover:text-white group-hover:scale-110 transition-all" />
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-
-                {/* Copyright */}
-                <div className="space-y-3">
-                    <p className="text-[11px] font-bold text-muted-foreground/60 uppercase tracking-widest whitespace-nowrap">
-                        Jay's Portfolio & Shop
-                    </p>
-                    <p className="text-[10px] font-semibold text-muted-foreground/40 uppercase tracking-widest">
-                        ©{currentYear} Jay Chung. All rights reserved.
-                    </p>
-                </div>
-            </div>
-        </footer>
-    );
+      </div>
+    </footer>
+  );
 }

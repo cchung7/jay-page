@@ -12,7 +12,7 @@ export const ContactSection = () => {
             <div className="lg:col-span-5 space-y-3">
               <div className="space-y-6">
                 <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">Availability</h2>
-                <h3 className="text-5xl font-black tracking-tighter italic">Lets build <br /> the future.</h3>
+                <h3 className="text-5xl font-black tracking-tighter italic">Let's build <br /> the future</h3>
                 <p className="text-lg text-muted-foreground font-medium max-w-sm leading-relaxed">
                   Currently accepting select architectural commissions and performance-driven engineering collaborations.
                 </p>
