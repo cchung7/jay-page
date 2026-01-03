@@ -22,8 +22,8 @@ export const AboutSection = () => {
               <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
                 About
               </h2>
-              <h3 className="text-5xl md:text-6xl font-black tracking-tight">
-                Engineering with Intent
+              <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic">
+                The Philosophy
               </h3>
             </header>
 
@@ -34,8 +34,8 @@ export const AboutSection = () => {
               </p>
               <p className="text-center text-muted-foreground leading-relaxed font-medium">
                 I specialize in bridging the gap between high-level architectural
-                design and implementation. My process is rooted in sound
-                technique, aesthetic creativity, and structural integrity.
+                design and implementation. My process is rooted in technical
+                depth, structural integrity, and aesthetic creativity.
               </p>
             </div>
           </motion.div>
