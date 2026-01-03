@@ -5,36 +5,35 @@ import { ArrowRight, Mail, MapPin, Rocket, Linkedin } from "lucide-react";
 
 export const ContactSection = () => {
   return (
-    <section id="contact" className="py-8 md:py-12 pb-10 px-6 bg-background">
+    <section id="contact" className="py-8 md:py-12 px-6 bg-background">
       <div className="container max-w-6xl mx-auto">
-        {/* STACKED LAYOUT: Availability block ABOVE the form */}
-        <div className="flex flex-col items-center gap-10">
-          {/* Availability / Contact Info (CENTERED) */}
-          <div className="w-full max-w-3xl text-center space-y-8">
-            <div className="space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Contact Info */}
+          <div className="lg:col-span-5 space-y-10">
+            <div className="space-y-6 text-center lg:text-left">
               <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
                 Availability
               </h2>
 
-              <h3 className="text-4xl md:text-5xl font-black tracking-tighter italic">
+              <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic">
                 Let&apos;s build <br /> the future.
               </h3>
 
-              <p className="text-lg text-muted-foreground font-medium leading-relaxed mx-auto">
+              <p className="text-lg text-muted-foreground font-medium max-w-sm leading-relaxed mx-auto lg:mx-0">
                 Currently accepting select architectural commissions and
                 performance-driven engineering collaborations.
               </p>
             </div>
 
-            {/* Contact rows (CENTERED) */}
-            <div className="w-full space-y-6">
+            {/* HORIZONTAL CONTACT ITEMS */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {[
                 { icon: Mail, label: "E-Mail", value: "chung_chul@yahoo.com" },
                 {
                   icon: Linkedin,
-                  label: "Linkedin",
-                  value: "www.linkedin.com/in/chul-w-chung",
-                  linkText: "Jay Chung",
+                  label: "LinkedIn",
+                  value: "Jay Chung",
+                  href: "https://www.linkedin.com/in/chul-w-chung",
                 },
                 { icon: MapPin, label: "Headquarters", value: "Dallas, TX" },
               ].map((item, i) => (
@@ -51,16 +50,14 @@ export const ContactSection = () => {
                       {item.label}
                     </p>
 
-                    {/* Linkedin special case: hyperlink text "Jay Chung" */}
-                    {item.label === "Linkedin" ? (
+                    {item.href ? (
                       <a
-                        href="https://www.linkedin.com/in/chul-w-chung"
+                        href={item.href}
                         target="_blank"
                         rel="noreferrer"
                         className="text-lg font-bold tracking-tight hover:text-accent transition-colors underline underline-offset-4 decoration-border/60 hover:decoration-accent"
-                        title={item.value}
                       >
-                        {item.linkText}
+                        {item.value}
                       </a>
                     ) : (
                       <p className="text-lg font-bold tracking-tight">
@@ -73,13 +70,20 @@ export const ContactSection = () => {
             </div>
           </div>
 
-          {/* Form (BELOW) */}
-          <div className="w-full max-w-6xl bg-secondary/30 p-3 md:p-20 rounded-[2.5rem] border border-border/40 relative overflow-hidden group">
+          {/* Form */}
+          <div className="lg:col-span-7 bg-secondary/30 p-3 md:p-20 rounded-[2.5rem] border border-border/40 relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-3 opacity-5 scale-150 rotate-12 group-hover:rotate-0 transition-all duration-1000">
               <Rocket className="h-16 w-16" />
             </div>
 
             <form className="relative z-10 space-y-10">
+              {/* NEW FORM TITLE */}
+              <div className="text-center lg:text-left">
+                <h3 className="text-5xl font-black tracking-tighter italic text-foreground">
+                  Let&apos;s Connect:
+                </h3>
+              </div>
+
               <div className="space-y-6">
                 <div className="space-y-2 border-b-2 border-border/60 focus-within:border-accent transition-colors pb-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60 ml-1">

@@ -22,14 +22,14 @@ export const AboutSection = () => {
               <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
                 About
               </h2>
-              <h3 className="text-4xl md:text-5xl font-black tracking-tight">
+              <h3 className="text-5xl md:text-6xl font-black tracking-tight">
                 Engineering with Intent
               </h3>
             </header>
 
             {/* BODY (below header) */}
             <div className="mx-auto w-full max-w-4xl space-y-6 text-left">
-              <p className="text-center text-4xl md:text-5xl font-semibold leading-[1.2] tracking-tight text-foreground">
+              <p className="text-center text-3xl md:text-4xl font-semibold leading-[1.2] tracking-tight text-foreground">
                   Great engineering is the <span className="text-muted-foreground/40 italic">silent architect</span> of human ambition
               </p>
               <p className="text-center text-muted-foreground leading-relaxed font-medium">
