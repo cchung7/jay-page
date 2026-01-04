@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mail, Rocket, Linkedin } from "lucide-react";
+import { ArrowRight, Mail, Rocket, MapPin, Linkedin } from "lucide-react";
 
 export const ContactSection = () => {
   return (
