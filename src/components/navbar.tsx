@@ -65,6 +65,16 @@ export function Navbar() {
 
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
+  // 3D action button styling (for cart/theme/mobile-menu icons)
+  const action3DClass = cn(
+    "rounded-full",
+    "bg-background/20 border border-border/50",
+    "shadow-[0_6px_0_rgba(0,0,0,0.35)]",
+    "transition-all duration-200",
+    "hover:border-accent/60 hover:-translate-y-[1px] hover:shadow-[0_10px_0_rgba(0,0,0,0.35)]",
+    "active:translate-y-[2px] active:shadow-[0_2px_0_rgba(0,0,0,0.35)]"
+  );
+
   return (
     <motion.header
       variants={{
@@ -92,7 +102,6 @@ export function Navbar() {
               className="group inline-flex items-center"
             >
               <div className="relative h-10 w-10 md:h-11 md:w-11 rounded-2xl overflow-hidden border border-border/50 bg-secondary/40 shadow-[0_10px_30px_rgba(0,0,0,0.25)] group-hover:shadow-[0_18px_40px_rgba(0,0,0,0.35)] transition-all duration-300">
-                {/* If your file is .svg or .jpg, just change the extension here */}
                 <Image
                   src="/images/jay_logo.png"
                   alt="Jay logo"
@@ -114,7 +123,6 @@ export function Navbar() {
                     key={link.name}
                     href={link.href}
                     className={cn(
-                      // 3D-like button styling (outlined + “pops”)
                       "relative inline-flex items-center gap-2 px-3 py-2 rounded-full",
                       "text-[11px] uppercase tracking-widest",
                       "bg-background/20 border border-border/50",
@@ -124,7 +132,7 @@ export function Navbar() {
                       "active:translate-y-[2px] active:shadow-[0_2px_0_rgba(0,0,0,0.35)]"
                     )}
                   >
-                    <Icon className="h-5 w-5 mb-0.5 text-muted-foreground/80 group-hover:text-accent transition-colors" />
+                    <Icon className="h-5 w-5 mb-0.5 text-muted-foreground/80 transition-colors" />
                     {link.name}
                   </Link>
                 );
@@ -134,12 +142,14 @@ export function Navbar() {
 
           {/* RIGHT: Actions */}
           <div className="flex items-center justify-end gap-2">
-            <div className="relative group">
+            {/* CART (3D) */}
+            <div className="relative">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setCartOpen(true)}
-                className="rounded-full hover:bg-secondary"
+                className={cn(action3DClass, "relative")}
+                aria-label="Open cart"
               >
                 <ShoppingBag className="h-6 w-6" />
                 <span className="absolute top-1 right-1 h-3 w-3 bg-accent text-[8px] font-black text-white flex items-center justify-center rounded-full border-2 border-background animate-pulse">
@@ -148,11 +158,13 @@ export function Navbar() {
               </Button>
             </div>
 
+            {/* THEME (3D) */}
             <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full hover:bg-secondary relative overflow-hidden"
+              className={cn(action3DClass, "relative overflow-hidden")}
+              aria-label="Toggle theme"
             >
               {mounted ? (
                 <AnimatePresence mode="wait">
@@ -183,11 +195,13 @@ export function Navbar() {
               )}
             </Button>
 
+            {/* MOBILE MENU (3D) */}
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden rounded-full"
+              className={cn("md:hidden", action3DClass)}
               onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open menu"
             >
               <Menu className="h-6 w-6" />
             </Button>

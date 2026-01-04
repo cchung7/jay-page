@@ -7,7 +7,7 @@ export const AboutSection = () => {
   return (
     <section
       id="about"
-      className="py-8 md:py-12 pb-30 px-6 bg-background relative overflow-hidden"
+      className="py-24 md:py-32 px-6 bg-background relative overflow-hidden"
     >
       <div className="flex justify-center">
         <div className="w-full max-w-6xl">
