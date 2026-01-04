@@ -40,7 +40,7 @@ export const ExperienceSection = () => {
     "data-[state=active]:-translate-y-0.5";
 
   return (
-    <section id="experience" className="py-8 md:py-12 px-6 bg-secondary/10">
+    <section id="experience" className="py-8 md:py-12 pb-30 px-6 bg-secondary/10">
       <div className="container max-w-6xl mx-auto space-y-6">
         <div className="flex items-center gap-1">
           {/* <Separator className="w-8 md:w-12 bg-accent h-1" /> */}
