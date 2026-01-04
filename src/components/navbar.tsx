@@ -2,9 +2,15 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from "framer-motion";
 import * as Dialog from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -51,11 +57,9 @@ export function Navbar() {
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
-    if (latest > previous && latest > 150) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
+    if (latest > previous && latest > 150) setHidden(true);
+    else setHidden(false);
+
     setScrolled(latest > 50);
   });
 
@@ -77,86 +81,117 @@ export function Navbar() {
       )}
     >
       {/* Header Row */}
-      <div className="container mx-auto px-6 relative flex items-center justify-end">
-        {/* Center Links (Desktop) - ABSOLUTE CENTER */}
-        <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center bg-secondary/50 backdrop-blur-sm px-2 py-1.5 gap-5 rounded-full border border-border/40 font-bold">
-          {navLinks.map((link) => {
-            const Icon = link.icon;
-            return (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="px-1 py-2 rounded-full text-[11px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-all duration-300 relative group flex items-center gap-2"
-              >
-                <Icon className="h-5 w-5 mb-0.5 group-hover:text-accent transition-colors" />
-                {link.name}
-                <div className="absolute -bottom-1 left-1 right-1 h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-center" />
-              </Link>
-            );
-          })}
-        </nav>
+      <div className="container mx-auto px-6">
+        {/* 3-column layout keeps nav perfectly centered regardless of left/right widths */}
+        <div className="grid grid-cols-3 items-center">
+          {/* LEFT: Logo */}
+          <div className="flex items-center">
+            <Link
+              href="/"
+              aria-label="Home"
+              className="group inline-flex items-center"
+            >
+              <div className="relative h-10 w-10 md:h-11 md:w-11 rounded-2xl overflow-hidden border border-border/50 bg-secondary/40 shadow-[0_10px_30px_rgba(0,0,0,0.25)] group-hover:shadow-[0_18px_40px_rgba(0,0,0,0.35)] transition-all duration-300">
+                {/* If your file is .svg or .jpg, just change the extension here */}
+                <Image
+                  src="/images/jay_logo.png"
+                  alt="Jay logo"
+                  fill
+                  priority
+                  className="object-contain p-2"
+                />
+              </div>
+            </Link>
+          </div>
 
-        {/* Right Actions */}
-        <div className="flex items-center gap-2">
-          <div className="relative group">
+          {/* CENTER: Links (Desktop) */}
+          <nav className="hidden md:flex justify-center">
+            <div className="flex items-center bg-secondary/50 backdrop-blur-sm px-2 py-1.5 gap-3 rounded-full border border-border/40 font-bold">
+              {navLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={cn(
+                      // 3D-like button styling (outlined + “pops”)
+                      "relative inline-flex items-center gap-2 px-3 py-2 rounded-full",
+                      "text-[11px] uppercase tracking-widest",
+                      "bg-background/20 border border-border/50",
+                      "shadow-[0_6px_0_rgba(0,0,0,0.35)]",
+                      "text-muted-foreground transition-all duration-200",
+                      "hover:text-foreground hover:border-accent/60 hover:-translate-y-[1px] hover:shadow-[0_10px_0_rgba(0,0,0,0.35)]",
+                      "active:translate-y-[2px] active:shadow-[0_2px_0_rgba(0,0,0,0.35)]"
+                    )}
+                  >
+                    <Icon className="h-5 w-5 mb-0.5 text-muted-foreground/80 group-hover:text-accent transition-colors" />
+                    {link.name}
+                  </Link>
+                );
+              })}
+            </div>
+          </nav>
+
+          {/* RIGHT: Actions */}
+          <div className="flex items-center justify-end gap-2">
+            <div className="relative group">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setCartOpen(true)}
+                className="rounded-full hover:bg-secondary"
+              >
+                <ShoppingBag className="h-6 w-6" />
+                <span className="absolute top-1 right-1 h-3 w-3 bg-accent text-[8px] font-black text-white flex items-center justify-center rounded-full border-2 border-background animate-pulse">
+                  {itemCount}
+                </span>
+              </Button>
+            </div>
+
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setCartOpen(true)}
-              className="rounded-full hover:bg-secondary"
+              onClick={toggleTheme}
+              className="rounded-full hover:bg-secondary relative overflow-hidden"
             >
-              <ShoppingBag className="h-6 w-6" />
-              <span className="absolute top-1 right-1 h-3 w-3 bg-accent text-[8px] font-black text-white flex items-center justify-center rounded-full border-2 border-background animate-pulse">
-                {itemCount}
-              </span>
+              {mounted ? (
+                <AnimatePresence mode="wait">
+                  {theme === "dark" ? (
+                    <motion.div
+                      key="sun"
+                      initial={{ y: 20 }}
+                      animate={{ y: 0 }}
+                      exit={{ y: -20 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Sun className="h-6 w-6" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="moon"
+                      initial={{ y: 20 }}
+                      animate={{ y: 0 }}
+                      exit={{ y: -20 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Moon className="h-6 w-6" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              ) : (
+                <div className="h-6 w-6" />
+              )}
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden rounded-full"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <Menu className="h-6 w-6" />
             </Button>
           </div>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="rounded-full hover:bg-secondary relative overflow-hidden"
-          >
-            {/* Prevent hydration mismatch by not rendering until mounted */}
-            {mounted ? (
-              <AnimatePresence mode="wait">
-                {theme === "dark" ? (
-                  <motion.div
-                    key="sun"
-                    initial={{ y: 20 }}
-                    animate={{ y: 0 }}
-                    exit={{ y: -20 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Sun className="h-6 w-6" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="moon"
-                    initial={{ y: 20 }}
-                    animate={{ y: 0 }}
-                    exit={{ y: -20 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Moon className="h-6 w-6" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            ) : (
-              // Placeholder to maintain layout during SSR
-              <div className="h-6 w-6" />
-            )}
-          </Button>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden rounded-full"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <Menu className="h-6 w-6" />
-          </Button>
         </div>
       </div>
 
@@ -173,6 +208,7 @@ export function Navbar() {
                   className="fixed inset-0 z-60 bg-black/60 backdrop-blur-sm"
                 />
               </Dialog.Overlay>
+
               <Dialog.Content asChild>
                 <motion.div
                   initial={{ x: "100%" }}
@@ -227,10 +263,7 @@ export function Navbar() {
                       asChild
                       className="w-full h-16 rounded-2xl bg-accent text-white font-black uppercase tracking-[0.2em] shadow-xl hover:scale-[1.02] transition-all"
                     >
-                      <Link
-                        href="/shop"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
+                      <Link href="/shop" onClick={() => setMobileMenuOpen(false)}>
                         Enter the Shop
                       </Link>
                     </Button>

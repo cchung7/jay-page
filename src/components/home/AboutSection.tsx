@@ -7,7 +7,7 @@ export const AboutSection = () => {
   return (
     <section
       id="about"
-      className="py-8 md:py-12 pb-40 px-6 bg-background relative overflow-hidden"
+      className="py-8 md:py-12 pb-50 px-6 bg-background relative overflow-hidden"
     >
       <div className="flex justify-center">
         <div className="w-full max-w-6xl">
@@ -23,7 +23,7 @@ export const AboutSection = () => {
             </div> */}
 
             {/* HEADER (centered, stacked, above the paragraphs) */}
-            <header className="text-center space-y-3">
+            <header className="text-center space-y-1">
               <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
                 About
               </h2>

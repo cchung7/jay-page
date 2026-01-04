@@ -12,15 +12,13 @@ export const ContactSection = () => {
         <div className="grid grid-cols-1 gap-6">
           {/* Contact Info */}
           <div className="space-y-10">
-            <div className="space-y-6 text-center">
+            <div className="text-center space-y-1">
               <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
                 Contact
               </h2>
-
               <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic">
                 Let&apos;s build the future
               </h3>
-
               <p className="text-lg text-muted-foreground font-medium max-w-sm leading-relaxed mx-auto">
                 Currently accepting select architectural commissions and
                 performance-driven engineering collaborations.
@@ -44,6 +42,12 @@ export const ContactSection = () => {
                   href: "https://www.linkedin.com/in/chul-w-chung",
                   external: true,
                 },
+                { 
+                  icon: MapPin, 
+                  label: "Headquarters", 
+                  value: "Frisco, TX",
+                  external: false, 
+                }
               ].map((item, i) => {
                 const Icon = item.icon;
 
