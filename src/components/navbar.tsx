@@ -24,10 +24,10 @@ import { useCart } from "@/lib/cart-context";
 import { CartDrawer } from "@/components/cart-drawer";
 
 const navLinks = [
-  { name: "Home", href: "/#about", icon: User },
+  { name: "About", href: "/#about", icon: User },
   { name: "Experience", href: "/#experience", icon: Briefcase },
   // { name: "Projects", href: "/#projects", icon: Code },
-  { name: "Shop", href: "/shop", icon: ShoppingBag },
+  // { name: "Shop", href: "/shop", icon: ShoppingBag },
   { name: "Contact", href: "/#contact", icon: Mail },
 ];
 

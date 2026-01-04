@@ -8,19 +8,20 @@ export const ContactSection = () => {
   return (
     <section id="contact" className="py-8 md:py-12 px-6 bg-background">
       <div className="container max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        {/* CHANGED: force stacked layout even on large screens */}
+        <div className="grid grid-cols-1 gap-6">
           {/* Contact Info */}
-          <div className="lg:col-span-5 space-y-10">
-            <div className="space-y-6 text-center lg:text-left">
+          <div className="space-y-10">
+            <div className="space-y-6 text-center">
               <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
                 Contact
               </h2>
 
-              <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic">  
+              <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic">
                 Let&apos;s build the future
               </h3>
 
-              <p className="text-lg text-muted-foreground font-medium max-w-sm leading-relaxed mx-auto lg:mx-0">
+              <p className="text-lg text-muted-foreground font-medium max-w-sm leading-relaxed mx-auto">
                 Currently accepting select architectural commissions and
                 performance-driven engineering collaborations.
               </p>
@@ -43,7 +44,6 @@ export const ContactSection = () => {
                   href: "https://www.linkedin.com/in/chul-w-chung",
                   external: true,
                 },
-                // { icon: MapPin, label: "Headquarters", value: "Dallas, TX" },
               ].map((item, i) => {
                 const Icon = item.icon;
 
@@ -52,7 +52,6 @@ export const ContactSection = () => {
                     key={i}
                     className="flex flex-col items-center text-center gap-3 group"
                   >
-                    {/* Icon becomes clickable link if href exists */}
                     {item.href ? (
                       <Link
                         href={item.href}
@@ -76,7 +75,6 @@ export const ContactSection = () => {
                         {item.label}
                       </p>
 
-                      {/* Text stays as your label/hyperlink display */}
                       {item.external ? (
                         <a
                           href={item.href}
@@ -99,20 +97,18 @@ export const ContactSection = () => {
           </div>
 
           {/* Form */}
-          <div className="lg:col-span-7 bg-secondary/30 p-3 md:p-20 rounded-[2.5rem] border border-border/40 relative overflow-hidden group">
+          <div className="bg-secondary/30 p-3 md:p-20 rounded-[2.5rem] border border-border/40 relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-3 opacity-5 scale-150 rotate-12 group-hover:rotate-0 transition-all duration-1000">
               <Rocket className="h-16 w-16" />
             </div>
 
             <form className="relative z-10 space-y-10">
-              {/* FORM TITLE (kept) */}
-              <div className="text-center lg:text-left">
+              <div className="text-center">
                 <h3 className="text-center text-3xl md:text-4xl font-black tracking-tight text-foreground">
                   Let&apos;s Connect:
                 </h3>
               </div>
 
-              {/* FORM CONTENTS (kept) */}
               <div className="space-y-6">
                 <div className="space-y-2 border-b-2 border-border/60 focus-within:border-accent transition-colors pb-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60 ml-1">

@@ -1,6 +1,6 @@
 "use client";
 
-import { Separator } from "@/components/ui/separator";
+// import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
 
 export const AboutSection = () => {
@@ -18,10 +18,9 @@ export const AboutSection = () => {
             viewport={{ once: true }}
             className="space-y-10"
           >
-
-            <div className="flex items-center gap-1">
+            {/* <div className="flex items-center gap-1">
               <Separator className="w-8 md:w-12 bg-accent h-1" />
-            </div>
+            </div> */}
 
             {/* HEADER (centered, stacked, above the paragraphs) */}
             <header className="text-center space-y-3">
