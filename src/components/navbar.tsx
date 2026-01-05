@@ -3,12 +3,25 @@
 import * as React from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { motion, AnimatePresence, useScroll, useMotionValueEvent, } from "framer-motion";
-
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from "framer-motion";
 import * as Dialog from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Sun, Moon, Menu, X, ArrowUpRight, User, Briefcase, Mail, } from "lucide-react";
+import {
+  Sun,
+  Moon,
+  Menu,
+  X,
+  ArrowUpRight,
+  User,
+  Briefcase,
+  Mail,
+} from "lucide-react";
 
 const navLinks = [
   { name: "About", href: "/#about", icon: User },
@@ -24,9 +37,7 @@ export function Navbar() {
   const { theme, setTheme } = useTheme();
   const { scrollY } = useScroll();
 
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+  React.useEffect(() => setMounted(true), []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const prev = scrollY.getPrevious() ?? 0;
@@ -36,12 +47,34 @@ export function Navbar() {
 
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
+  // Neutral styling to match ExperienceSection
   const actionClass = cn(
     "h-10 w-10 rounded-full",
-    "flex items-center justify-center",
     "bg-secondary/30 border border-border/60",
     "text-muted-foreground",
     "shadow-[0_1px_0_rgba(0,0,0,0.22)]",
+    "transition-all duration-200",
+    "hover:text-foreground hover:border-accent/60"
+  );
+
+  const navPillClass = cn(
+    "relative h-10",
+    "flex items-center gap-2 px-2 rounded-full",
+    "bg-secondary/50 backdrop-blur-md",
+    "border border-border/60",
+    "shadow-[0_1px_0_rgba(0,0,0,0.22)]",
+    "ring-1 ring-white/10",
+    "before:pointer-events-none before:absolute before:inset-0 before:rounded-full",
+    "before:bg-gradient-to-b before:from-white/10 before:to-transparent"
+  );
+
+  const navButtonClass = cn(
+    "group h-9",
+    "relative inline-flex items-center gap-2 px-3 rounded-full",
+    "text-[11px] font-black uppercase tracking-widest",
+    "bg-secondary/30",
+    "border border-border/60",
+    "text-muted-foreground",
     "transition-all duration-200",
     "hover:text-foreground hover:border-accent/60"
   );
@@ -59,40 +92,13 @@ export function Navbar() {
       )}
     >
       <div className="container mx-auto px-6">
-        {/* Keep center truly centered without the logo */}
-        <div className="grid grid-cols-[auto,1fr,auto] items-center">
-          {/* Left spacer matches the action button footprint */}
-          <div className="h-10 w-10" aria-hidden="true" />
-
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex justify-center">
-            <div
-              className={cn(
-                "relative h-10",
-                "flex items-center gap-2 px-2 rounded-full",
-                "bg-secondary/50 backdrop-blur-md",
-                "border border-border/60",
-                "shadow-[0_1px_0_rgba(0,0,0,0.22)]",
-                "ring-1 ring-white/10",
-                "before:pointer-events-none before:absolute before:inset-0 before:rounded-full",
-                "before:bg-gradient-to-b before:from-white/10 before:to-transparent"
-              )}
-            >
+        {/* KEY CHANGE: relative row, absolute centered nav, absolute right actions */}
+        <div className="relative h-10">
+          {/* Centered Desktop Nav */}
+          <nav className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className={navPillClass}>
               {navLinks.map(({ name, href, icon: Icon }) => (
-                <Link
-                  key={name}
-                  href={href}
-                  className={cn(
-                    "group h-9",
-                    "relative inline-flex items-center gap-2 px-3 rounded-full",
-                    "text-[11px] font-black uppercase tracking-widest",
-                    "bg-secondary/30",
-                    "border border-border/60",
-                    "text-muted-foreground",
-                    "transition-all duration-200",
-                    "hover:text-foreground hover:border-accent/60"
-                  )}
-                >
+                <Link key={name} href={href} className={navButtonClass}>
                   <Icon className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
                   {name}
                 </Link>
@@ -100,8 +106,8 @@ export function Navbar() {
             </div>
           </nav>
 
-          {/* Right Actions */}
-          <div className="flex items-center justify-end gap-2 h-10">
+          {/* Right Actions (always pinned to the same vertical center) */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-2">
             <Button
               variant="ghost"
               size="icon"
@@ -109,7 +115,13 @@ export function Navbar() {
               className={actionClass}
               aria-label="Toggle theme"
             >
-              {mounted ? (theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />) : null}
+              {mounted ? (
+                theme === "dark" ? (
+                  <Sun className="h-5 w-5" />
+                ) : (
+                  <Moon className="h-5 w-5" />
+                )
+              ) : null}
             </Button>
 
             <Button
@@ -131,6 +143,7 @@ export function Navbar() {
           {mobileMenuOpen && (
             <Dialog.Portal forceMount>
               <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm" />
+
               <Dialog.Content
                 className={cn(
                   "fixed right-0 top-0 z-[70] h-full w-full max-w-sm",
