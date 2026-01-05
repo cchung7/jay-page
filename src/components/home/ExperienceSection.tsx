@@ -72,7 +72,7 @@ export const ExperienceSection = () => {
             </Tabs.Trigger>
           </Tabs.List>
 
-          {/* WORK */}
+          {/* WORK ############# */}
           <Tabs.Content
             value="work"
             className="grid grid-cols-1 md:grid-cols-2 gap-2 outline-none"
@@ -128,7 +128,7 @@ export const ExperienceSection = () => {
             ))}
           </Tabs.Content>
 
-          {/* PROJECTS */}
+          {/* PROJECTS ############# */}
           <Tabs.Content
             value="projects"
             className="grid grid-cols-1 md:grid-cols-2 gap-2 outline-none"
@@ -141,7 +141,6 @@ export const ExperienceSection = () => {
                 transition={{ delay: i * 0.1 }}
               >
                 <Card className="group border border-border/40 rounded-3xl overflow-hidden bg-background h-full hover:shadow-2xl transition-all duration-500 hover:border-accent/70">
-                  {/* 🔽 UPDATED PROJECT TYPE HEADER */}
                   <div
                     className={cn(
                       "h-12 mx-3 mt-3",
@@ -182,13 +181,26 @@ export const ExperienceSection = () => {
                     <p className="text-muted-foreground font-medium leading-relaxed">
                       {proj.desc}
                     </p>
+
+                    {proj.tags && proj.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2 pt-4">
+                        {proj.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[10px] font-bold uppercase tracking-widest text-foreground/80 bg-secondary/50 border border-border/70 px-3 py-1 rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
           </Tabs.Content>
 
-          {/* SKILLS */}
+          {/* SKILLS ############# */}
           <Tabs.Content
             value="skills"
             className="grid grid-cols-1 md:grid-cols-3 gap-2 outline-none"
@@ -233,7 +245,7 @@ export const ExperienceSection = () => {
             ))}
           </Tabs.Content>
 
-          {/* EDUCATION */}
+          {/* EDUCATION ############# */}
           <Tabs.Content value="edu" className="space-y-6 outline-none">
             {education.map((edu, i) => (
               <motion.div
