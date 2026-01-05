@@ -6,7 +6,7 @@ import { ArrowRight, Mail, Rocket, MapPin, Linkedin } from "lucide-react";
 
 export const ContactSection = () => {
   return (
-    <section id="contact" className="py-8 md:py-12 px-6 bg-background">
+    <section id="contact" className="py-24 md:py-32 px-6 bg-background">
       <div className="container max-w-6xl mx-auto">
         {/* CHANGED: force stacked layout even on large screens */}
         <div className="grid grid-cols-1 gap-6">

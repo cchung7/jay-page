@@ -40,7 +40,7 @@ export const ExperienceSection = () => {
     "data-[state=active]:-translate-y-0.5";
 
   return (
-    <section id="experience" className="py-24 md:py-32 pb-30 px-6 bg-secondary/10">
+    <section id="experience" className="py-24 md:py-32 px-6 bg-secondary/10">
       <div className="container max-w-6xl mx-auto space-y-6">
         <div className="text-center space-y-1">
           <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
