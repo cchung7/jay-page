@@ -1,8 +1,8 @@
-import { Cpu, Database, Layout } from "lucide-react";
+import { Cpu, Database, Layout, BrainCircuit } from "lucide-react";
 
 export const skills = [
   { name: "Frontend", 
-    items: ["TypeScript", "CSS", "JavaScript", "React", "Next.js", "Node.js"], 
+    items: ["HTML", "CSS", "JavaScript", "React", "TypeScript", "Next.js", "Node.js"], 
     icon: Layout 
   },
   { name: "Backend", 
@@ -14,7 +14,7 @@ export const skills = [
     icon: Cpu 
   },
   { name: "Ai Tools", 
-    items: ["Claude.ai", "ChatGPT",, "ElevenLabs"], 
-    icon: Layout 
+    items: ["Claude.ai", "ChatGPT", "ElevenLabs"], 
+    icon: BrainCircuit
   },
 ];

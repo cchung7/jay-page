@@ -13,7 +13,16 @@ import {
 import * as Dialog from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Sun, Moon, Menu, X, ArrowUpRight, User, Briefcase, Mail } from "lucide-react";
+import {
+  Sun,
+  Moon,
+  Menu,
+  X,
+  ArrowUpRight,
+  User,
+  Briefcase,
+  Mail,
+} from "lucide-react";
 
 const navLinks = [
   { name: "About", href: "/#about", icon: User },
@@ -44,9 +53,11 @@ export function Navbar() {
   /** Lighter, flatter action buttons */
   const actionClass = cn(
     "rounded-full",
-    "bg-background/30 border border-border/50",
+    "bg-accent/10 border border-accent/30",
+    "text-foreground/80",
     "shadow-[0_1px_0_rgba(0,0,0,0.25)]",
     "transition-all duration-200",
+    "hover:text-foreground hover:bg-accent/20",
     "hover:-translate-y-[1px] hover:shadow-[0_3px_0_rgba(0,0,0,0.25)]",
     "active:translate-y-0 active:shadow-[0_1px_0_rgba(0,0,0,0.2)]"
   );
@@ -66,7 +77,7 @@ export function Navbar() {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-3 items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center" aria-label="Home">
             <div className="relative h-12 w-12 md:h-14 md:w-14">
               <Image
                 src="/images/jay_logo.png"
@@ -83,9 +94,9 @@ export function Navbar() {
             <div
               className={cn(
                 "relative flex items-center gap-2 px-2 py-1.5 rounded-full",
-                "bg-secondary/60 backdrop-blur-md",
-                "border border-border/60",
-                "shadow-[0_2px_0_rgba(0,0,0,0.25)]",
+                "bg-secondary/40 backdrop-blur-md",
+                "border border-accent/40",
+                "shadow-[0_2px_0_rgba(0,0,0,0.20)]",
                 "ring-1 ring-white/10",
                 "before:pointer-events-none before:absolute before:inset-0 before:rounded-full",
                 "before:bg-gradient-to-b before:from-white/10 before:to-transparent"
@@ -96,16 +107,18 @@ export function Navbar() {
                   key={name}
                   href={href}
                   className={cn(
-                    "relative inline-flex items-center gap-2 px-3 py-2 rounded-full",
+                    "group relative inline-flex items-center gap-2 px-3 py-2 rounded-full",
                     "text-[11px] font-black uppercase tracking-widest",
-                    "bg-background/30 border border-border/40",
-                    "shadow-none",
+                    "bg-accent/10",
+                    "border border-accent/30",
+                    "text-foreground/80",
                     "transition-all duration-200",
+                    "hover:text-foreground hover:bg-accent/20",
                     "hover:-translate-y-[1px] hover:shadow-[0_3px_0_rgba(0,0,0,0.25)]",
-                    "text-muted-foreground hover:text-foreground"
+                    "active:translate-y-0 active:shadow-[0_1px_0_rgba(0,0,0,0.2)]"
                   )}
                 >
-                  <Icon className="h-4 w-4 opacity-70" />
+                  <Icon className="h-4 w-4 text-foreground/70 group-hover:text-foreground transition-colors" />
                   {name}
                 </Link>
               ))}
@@ -147,7 +160,7 @@ export function Navbar() {
                 <div className="flex justify-between items-center mb-12">
                   <span className="font-black uppercase">Menu</span>
                   <Dialog.Close asChild>
-                    <Button variant="ghost" size="icon">
+                    <Button variant="ghost" size="icon" aria-label="Close menu">
                       <X />
                     </Button>
                   </Dialog.Close>
