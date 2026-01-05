@@ -35,7 +35,7 @@ export const AboutSection = () => {
             {/* BODY (below header) */}
             <div className="mx-auto w-full max-w-4xl space-y-6 text-left">
               <p className="text-center text-3xl md:text-4xl font-semibold leading-[1.2] tracking-tight text-foreground">
-                  Great engineering is the <span className="text-muted-foreground/45 italic">silent architect</span> of human ambition.
+                  Great engineering is the <span className="text-muted-foreground/45 italic">silent architect</span> of human ambition
               </p>
               <p className="text-center text-muted-foreground leading-relaxed font-medium">
                 I specialize in bridging the gap between architectural design
