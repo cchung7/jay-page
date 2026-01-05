@@ -65,13 +65,21 @@ export const ContactSection = () => {
                         aria-label={item.label}
                         className="block"
                       >
-                        <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary group-hover:bg-secondary/70 group-hover:text-foreground transition-all transform group-hover:scale-105 active:scale-95 duration-500 shadow-minimal group-hover:shadow-xl">
-                          <Icon className="h-6 w-6" />
+                        {/* CHANGED: subtle ambient glow like Hero profile pic */}
+                        <div className="relative group">
+                          <div className="absolute inset-0 rounded-2xl bg-primary/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                          <div className="relative h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary transition-all transform group-hover:scale-105 active:scale-95 duration-500 shadow-minimal group-hover:shadow-xl">
+                            <Icon className="h-6 w-6" />
+                          </div>
                         </div>
                       </Link>
                     ) : (
-                      <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary transition-all duration-500 shadow-minimal">
-                        <Icon className="h-6 w-6" />
+                      /* CHANGED: subtle ambient glow like Hero profile pic */
+                      <div className="relative group">
+                        <div className="absolute inset-0 rounded-2xl bg-primary/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                        <div className="relative h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary transition-all duration-500 shadow-minimal">
+                          <Icon className="h-6 w-6" />
+                        </div>
                       </div>
                     )}
 
