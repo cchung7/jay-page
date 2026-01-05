@@ -102,7 +102,7 @@ export const ContactSection = () => {
           </div>
 
           {/* Form */}
-          <div className="bg-secondary/25 p-3 md:p-20 rounded-[2.5rem] border border-accent/35 ring-1 ring-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)] relative overflow-hidden group">
+          <div className="bg-secondary/25 p-3 md:p-20 rounded-[2.5rem] border border-accent/60 ring-1 ring-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)] relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-3 opacity-10 scale-150 rotate-12 group-hover:rotate-0 transition-all duration-1000">
               <Rocket className="h-16 w-16" />
             </div>
@@ -115,7 +115,7 @@ export const ContactSection = () => {
               </div>
 
               <div className="space-y-6">
-                <div className="space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 focus-within:border-accent/70 focus-within:bg-background/15 transition-colors">
+                <div className="space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 focus-within:border-accent/80 focus-within:bg-background/15 transition-colors">
                   <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1">
                     Full Name
                   </label>
@@ -126,7 +126,7 @@ export const ContactSection = () => {
                   />
                 </div>
 
-                <div className="space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 focus-within:border-accent/70 focus-within:bg-background/15 transition-colors">
+                <div className="space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 focus-within:border-accent/80 focus-within:bg-background/15 transition-colors">
                   <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1">
                     Email Address
                   </label>
@@ -137,7 +137,7 @@ export const ContactSection = () => {
                   />
                 </div>
 
-                <div className="space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 focus-within:border-accent/70 focus-within:bg-background/15 transition-colors">
+                <div className="space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 focus-within:border-accent/80 focus-within:bg-background/15 transition-colors">
                   <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1">
                     Project Description
                   </label>
