@@ -14,10 +14,10 @@ export const ContactSection = () => {
           <div className="space-y-10">
             <div className="text-center space-y-1">
               <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
-                Contact Me
+                Contact
               </h2>
               <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic">
-                Let&apos;s build the future
+                The Future Awaits
               </h3>
               <p className="text-lg text-muted-foreground font-medium max-w-sm leading-relaxed mx-auto">
                 Currently accepting select architectural commissions and
@@ -65,19 +65,18 @@ export const ContactSection = () => {
                         aria-label={item.label}
                         className="block"
                       >
-                        {/* CHANGED: subtle ambient glow like Hero profile pic */}
+                        {/* CHANGED: hover = orange highlight like buttons */}
                         <div className="relative group">
-                          <div className="absolute inset-0 rounded-2xl bg-primary/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                          <div className="relative h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary transition-all transform group-hover:scale-105 active:scale-95 duration-500 shadow-minimal group-hover:shadow-xl">
+                          <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                          <div className="relative h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary border border-border/50 transition-all transform group-hover:scale-105 active:scale-95 duration-500 shadow-minimal group-hover:shadow-xl group-hover:border-accent/70 group-hover:bg-accent/15 group-hover:text-foreground">
                             <Icon className="h-6 w-6" />
                           </div>
                         </div>
                       </Link>
                     ) : (
-                      /* CHANGED: subtle ambient glow like Hero profile pic */
                       <div className="relative group">
-                        <div className="absolute inset-0 rounded-2xl bg-primary/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                        <div className="relative h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary transition-all duration-500 shadow-minimal">
+                        <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                        <div className="relative h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary border border-border/50 transition-all duration-500 shadow-minimal group-hover:border-accent/70 group-hover:bg-accent/15 group-hover:text-foreground">
                           <Icon className="h-6 w-6" />
                         </div>
                       </div>
@@ -93,7 +92,7 @@ export const ContactSection = () => {
                           href={item.href}
                           target={item.external ? "_blank" : undefined}
                           rel={item.external ? "noopener noreferrer" : undefined}
-                          className="text-lg font-bold tracking-tight hover:text-foreground transition-colors underline underline-offset-4 decoration-border/60 hover:decoration-border/80"
+                          className="text-lg font-bold tracking-tight hover:text-accent transition-colors underline underline-offset-4 decoration-border/60 hover:decoration-accent"
                         >
                           {item.value}
                         </a>
@@ -123,8 +122,9 @@ export const ContactSection = () => {
               </div>
 
               <div className="space-y-6">
-                <div className="space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 focus-within:border-border/80 focus-within:bg-background/15 transition-colors">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1">
+                {/* Dynamic Orange highlight */}
+                <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 hover:bg-accent/10 focus-within:border-accent/80 focus-within:bg-accent/10">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
                     Full Name
                   </label>
                   <input
@@ -134,8 +134,8 @@ export const ContactSection = () => {
                   />
                 </div>
 
-                <div className="space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 focus-within:border-border/80 focus-within:bg-background/15 transition-colors">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1">
+                <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 hover:bg-accent/10 focus-within:border-accent/80 focus-within:bg-accent/10">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
                     Email Address
                   </label>
                   <input
@@ -145,8 +145,8 @@ export const ContactSection = () => {
                   />
                 </div>
 
-                <div className="space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 focus-within:border-border/80 focus-within:bg-background/15 transition-colors">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1">
+                <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 hover:bg-accent/10 focus-within:border-accent/80 focus-within:bg-accent/10">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
                     Project Requirements
                   </label>
                   <textarea
