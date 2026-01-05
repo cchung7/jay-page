@@ -101,7 +101,7 @@ export function Navbar() {
           </nav>
 
           {/* Right Actions */}
-          <div className="flex items-center justify-end gap-2">
+          <div className="flex items-center justify-end gap-2 self-center -translate-y-[1px]">
             <Button
               variant="ghost"
               size="icon"
