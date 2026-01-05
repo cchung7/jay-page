@@ -3,7 +3,6 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import {
   motion,
@@ -14,20 +13,7 @@ import {
 import * as Dialog from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import {
-  Sun,
-  Moon,
-  Menu,
-  X,
-  ShoppingBag,
-  ArrowUpRight,
-  User,
-  Briefcase,
-  Code,
-  Mail,
-} from "lucide-react";
-import { useCart } from "@/lib/cart-context";
-import { CartDrawer } from "@/components/cart-drawer";
+import { Sun, Moon, Menu, X, ArrowUpRight, User, Briefcase, Mail } from "lucide-react";
 
 const navLinks = [
   { name: "About", href: "/#about", icon: User },
@@ -39,13 +25,10 @@ const navLinks = [
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  const [cartOpen, setCartOpen] = React.useState(false);
-  const { itemCount } = useCart();
   const [hidden, setHidden] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const [mounted, setMounted] = React.useState(false);
   const { theme, setTheme } = useTheme();
-  const pathname = usePathname();
 
   // Track window scroll directly
   const { scrollY } = useScroll();
@@ -65,7 +48,7 @@ export function Navbar() {
 
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
-  // 3D action button styling (for cart/theme/mobile-menu icons)
+  // 3D action button styling (for theme/mobile-menu icons)
   const action3DClass = cn(
     "rounded-full",
     "bg-background/20 border border-border/50",
@@ -98,7 +81,7 @@ export function Navbar() {
           <div className="flex items-center">
             <Link href="/" aria-label="Home" className="inline-flex items-center">
               {/* Larger logo + remove “button” emphasis */}
-              <div className="relative h-12 w-12 md:h-13 md:w-13 overflow-hidden">
+              <div className="relative h-12 w-12 md:h-14 md:w-14 overflow-hidden">
                 <Image
                   src="/images/jay_logo.png"
                   alt="Jay logo"
@@ -112,7 +95,17 @@ export function Navbar() {
 
           {/* CENTER: Links (Desktop) */}
           <nav className="hidden md:flex justify-center">
-            <div className="flex items-center bg-secondary/50 backdrop-blur-sm px-2 py-1.5 gap-3 rounded-full border border-border/40 font-bold">
+            <div
+              className={cn(
+                "relative flex items-center gap-3 px-3 py-2 rounded-full font-bold",
+                "bg-secondary/60 backdrop-blur-md",
+                "border border-border/60",
+                "shadow-[0_8px_0_rgba(0,0,0,0.35)]",
+                "ring-1 ring-white/10",
+                "before:pointer-events-none before:absolute before:inset-0 before:rounded-full",
+                "before:bg-gradient-to-b before:from-white/20 before:to-transparent"
+              )}
+            >
               {navLinks.map((link) => {
                 const Icon = link.icon;
                 return (
@@ -139,22 +132,6 @@ export function Navbar() {
 
           {/* RIGHT: Actions */}
           <div className="flex items-center justify-end gap-2">
-            {/* CART (3D) */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setCartOpen(true)}
-                className={cn(action3DClass, "relative")}
-                aria-label="Open cart"
-              >
-                <ShoppingBag className="h-6 w-6" />
-                <span className="absolute top-1 right-1 h-3 w-3 bg-accent text-[8px] font-black text-white flex items-center justify-center rounded-full border-2 border-background animate-pulse">
-                  {itemCount}
-                </span>
-              </Button>
-            </div>
-
             {/* THEME (3D) */}
             <Button
               variant="ghost"
@@ -269,24 +246,13 @@ export function Navbar() {
                     })}
                   </div>
 
-                  <div className="mt-auto pt-10 border-t border-border/40">
-                    <Button
-                      asChild
-                      className="w-full h-16 rounded-2xl bg-accent text-white font-black uppercase tracking-[0.2em] shadow-xl hover:scale-[1.02] transition-all"
-                    >
-                      <Link href="/shop" onClick={() => setMobileMenuOpen(false)}>
-                        Enter the Shop
-                      </Link>
-                    </Button>
-                  </div>
+                  {/* Removed “Enter the Shop” button */}
                 </motion.div>
               </Dialog.Content>
             </Dialog.Portal>
           )}
         </AnimatePresence>
       </Dialog.Root>
-
-      <CartDrawer open={cartOpen} setOpen={setCartOpen} />
     </motion.header>
   );
 }
