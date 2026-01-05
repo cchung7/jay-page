@@ -9,7 +9,6 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import {
   Briefcase,
-  Layout,
   GraduationCap,
   Github,
   ExternalLink,
@@ -20,6 +19,7 @@ import { experience } from "@/data/experience";
 import { projects } from "@/data/projects";
 import { skills } from "@/data/skills";
 import { education } from "@/data/education";
+import { cn } from "@/lib/utils";
 
 export const ExperienceSection = () => {
   const [activeTab, setActiveTab] = React.useState("work");
@@ -42,16 +42,13 @@ export const ExperienceSection = () => {
   return (
     <section id="experience" className="py-24 md:py-32 pb-30 px-6 bg-secondary/10">
       <div className="container max-w-6xl mx-auto space-y-6">
-        <div className="flex items-center gap-1">
-          {/* <Separator className="w-8 md:w-12 bg-accent h-1" /> */}
-          <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent"></h2>
-        </div>
-
         <div className="text-center space-y-1">
           <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
             Experience
           </h2>
-          <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic">The Technical Stack</h3>
+          <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic">
+            The Technical Stack
+          </h3>
         </div>
 
         <Tabs.Root value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -76,9 +73,8 @@ export const ExperienceSection = () => {
             </Tabs.Trigger>
           </Tabs.List>
 
-          {/* WORK / EXPERIENCE */}
+          {/* WORK */}
           <Tabs.Content
-            key="work-content"
             value="work"
             className="grid grid-cols-1 md:grid-cols-2 gap-2 outline-none"
           >
@@ -105,12 +101,14 @@ export const ExperienceSection = () => {
                     </div>
 
                     <div className="space-y-1">
-                      <h4 className="text-2xl font-black tracking-tight">{work.role}</h4>
-                      <p className="text-accent font-bold tracking-tight">{work.company}</p>
+                      <h4 className="text-2xl font-black tracking-tight">
+                        {work.role}
+                      </h4>
+                      <p className="text-accent font-bold tracking-tight">
+                        {work.company}
+                      </p>
                     </div>
 
-                    {/* OPTIONAL: Text line clamps */}
-                    {/* <p className="text-muted-foreground leading-relaxed font-medium line-clamp-3">{work.desc}</p> */}
                     <p className="text-muted-foreground leading-relaxed font-medium">
                       {work.desc}
                     </p>
@@ -133,7 +131,6 @@ export const ExperienceSection = () => {
 
           {/* PROJECTS */}
           <Tabs.Content
-            key="projects-content"
             value="projects"
             className="grid grid-cols-1 md:grid-cols-2 gap-2 outline-none"
           >
@@ -145,18 +142,28 @@ export const ExperienceSection = () => {
                 transition={{ delay: i * 0.1 }}
               >
                 <Card className="group border border-border/40 rounded-3xl overflow-hidden bg-background h-full hover:shadow-2xl transition-all duration-500">
-                  <div className="h-12 bg-muted group-hover:bg-accent/5 transition-colors relative flex items-center justify-center p-2">
-                    <div className="absolute top-1 left-1">
-                      <span className="text-[9px] font-black uppercase tracking-widest text-muted-foreground/40">
-                        {proj.type}
-                      </span>
-                    </div>
-                    <Layout className="h-7 w-7 text-muted-foreground/20 group-hover:text-accent transition-colors duration-500" />
+                  {/* 🔽 UPDATED PROJECT TYPE HEADER */}
+                  <div
+                    className={cn(
+                      "h-12 mx-3 mt-3",
+                      "flex items-center justify-center",
+                      "rounded-xl",
+                      "bg-secondary/60",
+                      "border border-border/50",
+                      "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.35)]",
+                      "transition-colors group-hover:bg-accent/10"
+                    )}
+                  >
+                    <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/70">
+                      {proj.type}
+                    </span>
                   </div>
 
                   <CardContent className="p-2.5 space-y-1">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-2xl font-black tracking-tight">{proj.name}</h4>
+                      <h4 className="text-2xl font-black tracking-tight">
+                        {proj.name}
+                      </h4>
                       <div className="flex gap-2">
                         <Link
                           href={proj.links.git}
@@ -184,7 +191,6 @@ export const ExperienceSection = () => {
 
           {/* SKILLS */}
           <Tabs.Content
-            key="skills-content"
             value="skills"
             className="grid grid-cols-1 md:grid-cols-3 gap-2 outline-none"
           >
@@ -200,7 +206,9 @@ export const ExperienceSection = () => {
                     <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary">
                       <cat.icon className="h-6 w-6 group-hover:text-accent transition-colors" />
                     </div>
-                    <h4 className="text-xl font-black tracking-tight">{cat.name}</h4>
+                    <h4 className="text-xl font-black tracking-tight">
+                      {cat.name}
+                    </h4>
                   </div>
 
                   <div className="space-y-1">
@@ -208,12 +216,12 @@ export const ExperienceSection = () => {
                       <div key={item} className="flex flex-col gap-2">
                         <div className="flex justify-between text-[10px] font-black uppercase tracking-widest">
                           <span>{item}</span>
-                          <span className="text-accent">Expert</span>
+                          <span className="text-accent">Intermediate</span>
                         </div>
                         <div className="h-1.5 w-full bg-secondary rounded-full overflow-hidden">
                           <motion.div
                             initial={{ width: 0 }}
-                            whileInView={{ width: "90%" }}
+                            whileInView={{ width: "50%" }}
                             transition={{ duration: 1, delay: i * 0.1 }}
                             className="h-full bg-linear-to-r from-accent to-accent/60"
                           />
@@ -241,7 +249,9 @@ export const ExperienceSection = () => {
                       <GraduationCap className="h-6 w-6" />
                     </div>
                     <div className="space-y-1 text-left">
-                      <h4 className="text-2xl font-black tracking-tight">{edu.school}</h4>
+                      <h4 className="text-2xl font-black tracking-tight">
+                        {edu.school}
+                      </h4>
                       <p className="text-accent font-bold tracking-tight uppercase text-xs">
                         {edu.degree}
                       </p>

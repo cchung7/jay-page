@@ -8,14 +8,14 @@ export const experience = [
   { company: "Jonsson School Student Council (JSSC)", 
     role: "President", 
     period: "Ended: Sep 2024", 
-    desc: "Served as primary liaison between school administration and student body representatives, led general body meetings, and communicated administrative initiatives while addressing student concerns.", 
+    desc: "Served as liaison between school administration and student representatives, leading general body meetings to communicate administrative initiatives while addressing student concerns.", 
     tags: ["Strategic Communication", "Negotiation", "Leadership", "Robert's Rules of Order", "Events Organizer", "Documentation"] 
   },
   { company: "U.S. Army (Ret.)", 
     role: "Practical Nursing Specialist (68C)", 
     period: "Ended: Nov 2022", 
-    desc: "Served as a Licensed Practical Nurse (LPN) for the U.S. Army; was medically retired in 2022.", 
-    tags: ["Active Communication", "Elicitation", "Customer Service", "Process Management", "Conflict Management", "Crisis Management", "Documentation"] 
+    desc: "Served as a Licensed Practical Nurse (LPN) for the U.S. Army; medically retired in 2022.", 
+    tags: ["Active Communication", "Elicitation", "Customer Service", "Process Management", "Conflict Management", "Documentation"] 
   },
   { company: "BTI Solutions", 
     role: "QA Engineer I", 
