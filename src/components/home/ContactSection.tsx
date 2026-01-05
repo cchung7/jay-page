@@ -44,8 +44,8 @@ export const ContactSection = () => {
                 },
                 {
                   icon: MapPin,
-                  label: "Headquarters",
-                  value: "Frisco, TX",
+                  label: "Frisco, TX",
+                  value: "",
                   href: "https://www.google.com/maps/search/?api=1&query=Frisco,TX",
                   external: true,
                 },

@@ -2,27 +2,13 @@
 
 import * as React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useTheme } from "next-themes";
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useMotionValueEvent,
-} from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent, } from "framer-motion";
+
 import * as Dialog from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import {
-  Sun,
-  Moon,
-  Menu,
-  X,
-  ArrowUpRight,
-  User,
-  Briefcase,
-  Mail,
-} from "lucide-react";
+import { Sun, Moon, Menu, X, ArrowUpRight, User,  Briefcase, Mail, } from "lucide-react";
 
 const navLinks = [
   { name: "About", href: "/#about", icon: User },
@@ -50,14 +36,13 @@ export function Navbar() {
 
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
-  /** Lighter, flatter action buttons */
   const actionClass = cn(
     "rounded-full",
-    "bg-accent/10 border border-accent/30",
-    "text-foreground/80",
+    "bg-secondary/30 border border-border/60",
+    "text-muted-foreground",
     "shadow-[0_1px_0_rgba(0,0,0,0.25)]",
     "transition-all duration-200",
-    "hover:text-foreground hover:bg-accent/20",
+    "hover:text-foreground hover:border-accent/60",
     "hover:-translate-y-[1px] hover:shadow-[0_3px_0_rgba(0,0,0,0.25)]",
     "active:translate-y-0 active:shadow-[0_1px_0_rgba(0,0,0,0.2)]"
   );
@@ -75,27 +60,17 @@ export function Navbar() {
       )}
     >
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-3 items-center">
-          {/* Logo */}
-          <Link href="/" className="flex items-center" aria-label="Home">
-            <div className="relative h-12 w-12 md:h-14 md:w-14">
-              <Image
-                src="/images/jay_logo.png"
-                alt="Jay logo"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-          </Link>
+        <div className="grid grid-cols-[auto,1fr,auto] items-center">
+          {/* Left spacer (keeps center truly centered after removing logo) */}
+          <div className="w-12 md:w-14" aria-hidden="true" />
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex justify-center">
             <div
               className={cn(
                 "relative flex items-center gap-2 px-2 py-1.5 rounded-full",
-                "bg-secondary/40 backdrop-blur-md",
-                "border border-accent/40",
+                "bg-secondary/50 backdrop-blur-md",
+                "border border-border/60",
                 "shadow-[0_2px_0_rgba(0,0,0,0.20)]",
                 "ring-1 ring-white/10",
                 "before:pointer-events-none before:absolute before:inset-0 before:rounded-full",
@@ -109,16 +84,16 @@ export function Navbar() {
                   className={cn(
                     "group relative inline-flex items-center gap-2 px-3 py-2 rounded-full",
                     "text-[11px] font-black uppercase tracking-widest",
-                    "bg-accent/10",
-                    "border border-accent/30",
-                    "text-foreground/80",
+                    "bg-secondary/30",
+                    "border border-border/60",
+                    "text-muted-foreground",
                     "transition-all duration-200",
-                    "hover:text-foreground hover:bg-accent/20",
+                    "hover:text-foreground hover:border-accent/60",
                     "hover:-translate-y-[1px] hover:shadow-[0_3px_0_rgba(0,0,0,0.25)]",
                     "active:translate-y-0 active:shadow-[0_1px_0_rgba(0,0,0,0.2)]"
                   )}
                 >
-                  <Icon className="h-4 w-4 text-foreground/70 group-hover:text-foreground transition-colors" />
+                  <Icon className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
                   {name}
                 </Link>
               ))}
@@ -126,7 +101,7 @@ export function Navbar() {
           </nav>
 
           {/* Right Actions */}
-          <div className="flex justify-end gap-2">
+          <div className="flex items-center justify-end gap-2">
             <Button
               variant="ghost"
               size="icon"
@@ -155,8 +130,15 @@ export function Navbar() {
         <AnimatePresence>
           {mobileMenuOpen && (
             <Dialog.Portal forceMount>
-              <Dialog.Overlay className="fixed inset-0 bg-black/60 backdrop-blur-sm" />
-              <Dialog.Content className="fixed right-0 top-0 h-full w-full max-w-sm bg-background p-6 shadow-xl border-l border-border/40">
+              <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm" />
+
+              <Dialog.Content
+                className={cn(
+                  "fixed right-0 top-0 z-[70] h-full w-full max-w-sm",
+                  "bg-background/95 backdrop-blur-md",
+                  "p-6 shadow-2xl border-l border-border/40"
+                )}
+              >
                 <div className="flex justify-between items-center mb-12">
                   <span className="font-black uppercase">Menu</span>
                   <Dialog.Close asChild>
