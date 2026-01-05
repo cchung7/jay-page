@@ -20,9 +20,9 @@ export function Footer() {
           <Link href="/#experience" className="hover:text-accent transition-colors hover:scale-105 transform">
             Experience
           </Link>
-          <Link href="/shop" className="hover:text-accent transition-colors hover:scale-105 transform">
+          {/* <Link href="/shop" className="hover:text-accent transition-colors hover:scale-105 transform">
             Shop
-          </Link>
+          </Link> */}
           <Link href="/#contact" className="hover:text-accent transition-colors hover:scale-105 transform">
             Contact
           </Link>
@@ -50,7 +50,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="space-y-2">
           <p className="text-[11px] font-bold text-muted-foreground/60 uppercase tracking-widest whitespace-nowrap">
-            Jay’s Professional Portfolio
+            Jay’s Portfolio
           </p>
           <p className="text-[10px] font-semibold text-muted-foreground/40 uppercase tracking-widest">
             © {currentYear} Jay Chung. All rights reserved.

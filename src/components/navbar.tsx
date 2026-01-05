@@ -96,18 +96,15 @@ export function Navbar() {
         <div className="grid grid-cols-3 items-center">
           {/* LEFT: Logo */}
           <div className="flex items-center">
-            <Link
-              href="/"
-              aria-label="Home"
-              className="group inline-flex items-center"
-            >
-              <div className="relative h-10 w-10 md:h-11 md:w-11 rounded-2xl overflow-hidden border border-border/50 bg-secondary/40 shadow-[0_10px_30px_rgba(0,0,0,0.25)] group-hover:shadow-[0_18px_40px_rgba(0,0,0,0.35)] transition-all duration-300">
+            <Link href="/" aria-label="Home" className="inline-flex items-center">
+              {/* Larger logo + remove “button” emphasis */}
+              <div className="relative h-12 w-12 md:h-13 md:w-13 overflow-hidden">
                 <Image
                   src="/images/jay_logo.png"
                   alt="Jay logo"
                   fill
                   priority
-                  className="object-contain p-2"
+                  className="object-contain"
                 />
               </div>
             </Link>
@@ -195,11 +192,11 @@ export function Navbar() {
               )}
             </Button>
 
-            {/* MOBILE MENU (3D) */}
+            {/* MOBILE MENU (3D) — ensure right-most in the action row */}
             <Button
               variant="ghost"
               size="icon"
-              className={cn("md:hidden", action3DClass)}
+              className={cn("md:hidden ml-auto", action3DClass)}
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open menu"
             >

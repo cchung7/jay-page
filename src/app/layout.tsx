@@ -10,8 +10,8 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Frisco Fighter | Professional Profile & Shop",
-  description: "A sophisticated personal portfolio and digital marketplace.",
+  title: "Jay Chung | Profile",
+  description: "A personal portfolio.",
 };
 
 export default function RootLayout({
