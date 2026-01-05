@@ -38,12 +38,12 @@ export function Navbar() {
 
   const actionClass = cn(
     "h-10 w-10 rounded-full",
+    "flex items-center justify-center",
     "bg-secondary/30 border border-border/60",
     "text-muted-foreground",
     "shadow-[0_1px_0_rgba(0,0,0,0.22)]",
     "transition-all duration-200",
-    "hover:text-foreground hover:border-accent/60",
-    "active:translate-y-0"
+    "hover:text-foreground hover:border-accent/60"
   );
 
   return (
@@ -101,7 +101,7 @@ export function Navbar() {
           </nav>
 
           {/* Right Actions */}
-          <div className="flex items-center justify-end gap-2">
+          <div className="flex items-center justify-end gap-2 h-10">
             <Button
               variant="ghost"
               size="icon"
