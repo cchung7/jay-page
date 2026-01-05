@@ -42,12 +42,13 @@ export const ContactSection = () => {
                   href: "https://www.linkedin.com/in/chul-w-chung",
                   external: true,
                 },
-                { 
-                  icon: MapPin, 
-                  label: "Headquarters", 
+                {
+                  icon: MapPin,
+                  label: "Headquarters",
                   value: "Frisco, TX",
-                  external: false, 
-                }
+                  href: "https://www.google.com/maps/search/?api=1&query=Frisco,TX",
+                  external: true,
+                },
               ].map((item, i) => {
                 const Icon = item.icon;
 
@@ -79,11 +80,11 @@ export const ContactSection = () => {
                         {item.label}
                       </p>
 
-                      {item.external ? (
+                      {item.href ? (
                         <a
                           href={item.href}
-                          target="_blank"
-                          rel="noreferrer"
+                          target={item.external ? "_blank" : undefined}
+                          rel={item.external ? "noopener noreferrer" : undefined}
                           className="text-lg font-bold tracking-tight hover:text-accent transition-colors underline underline-offset-4 decoration-border/60 hover:decoration-accent"
                         >
                           {item.value}
@@ -101,48 +102,48 @@ export const ContactSection = () => {
           </div>
 
           {/* Form */}
-          <div className="bg-secondary/30 p-3 md:p-20 rounded-[2.5rem] border border-border/40 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 p-3 opacity-5 scale-150 rotate-12 group-hover:rotate-0 transition-all duration-1000">
+          <div className="bg-secondary/25 p-3 md:p-20 rounded-[2.5rem] border border-accent/35 ring-1 ring-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)] relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-3 opacity-10 scale-150 rotate-12 group-hover:rotate-0 transition-all duration-1000">
               <Rocket className="h-16 w-16" />
             </div>
 
             <form className="relative z-10 space-y-10">
               <div className="text-center">
                 <h3 className="text-center text-3xl md:text-4xl font-black tracking-tight text-foreground">
-                  Message Me:
+                  Tell Me About the Work:
                 </h3>
               </div>
 
               <div className="space-y-6">
-                <div className="space-y-2 border-b-2 border-border/60 focus-within:border-accent transition-colors pb-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60 ml-1">
+                <div className="space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 focus-within:border-accent/70 focus-within:bg-background/15 transition-colors">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1">
                     Full Name
                   </label>
                   <input
                     type="text"
                     placeholder="John Doe"
-                    className="w-full bg-transparent border-none p-2 text-xl font-bold placeholder:text-muted-foreground/20 focus:ring-0"
+                    className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/35 focus:ring-0 outline-none"
                   />
                 </div>
 
-                <div className="space-y-2 border-b-2 border-border/60 focus-within:border-accent transition-colors pb-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60 ml-1">
+                <div className="space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 focus-within:border-accent/70 focus-within:bg-background/15 transition-colors">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1">
                     Email Address
                   </label>
                   <input
                     type="email"
                     placeholder="john@example.com"
-                    className="w-full bg-transparent border-none p-2 text-xl font-bold placeholder:text-muted-foreground/20 focus:ring-0"
+                    className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/35 focus:ring-0 outline-none"
                   />
                 </div>
 
-                <div className="space-y-2 border-b-2 border-border/60 focus-within:border-accent transition-colors pb-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/60 ml-1">
+                <div className="space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 focus-within:border-accent/70 focus-within:bg-background/15 transition-colors">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1">
                     Project Description
                   </label>
                   <textarea
                     placeholder="The vision..."
-                    className="w-full bg-transparent border-none p-2 text-xl font-bold placeholder:text-muted-foreground/20 focus:ring-0 min-h-[150px] resize-none"
+                    className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/35 focus:ring-0 outline-none min-h-[150px] resize-none"
                   />
                 </div>
               </div>
