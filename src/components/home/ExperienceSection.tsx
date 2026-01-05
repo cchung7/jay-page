@@ -7,12 +7,7 @@ import * as Tabs from "@radix-ui/react-tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import {
-  Briefcase,
-  GraduationCap,
-  Github,
-  ExternalLink,
-} from "lucide-react";
+import { Briefcase, GraduationCap, Github, ExternalLink } from "lucide-react";
 
 import Link from "next/link";
 import { experience } from "@/data/experience";
@@ -52,7 +47,6 @@ export const ExperienceSection = () => {
         </div>
 
         <Tabs.Root value={activeTab} onValueChange={setActiveTab} className="w-full">
-          {/* Tabs */}
           <Tabs.List
             className="flex flex-wrap justify-center gap-2 mb-4 p-2
                        bg-secondary/50 backdrop-blur-md rounded-2xl
@@ -85,28 +79,18 @@ export const ExperienceSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
               >
-                <Card className="h-full border border-border/40 shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-500 rounded-3xl group overflow-hidden bg-background">
+                <Card className="h-full border border-border/40 shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-500 rounded-3xl group overflow-hidden bg-background hover:border-accent/70">
                   <CardContent className="p-10 space-y-6">
-                    <div className="flex justify-between items-start">
-                      <div className="rounded-2xl bg-secondary flex items-center justify-center transition-colors">
-                        <Briefcase
-                          size={20}
-                          className="text-primary group-hover:text-accent transition-colors"
-                        />
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <h4 className="text-2xl font-black tracking-tight italic">
+                          {work.role}
+                        </h4>
+                        <p className="text-accent font-bold tracking-tight">
+                          {work.company}
+                        </p>
                       </div>
-
-                      <Badge className="bg-secondary text-primary border-none rounded-lg font-black text-[9px] uppercase tracking-widest">
-                        {work.period}
-                      </Badge>
-                    </div>
-
-                    <div className="space-y-1">
-                      <h4 className="text-2xl font-black tracking-tight">
-                        {work.role}
-                      </h4>
-                      <p className="text-accent font-bold tracking-tight">
-                        {work.company}
-                      </p>
+                      <Briefcase className="h-8 w-8 text-muted-foreground/30 group-hover:text-accent transition-colors duration-500" />
                     </div>
 
                     <p className="text-muted-foreground leading-relaxed font-medium">
@@ -117,7 +101,7 @@ export const ExperienceSection = () => {
                       {work.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 border border-border/60 px-3 py-1 rounded-full"
+                          className="text-[10px] font-bold uppercase tracking-widest text-foreground/80 bg-secondary/40 border border-border/70 px-3 py-1 rounded-full"
                         >
                           {tag}
                         </span>
@@ -139,50 +123,46 @@ export const ExperienceSection = () => {
                 key={proj.name}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.08 }}
               >
-                <Card className="group border border-border/40 rounded-3xl overflow-hidden bg-background h-full hover:shadow-2xl transition-all duration-500">
-                  {/* 🔽 UPDATED PROJECT TYPE HEADER */}
-                  <div
-                    className={cn(
-                      "h-12 mx-3 mt-3",
-                      "flex items-center justify-center",
-                      "rounded-xl",
-                      "bg-secondary/60",
-                      "border border-border/50",
-                      "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.35)]",
-                      "transition-colors group-hover:bg-accent/10"
-                    )}
-                  >
-                    <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/70">
-                      {proj.type}
-                    </span>
-                  </div>
-
-                  <CardContent className="p-2.5 space-y-1">
+                <Card className="group border border-border/40 rounded-3xl overflow-hidden bg-background h-full hover:shadow-2xl transition-all duration-500 hover:border-accent/70">
+                  <CardContent className="p-10 space-y-6">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-2xl font-black tracking-tight">
+                      <h4 className="text-2xl font-black tracking-tight italic">
                         {proj.name}
                       </h4>
-                      <div className="flex gap-2">
-                        <Link
-                          href={proj.links.git}
-                          className="p-2 rounded-xl bg-secondary hover:bg-accent hover:text-white transition-colors"
-                        >
-                          <Github className="h-4 w-4" />
-                        </Link>
-                        <Link
-                          href={proj.links.live}
-                          className="p-2 rounded-xl bg-secondary hover:bg-accent hover:text-white transition-colors"
-                        >
-                          <ExternalLink className="h-4 w-4" />
-                        </Link>
-                      </div>
+                      <Badge className="rounded-full px-4 py-1 text-[10px] font-black uppercase tracking-widest">
+                        {proj.type}
+                      </Badge>
                     </div>
 
-                    <p className="text-muted-foreground font-medium leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed font-medium">
                       {proj.desc}
                     </p>
+
+                    <div className="flex gap-4 pt-4">
+                      {proj.links?.git && (
+                        <Link
+                          href={proj.links.git}
+                          target="_blank"
+                          className="flex items-center gap-2 text-sm font-bold text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                          <Github className="h-4 w-4" />
+                          GitHub
+                        </Link>
+                      )}
+
+                      {proj.links?.live && (
+                        <Link
+                          href={proj.links.live}
+                          target="_blank"
+                          className="flex items-center gap-2 text-sm font-bold text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                          <ExternalLink className="h-4 w-4" />
+                          Live
+                        </Link>
+                      )}
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -192,75 +172,86 @@ export const ExperienceSection = () => {
           {/* SKILLS */}
           <Tabs.Content
             value="skills"
-            className="grid grid-cols-1 md:grid-cols-3 gap-2 outline-none"
+            className="grid grid-cols-1 md:grid-cols-2 gap-2 outline-none"
           >
-            {skills.map((cat, i) => (
-              <motion.div
-                key={cat.name}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <Card className="group border border-border/40 rounded-3xl bg-background hover:border-accent/40 transition-all duration-500 h-full p-10 space-y-10">
-                  <div className="flex items-center gap-2">
-                    <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary">
-                      <cat.icon className="h-6 w-6 group-hover:text-accent transition-colors" />
-                    </div>
-                    <h4 className="text-xl font-black tracking-tight">
-                      {cat.name}
-                    </h4>
-                  </div>
-
-                  <div className="space-y-1">
-                    {cat.items.map((item) => (
-                      <div key={item} className="flex flex-col gap-2">
-                        <div className="flex justify-between text-[10px] font-black uppercase tracking-widest">
-                          <span>{item}</span>
-                          <span className="text-accent">Intermediate</span>
-                        </div>
-                        <div className="h-1.5 w-full bg-secondary rounded-full overflow-hidden">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: "50%" }}
-                            transition={{ duration: 1, delay: i * 0.1 }}
-                            className="h-full bg-linear-to-r from-accent to-accent/60"
-                          />
-                        </div>
+            {skills.map((skill, i) => {
+              const Icon = skill.icon;
+              return (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.08 }}
+                >
+                  <Card className="group border border-border/40 rounded-3xl bg-background hover:border-accent/70 transition-all duration-500 h-full p-10 space-y-10">
+                    <div className="flex items-center gap-4">
+                      <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center">
+                        <Icon className="h-7 w-7 text-muted-foreground group-hover:text-accent transition-colors duration-500" />
                       </div>
-                    ))}
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
+                      <div>
+                        <h4 className="text-2xl font-black italic tracking-tight">
+                          {skill.name}
+                        </h4>
+                        <p className="text-muted-foreground font-medium">
+                          Core tooling & technologies
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      {skill.items.map((item) => (
+                        <Badge
+                          key={item}
+                          variant="secondary"
+                          className={cn(
+                            "px-4 py-2 rounded-full text-xs font-black tracking-tight",
+                            "border border-border/40 bg-secondary/30"
+                          )}
+                        >
+                          {item}
+                        </Badge>
+                      ))}
+                    </div>
+                  </Card>
+                </motion.div>
+              );
+            })}
           </Tabs.Content>
 
           {/* EDUCATION */}
-          <Tabs.Content value="edu" className="space-y-6 outline-none">
+          <Tabs.Content
+            value="edu"
+            className="grid grid-cols-1 gap-2 outline-none"
+          >
             {education.map((edu, i) => (
               <motion.div
-                key={i}
+                key={edu.school}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.08 }}
               >
-                <Card className="border border-border/40 rounded-3xl bg-background p-10 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:shadow-lg transition-all group">
-                  <div className="flex items-center gap-6">
-                    <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-all">
-                      <GraduationCap className="h-6 w-6" />
-                    </div>
-                    <div className="space-y-1 text-left">
-                      <h4 className="text-2xl font-black tracking-tight">
+                <Card className="border border-border/40 rounded-3xl bg-background p-10 flex flex-col md:flex-row md:items-center justify-between gap-6 h-full hover:shadow-lg transition-all group hover:border-accent/70">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-3">
+                      <GraduationCap className="h-7 w-7 text-muted-foreground/40 group-hover:text-accent transition-colors duration-500" />
+                      <h4 className="text-2xl font-black italic tracking-tight">
                         {edu.school}
                       </h4>
-                      <p className="text-accent font-bold tracking-tight uppercase text-xs">
-                        {edu.degree}
-                      </p>
                     </div>
+                    <p className="text-muted-foreground font-medium">
+                      {edu.degree}
+                    </p>
+                    <p className="text-muted-foreground/60 text-[10px] font-black uppercase tracking-widest">
+                      {edu.years}
+                    </p>
                   </div>
 
-                  <div className="text-right">
-                    <Badge className="bg-secondary text-primary border-none rounded-lg font-black text-[9px] uppercase tracking-widest mb-2">
-                      {edu.period}
+                  <div className="flex flex-col items-start md:items-end gap-2">
+                    <Badge
+                      variant="secondary"
+                      className="rounded-full px-4 py-2 text-xs font-black tracking-tight border border-border/40 bg-secondary/30"
+                    >
+                      {edu.gpa}
                     </Badge>
                     <p className="text-muted-foreground/60 text-[10px] font-black uppercase tracking-widest">
                       {edu.honors}
