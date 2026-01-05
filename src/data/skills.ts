@@ -1,8 +1,20 @@
 import { Cpu, Database, Layout } from "lucide-react";
 
 export const skills = [
-  { name: "Frontend", items: ["HTML5", "TypeScript", "Tailwind CSS", "JavaScript", "React", "Next.js", "Node.js", "Framer Motion"], icon: Layout },
-  { name: "Backend", items: ["Python", "MySQL", "MongoDB", "Redis", "GraphQL", "Prisma"], icon: Database },
-  { name: "CI/CD Tools", items: ["AWS", "GitHub"], icon: Cpu },
-  { name: "AI/ML Tools", items: ["Antigravity", "Claude Code", "ChatGPT"], icon: Layout },
+  { name: "Frontend", 
+    items: ["HTML/TypeScript", "Tailwind CSS", "JavaScript", "React", "Next.js", "Node.js"], 
+    icon: Layout 
+  },
+  { name: "Backend", 
+    items: ["Python", "MySQL", "MongoDB"], 
+    icon: Database 
+  },
+  { name: "CI/CD", 
+    items: ["AWS", "VPS", "GitHub Action"], 
+    icon: Cpu 
+  },
+  { name: "Ai Tools", 
+    items: ["Claude.ai", "ChatGPT 5.2", "Google Antigravity", "ElevenLabs"], 
+    icon: Layout 
+  },
 ];

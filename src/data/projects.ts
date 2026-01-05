@@ -1,4 +1,12 @@
 export const projects = [
-  { name: "County Level Air Quality Prediction (CLAP)", type: "Full-Stack Development", desc: "CLAP is a single-page web applicaiton that utilizes a machine-Learning model and preprocessed/cleaned historical AQI data and over 770+ U.S. county locations to predict the future AQI.", links: { live: "#", git: "#" } },
-  { name: "Binnerri Pickleball Club (BPC)", type: "Full-Stack Development", desc: "BPC is a weab application that features a home page that displays future events and member profile cards. Users may apply or membership utilizing a login/profile portal and request email notifications. An admin page is utilized to manage BPC's users and events.", links: { live: "#", git: "#" } },
+  { name: "County Level Air Quality Prediction (CLAP)", 
+    type: "Full-Stack Web Development", 
+    desc: "CLAP is a single-page web application that utilizes a Machine-Learning model and historical AQI data to predict the future AQI for over 770+ U.S. county locations.", 
+    links: { live: "#", git: "#" } 
+  },
+  { name: "Binnerri Pickleball Club (BPC)", 
+    type: "Full-Stack Web Development", 
+    desc: "BPC features a home page that displays events and members/users. Visitors may view events & members, and apply for membership via account creation portal and request email notifications for future events. An admin page is utilized to manage all users/members and events.", 
+    links: { live: "#", git: "#" } 
+  },
 ];
