@@ -21,7 +21,7 @@ export const ContactSection = () => {
               </h3>
               <p className="text-lg text-muted-foreground font-medium max-w-sm leading-relaxed mx-auto">
                 Currently accepting select architectural commissions and
-                performance-driven engineering collaborations.
+                performance-driven engineering roles.
               </p>
             </div>
 
@@ -123,7 +123,7 @@ export const ContactSection = () => {
 
               <div className="space-y-6">
                 {/* Dynamic Orange highlight */}
-                <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 hover:bg-accent/10 focus-within:border-accent/80 focus-within:bg-accent/10">
+                <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 focus-within:border-accent/80">
                   <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
                     Full Name
                   </label>
@@ -134,7 +134,7 @@ export const ContactSection = () => {
                   />
                 </div>
 
-                <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 hover:bg-accent/10 focus-within:border-accent/80 focus-within:bg-accent/10">
+                <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 focus-within:border-accent/80">
                   <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
                     Email Address
                   </label>
@@ -145,7 +145,7 @@ export const ContactSection = () => {
                   />
                 </div>
 
-                <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 hover:bg-accent/10 focus-within:border-accent/80 focus-within:bg-accent/10">
+                <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 focus-within:border-accent/80">
                   <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
                     Project Requirements
                   </label>
