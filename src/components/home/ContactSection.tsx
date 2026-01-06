@@ -44,7 +44,7 @@ export const ContactSection = () => {
                 },
                 {
                   icon: MapPin,
-                  label: "Frisco, TX",
+                  label: "Headquarters",
                   value: "",
                   href: "https://www.google.com/maps/search/?api=1&query=Frisco,TX",
                   external: true,
@@ -117,7 +117,7 @@ export const ContactSection = () => {
             <form className="relative z-10 space-y-10">
               <div className="text-center">
                 <h3 className="text-center text-3xl md:text-4xl font-black tracking-tight text-foreground">
-                  Let&apos;s Talk Business:
+                  Let&apos;s Connect:
                 </h3>
               </div>
 
@@ -129,7 +129,7 @@ export const ContactSection = () => {
                   </label>
                   <input
                     type="text"
-                    placeholder="John Doe"
+                    placeholder="Jane Doe"
                     className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/35 focus:ring-0 outline-none"
                   />
                 </div>
@@ -140,7 +140,7 @@ export const ContactSection = () => {
                   </label>
                   <input
                     type="email"
-                    placeholder="john@example.com"
+                    placeholder="jane.doe@example.com"
                     className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/35 focus:ring-0 outline-none"
                   />
                 </div>
@@ -150,7 +150,7 @@ export const ContactSection = () => {
                     Project Requirements
                   </label>
                   <textarea
-                    placeholder="Please describe your vision..."
+                    placeholder="Describe your vision..."
                     className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/35 focus:ring-0 outline-none min-h-[150px] resize-none"
                   />
                 </div>

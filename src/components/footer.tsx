@@ -12,22 +12,13 @@ const footerLinks = [
 ];
 
 const socialLinks = [
-  { name: "GitHub", href: "https://github.com/", icon: Github },
-  { name: "LinkedIn", href: "https://linkedin.com/", icon: Linkedin },
+  { name: "GitHub", href: "https://github.com/cchung7", icon: Github },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/chul-w-chung/", icon: Linkedin },
 ];
 
 export function Footer() {
   const year = new Date().getFullYear();
-  const [activeHash, setActiveHash] = React.useState("");
 
-  React.useEffect(() => {
-    const update = () => setActiveHash(window.location.hash);
-    update();
-    window.addEventListener("hashchange", update);
-    return () => window.removeEventListener("hashchange", update);
-  }, []);
-
-  /** EXACT navbar-neutral pill wrapper */
   const pillGroupClass = cn(
     "inline-flex items-center gap-1 p-1 rounded-full",
     "border border-border/60 bg-secondary/30",
@@ -40,7 +31,6 @@ export function Footer() {
     "before:pointer-events-none"
   );
 
-  /** EXACT navbar button behavior */
   const pillButtonClass = cn(
     "relative h-9 px-4",
     "inline-flex items-center justify-center",
@@ -53,33 +43,19 @@ export function Footer() {
     "hover:text-foreground hover:border-accent/60"
   );
 
-  const isActive = (href: string) =>
-    href.includes("#") && activeHash === `#${href.split("#")[1]}`;
-
   return (
     <footer className="border-t border-border/40 bg-secondary/30 mt-14">
       <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col items-center gap-6 text-center">
-
-        {/* Footer Navigation */}
         <nav aria-label="Footer navigation">
           <div className={pillGroupClass}>
             {footerLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={cn(
-                  pillButtonClass,
-                  isActive(link.href) &&
-                    "text-foreground border-accent/60 bg-secondary/50"
-                )}
-              >
+              <Link key={link.name} href={link.href} className={pillButtonClass}>
                 {link.name}
               </Link>
             ))}
           </div>
         </nav>
 
-        {/* Social Icons */}
         <div className="flex items-center gap-3">
           {socialLinks.map(({ name, href, icon: Icon }) => (
             <Link
@@ -102,7 +78,6 @@ export function Footer() {
           ))}
         </div>
 
-        {/* Footer Text */}
         <div className="space-y-1">
           <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground/60">
             Jay’s Portfolio
