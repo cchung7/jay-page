@@ -1,62 +1,116 @@
 "use client";
 
+import * as React from "react";
 import Link from "next/link";
 import { Github, Linkedin } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+const footerLinks = [
+  { name: "About", href: "/#about" },
+  { name: "Experience", href: "/#experience" },
+  { name: "Contact", href: "/#contact" },
+];
+
+const socialLinks = [
+  { name: "GitHub", href: "https://github.com/", icon: Github },
+  { name: "LinkedIn", href: "https://linkedin.com/", icon: Linkedin },
+];
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
+  const [activeHash, setActiveHash] = React.useState("");
+
+  React.useEffect(() => {
+    const update = () => setActiveHash(window.location.hash);
+    update();
+    window.addEventListener("hashchange", update);
+    return () => window.removeEventListener("hashchange", update);
+  }, []);
+
+  /** EXACT navbar-neutral pill wrapper */
+  const pillGroupClass = cn(
+    "inline-flex items-center gap-1 p-1 rounded-full",
+    "border border-border/60 bg-secondary/30",
+    "backdrop-blur-md",
+    "shadow-[0_1px_0_rgba(0,0,0,0.25)]",
+    "ring-1 ring-white/10",
+    "relative",
+    "before:absolute before:inset-0 before:rounded-full",
+    "before:bg-gradient-to-b before:from-white/10 before:to-transparent",
+    "before:pointer-events-none"
+  );
+
+  /** EXACT navbar button behavior */
+  const pillButtonClass = cn(
+    "relative h-9 px-4",
+    "inline-flex items-center justify-center",
+    "rounded-full",
+    "text-[11px] font-black uppercase tracking-widest",
+    "border border-border/60",
+    "bg-secondary/30",
+    "text-muted-foreground",
+    "transition-all duration-200",
+    "hover:text-foreground hover:border-accent/60"
+  );
+
+  const isActive = (href: string) =>
+    href.includes("#") && activeHash === `#${href.split("#")[1]}`;
 
   return (
-    <footer
-      className="w-full bg-secondary/30 border-t border-border/40 mt-10 py-6 px-6"
-    >
-      <div className="container max-w-6xl mx-auto flex flex-col items-center gap-4 text-center">
+    <footer className="border-t border-border/40 bg-secondary/30 mt-14">
+      <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col items-center gap-6 text-center">
 
-        {/* Navigation */}
-        <nav className="flex flex-wrap justify-center gap-4 text-sm font-black uppercase tracking-[0.2em] text-muted-foreground">
-          <Link href="/#about" className="hover:text-accent transition-colors hover:scale-105 transform">
-            About
-          </Link>
-          <Link href="/#experience" className="hover:text-accent transition-colors hover:scale-105 transform">
-            Experience
-          </Link>
-          {/* <Link href="/shop" className="hover:text-accent transition-colors hover:scale-105 transform">
-            Shop
-          </Link> */}
-          <Link href="/#contact" className="hover:text-accent transition-colors hover:scale-105 transform">
-            Contact
-          </Link>
+        {/* Footer Navigation */}
+        <nav aria-label="Footer navigation">
+          <div className={pillGroupClass}>
+            {footerLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  pillButtonClass,
+                  isActive(link.href) &&
+                    "text-foreground border-accent/60 bg-secondary/50"
+                )}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
         </nav>
 
-        {/* Socials */}
-        <div className="flex gap-3 py-2">
-          {[
-            { Icon: Github, href: "#", label: "GitHub" },
-            { Icon: Linkedin, href: "#", label: "LinkedIn" },
-          ].map(({ Icon, href, label }) => (
+        {/* Social Icons */}
+        <div className="flex items-center gap-3">
+          {socialLinks.map(({ name, href, icon: Icon }) => (
             <Link
-              key={label}
+              key={name}
               href={href}
-              title={label}
-              className="h-12 w-12 rounded-full border border-border/60 flex items-center justify-center transition-all duration-300 group hover:shadow-lg hover:shadow-accent/20"
+              target="_blank"
+              rel="noreferrer"
+              aria-label={name}
+              className={cn(
+                "h-9 w-9 rounded-full",
+                "inline-flex items-center justify-center",
+                "border border-border/60 bg-secondary/30",
+                "text-muted-foreground",
+                "transition-all duration-200",
+                "hover:text-foreground hover:border-accent/60"
+              )}
             >
-              <div className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center transition-colors duration-300 group-hover:bg-accent">
-                <Icon className="h-6 w-6 text-muted-foreground group-hover:text-white group-hover:scale-110 transition-all" />
-              </div>
+              <Icon className="h-4 w-4" />
             </Link>
           ))}
         </div>
 
-        {/* Copyright */}
-        <div className="space-y-2">
-          <p className="text-[11px] font-bold text-muted-foreground/60 uppercase tracking-widest whitespace-nowrap">
+        {/* Footer Text */}
+        <div className="space-y-1">
+          <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground/60">
             Jay’s Portfolio
           </p>
-          <p className="text-[10px] font-semibold text-muted-foreground/40 uppercase tracking-widest">
-            © {currentYear} Jay Chung. All rights reserved.
+          <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/40">
+            © {year} Jay Chung. All rights reserved.
           </p>
         </div>
-
       </div>
     </footer>
   );

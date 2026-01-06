@@ -152,7 +152,6 @@ export const ExperienceSection = () => {
                       "transition-colors group-hover:bg-accent/10"
                     )}
                   >
-                    {/* CHANGED: project type text lights up orange on card hover */}
                     <span
                       className={cn(
                         "text-[10px] font-black uppercase tracking-widest",
