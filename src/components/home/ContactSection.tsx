@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, Rocket, MapPin, Linkedin } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export const ContactSection = () => {
   return (
@@ -14,7 +15,7 @@ export const ContactSection = () => {
           <div className="space-y-10">
             <div className="text-center space-y-1">
               <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
-                Contact
+                Contact Me
               </h2>
               <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic">
                 The Future Awaits
@@ -65,7 +66,6 @@ export const ContactSection = () => {
                         aria-label={item.label}
                         className="block"
                       >
-                        {/* CHANGED: hover = orange highlight like buttons */}
                         <div className="relative group">
                           <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                           <div className="relative h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary border border-border/50 transition-all transform group-hover:scale-105 active:scale-95 duration-500 shadow-minimal group-hover:shadow-xl group-hover:border-accent/70 group-hover:bg-accent/15 group-hover:text-foreground">
@@ -122,7 +122,6 @@ export const ContactSection = () => {
               </div>
 
               <div className="space-y-6">
-                {/* Dynamic Orange highlight */}
                 <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 focus-within:border-accent/80">
                   <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
                     Full Name
@@ -147,7 +146,7 @@ export const ContactSection = () => {
 
                 <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 focus-within:border-accent/80">
                   <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
-                    Project Requirements
+                    Your Message
                   </label>
                   <textarea
                     placeholder="Describe your vision..."
@@ -156,9 +155,29 @@ export const ContactSection = () => {
                 </div>
               </div>
 
-              <Button className="w-full h-12 cursor-pointer rounded-full bg-primary text-primary-foreground font-black uppercase tracking-[0.25em] text-sm group shadow-xl transition-all hover:[&>svg]:translate-x-1">
-                Send Message{" "}
-                <ArrowRight size={16} className="ml-2 transition-transform" />
+              <Button
+                type="submit"
+                className={cn(
+                  "w-full",
+                  "relative overflow-hidden",
+                  "h-14 px-6 md:px-10 rounded-full",
+                  "bg-accent text-white",
+                  "font-black uppercase tracking-[0.25em] text-sm",
+                  "border border-accent/40",
+                  "ring-1 ring-white/25 dark:ring-white/10",
+                  "shadow-[0_14px_34px_rgba(0,0,0,0.16)] dark:shadow-[0_18px_50px_rgba(0,0,0,0.45)]",
+                  "transition-all hover:scale-105 active:scale-[1.02]",
+                  "group",
+                  "before:absolute before:inset-0 before:pointer-events-none",
+                  "before:bg-gradient-to-b before:from-white/25 before:to-transparent",
+                  "hover:[&>svg]:translate-x-1"
+                )}
+              >
+                <span className="relative z-10">Send Message</span>
+                <ArrowRight
+                  size={16}
+                  className="relative z-10 ml-2 transition-transform"
+                />
               </Button>
             </form>
           </div>

@@ -19,31 +19,11 @@ export const HeroSection = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
 
-  /**
-   * Text outline (subtle, professional):
-   * - Uses a tiny stroke in supporting browsers + a minimal text-shadow fallback.
-   * - Applied to Link text inside both buttons.
-   */
-  const outlinedText = cn(
-    "relative z-10",
-    // fallback outline feel (works everywhere)
-    "drop-shadow-[0_1px_0_rgba(0,0,0,0.35)] dark:drop-shadow-[0_1px_0_rgba(0,0,0,0.65)]",
-    // stroke for crisp edge (supported in WebKit-based browsers)
-    "[text-shadow:0_0_0_rgba(0,0,0,0)]",
-    "[-webkit-text-stroke:0.5px_rgba(0,0,0,0.35)]",
-    "dark:[-webkit-text-stroke:0.5px_rgba(0,0,0,0.55)]"
-  );
-
-  /**
-   * Stronger 3D surface:
-   * - Slightly thicker border + ring than before
-   * - Keeps your existing neutral style language
-   */
   const surface3D = cn(
     "relative overflow-hidden",
     "bg-secondary/30",
-    "border-2 border-border/70",
-    "ring-2 ring-white/30 dark:ring-white/10",
+    "border border-border/60",
+    "ring-1 ring-white/30 dark:ring-white/10",
     "shadow-[0_10px_30px_rgba(0,0,0,0.10)] dark:shadow-[0_14px_40px_rgba(0,0,0,0.35)]",
     "backdrop-blur-md",
     "before:absolute before:inset-0 before:pointer-events-none",
@@ -78,8 +58,8 @@ export const HeroSection = () => {
                 "shadow-[0_12px_34px_rgba(0,0,0,0.14)] dark:shadow-[0_18px_50px_rgba(0,0,0,0.45)]"
               )}
             >
-              {/* Inner rim for extra depth (thicker) */}
-              <div className="absolute inset-[5px] rounded-full border-2 border-border/50 dark:border-border/60 pointer-events-none" />
+              {/* Inner rim for extra depth */}
+              <div className="absolute inset-[6px] rounded-full border border-border/50 dark:border-border/60 pointer-events-none" />
 
               <Image
                 src="/images/jay_pic.jpg"
@@ -96,8 +76,8 @@ export const HeroSection = () => {
               className={cn(
                 "absolute -bottom-2 -right-2 h-10 w-10 rounded-full flex items-center justify-center",
                 "bg-accent text-white",
-                "border-2 border-border/50",
-                "ring-2 ring-white/30 dark:ring-white/10",
+                "border border-border/40",
+                "ring-1 ring-white/30 dark:ring-white/10",
                 "shadow-[0_10px_26px_rgba(0,0,0,0.16)] dark:shadow-[0_14px_32px_rgba(0,0,0,0.45)]",
                 "before:absolute before:inset-0 before:rounded-full before:pointer-events-none",
                 "before:bg-gradient-to-b before:from-white/25 before:to-transparent"
@@ -147,8 +127,8 @@ export const HeroSection = () => {
               "h-14 px-6 md:px-10 rounded-full",
               "bg-accent text-white",
               "font-black uppercase tracking-widest",
-              "border-2 border-accent/60",
-              "ring-2 ring-white/30 dark:ring-white/10",
+              "border border-accent/40",
+              "ring-1 ring-white/25 dark:ring-white/10",
               "shadow-[0_14px_34px_rgba(0,0,0,0.16)] dark:shadow-[0_18px_50px_rgba(0,0,0,0.45)]",
               "transition-all hover:scale-105 active:scale-[1.02]",
               "group",
@@ -156,7 +136,7 @@ export const HeroSection = () => {
               "before:bg-gradient-to-b before:from-white/25 before:to-transparent"
             )}
           >
-            <Link href="#experience" className={outlinedText}>
+            <Link href="#experience" className="relative z-10">
               View My Work{" "}
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -175,7 +155,7 @@ export const HeroSection = () => {
               "hover:bg-secondary/40"
             )}
           >
-            <Link href="#contact" className={outlinedText}>
+            <Link href="#contact" className="relative z-10">
               Message Me
             </Link>
           </Button>
