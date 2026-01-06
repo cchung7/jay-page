@@ -96,7 +96,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-linear-to-b from-primary via-primary to-primary/60 bg-clip-text text-transparent leading-[1.1]"
           >
-            Hi, I'm <br />{" "}
+            Hi, My Name's <br />{" "}
             <span className="text-accent italic">Jay Chung</span>
           </motion.h1>
 
