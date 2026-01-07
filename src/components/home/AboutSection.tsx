@@ -28,7 +28,7 @@ export const AboutSection = () => {
                 About
               </h2>
               <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic">
-                The Philosophy
+                My Philosophy
               </h3>
             </header>
 

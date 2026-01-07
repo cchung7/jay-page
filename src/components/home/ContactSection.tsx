@@ -18,7 +18,7 @@ export const ContactSection = () => {
                 Contact Me
               </h2>
               <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic">
-                The Future Awaits
+                For Questions and Inquiries
               </h3>
               <p className="text-lg text-muted-foreground font-medium max-w-sm leading-relaxed mx-auto">
                 Currently accepting select architectural commissions and
@@ -117,7 +117,7 @@ export const ContactSection = () => {
             <form className="relative z-10 space-y-10">
               <div className="text-center">
                 <h3 className="text-center text-3xl md:text-4xl font-black tracking-tight text-foreground">
-                  Let&apos;s Connect:
+                  Message Form:
                 </h3>
               </div>
 
