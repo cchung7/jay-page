@@ -72,7 +72,7 @@ export const ExperienceSection = () => {
             </Tabs.Trigger>
           </Tabs.List>
 
-          {/* WORK ############# */}
+          {/* WORK */}
           <Tabs.Content
             value="work"
             className="grid grid-cols-1 md:grid-cols-2 gap-2 outline-none"
@@ -128,7 +128,7 @@ export const ExperienceSection = () => {
             ))}
           </Tabs.Content>
 
-          {/* PROJECTS ############# */}
+          {/* PROJECTS */}
           <Tabs.Content
             value="projects"
             className="grid grid-cols-1 md:grid-cols-2 gap-2 outline-none"
@@ -207,7 +207,7 @@ export const ExperienceSection = () => {
             ))}
           </Tabs.Content>
 
-          {/* SKILLS ############# */}
+          {/* SKILLS */}
           <Tabs.Content
             value="skills"
             className="grid grid-cols-1 md:grid-cols-3 gap-2 outline-none"
@@ -229,30 +229,57 @@ export const ExperienceSection = () => {
                     </h4>
                   </div>
 
-                  <div className="space-y-1">
-                    {cat.items.map((item) => (
-                      <div key={item} className="flex flex-col gap-2">
-                        <div className="flex justify-between text-[10px] font-black uppercase tracking-widest">
-                          <span>{item}</span>
-                          <span className="text-accent">Intermediate</span>
+                  <div className="space-y-4">
+                    {cat.items.map((item, j) => {
+                      const levelClass =
+                        item.level === "Expert"
+                          ? "text-accent"
+                          : item.level === "Intermediate"
+                          ? "text-accent/80"
+                          : "text-muted-foreground";
+
+                      const raw = Number(item.percent);    
+                      const percent = Number.isFinite(raw) ? Math.max(0, Math.min(100, raw)) : 0;
+
+                      return (
+                        <div key={`${cat.name}-${item.name}`} className="flex flex-col gap-2">
+                          <div className="flex justify-between text-[10px] font-black uppercase tracking-widest">
+                            <span>{item.name}</span>
+                            <span className={levelClass}>
+                              {item.level} • {percent}%
+                            </span>
+                          </div>
+
+                          {/* Bar track */}
+                          <div
+                            className={cn(
+                              "h-2 w-full rounded-full overflow-hidden",
+                              "bg-secondary/60 border border-border/50",
+                              "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),inset_0_-1px_0_rgba(0,0,0,0.25)]"
+                            )}
+                          >
+                            <motion.div
+                              initial={{ width: 0 }}
+                              whileInView={{ width: `${percent}%` }}
+                              viewport={{ once: true, amount: 0.6 }}
+                              transition={{
+                                duration: 0.9,
+                                delay: i * 0.08 + j * 0.03,
+                                ease: "easeOut",
+                              }}
+                              className="h-full bg-linear-to-r from-accent to-accent/60 shadow-[0_0_18px_rgba(0,0,0,0.15)]"
+                            />
+                          </div>
                         </div>
-                        <div className="h-1.5 w-full bg-secondary rounded-full overflow-hidden">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: "50%" }}
-                            transition={{ duration: 1, delay: i * 0.1 }}
-                            className="h-full bg-linear-to-r from-accent to-accent/60"
-                          />
-                        </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </Card>
               </motion.div>
             ))}
           </Tabs.Content>
 
-          {/* EDUCATION ############# */}
+          {/* EDUCATION */}
           <Tabs.Content value="edu" className="space-y-6 outline-none">
             {education.map((edu, i) => (
               <motion.div
