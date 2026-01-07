@@ -117,7 +117,7 @@ export const ContactSection = () => {
             <form className="relative z-10 space-y-10">
               <div className="text-center">
                 <h3 className="text-center text-3xl md:text-4xl font-black tracking-tight text-foreground">
-                  Message Form:
+                  Get in Touch
                 </h3>
               </div>
 
@@ -158,15 +158,15 @@ export const ContactSection = () => {
               <Button
                 type="submit"
                 className={cn(
-                  "w-full",
-                  "relative overflow-hidden",
+                  "w-full relative overflow-hidden",
                   "h-14 px-6 md:px-10 rounded-full",
-                  "bg-accent text-white",
+                  "bg-accent text-white hover:bg-accent",
                   "font-black uppercase tracking-[0.25em] text-sm",
                   "border border-accent/40",
                   "ring-1 ring-white/25 dark:ring-white/10",
                   "shadow-[0_14px_34px_rgba(0,0,0,0.16)] dark:shadow-[0_18px_50px_rgba(0,0,0,0.45)]",
-                  "transition-all hover:scale-105 active:scale-[1.02]",
+                  "transition-all duration-300", 
+                  "hover:scale-105 active:scale-[1.02]",
                   "group",
                   "before:absolute before:inset-0 before:pointer-events-none",
                   "before:bg-gradient-to-b before:from-white/25 before:to-transparent",
