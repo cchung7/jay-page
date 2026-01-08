@@ -210,7 +210,7 @@ export const ExperienceSection = () => {
           {/* SKILLS */}
           <Tabs.Content
             value="skills"
-            className="grid grid-cols-1 md:grid-cols-3 gap-2 outline-none"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 outline-none"
           >
             {skills.map((cat, i) => (
               <motion.div
@@ -218,34 +218,39 @@ export const ExperienceSection = () => {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.1 }}
+                className="min-w-0"
               >
-                <Card className="group border border-border/40 rounded-3xl bg-background hover:border-accent/70 transition-all duration-500 h-full p-10 space-y-10">
-                  <div className="flex items-center gap-2">
-                    <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary">
+                <Card className="group border border-border/40 rounded-3xl bg-background hover:border-accent/70 transition-all duration-500 h-full p-8 md:p-10 space-y-8 md:space-y-10 min-w-0">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary shrink-0">
                       <cat.icon className="h-6 w-6 group-hover:text-accent transition-colors" />
                     </div>
-                    <h4 className="text-xl font-black tracking-tight">
+                    <h4 className="text-xl font-black tracking-tight truncate">
                       {cat.name}
                     </h4>
                   </div>
 
                   <div className="space-y-4">
                     {cat.items.map((item, j) => {
-                      const levelClass =
-                        item.level === "Expert"
-                          ? "text-accent"
-                          : item.level === "Intermediate"
-                          ? "text-accent/80"
-                          : "text-muted-foreground";
+                      // Force ALL levels to the same orange color
+                      const levelClass = "text-accent";
 
-                      const raw = Number(item.percent);    
-                      const percent = Number.isFinite(raw) ? Math.max(0, Math.min(100, raw)) : 0;
+                      const raw = Number(item.percent);
+                      const percent = Number.isFinite(raw)
+                        ? Math.max(0, Math.min(100, raw))
+                        : 0;
 
                       return (
-                        <div key={`${cat.name}-${item.name}`} className="flex flex-col gap-2">
-                          <div className="flex justify-between text-[10px] font-black uppercase tracking-widest">
-                            <span>{item.name}</span>
-                            <span className={levelClass}>
+                        <div
+                          key={`${cat.name}-${item.name}`}
+                          className="flex flex-col gap-2 min-w-0"
+                        >
+                          <div className="flex items-start justify-between gap-3 text-[10px] font-black uppercase tracking-widest min-w-0">
+                            {/* Left label: can shrink + truncate safely */}
+                            <span className="min-w-0 truncate">{item.name}</span>
+
+                            {/* Right label: never wraps, never gets pushed off */}
+                            <span className={cn(levelClass, "shrink-0 whitespace-nowrap")}>
                               {item.level} • {percent}%
                             </span>
                           </div>
