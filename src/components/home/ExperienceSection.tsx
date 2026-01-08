@@ -211,8 +211,8 @@ export const ExperienceSection = () => {
           <Tabs.Content
             value="skills"
             className={cn(
-              "grid gap-2 outline-none items-start",
-              "[grid-template-columns:repeat(auto-fit,minmax(360px,1fr))]"
+              "grid gap-2 outline-none items-start justify-center",
+              "[grid-template-columns:repeat(auto-fit,minmax(320px, 360px))]"
             )}
           >
             {skills.map((cat, i) => (
