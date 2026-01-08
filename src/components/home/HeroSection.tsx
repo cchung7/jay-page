@@ -47,10 +47,8 @@ export const HeroSection = () => {
           className="flex justify-center mb-2"
         >
           <div className="relative group">
-            {/* Glow */}
             <div className="absolute inset-0 bg-accent/15 rounded-full blur-2xl group-hover:bg-accent/25 transition-all duration-700" />
 
-            {/* 3D container */}
             <div
               className={cn(
                 "relative h-40 w-40 rounded-full",
@@ -58,7 +56,6 @@ export const HeroSection = () => {
                 "shadow-[0_12px_34px_rgba(0,0,0,0.14)] dark:shadow-[0_18px_50px_rgba(0,0,0,0.45)]"
               )}
             >
-              {/* Inner rim for extra depth */}
               <div className="absolute inset-[6px] rounded-full border border-border/50 dark:border-border/60 pointer-events-none" />
 
               <Image
@@ -94,10 +91,44 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-linear-to-b from-primary via-primary to-primary/60 bg-clip-text text-transparent leading-[1.1]"
+            className={cn(
+              "relative",
+              "text-5xl md:text-7xl font-black tracking-tighter",
+              "leading-[1.1]"
+            )}
           >
-            Hi, My Name's <br />{" "}
-            <span className="text-accent italic">Jay Chung</span>
+            {/* OUTLINE LAYER */}
+            <span
+              aria-hidden
+              className={cn(
+                "pointer-events-none select-none",
+                "absolute inset-0",
+                "text-transparent",
+                "[-webkit-text-stroke:2px_hsl(var(--foreground))]",
+                "dark:[-webkit-text-stroke:2px_hsl(var(--border))]"
+              )}
+            >
+              Hi, My Name&apos;s <br />
+              <span
+                className={cn(
+                  "italic",
+                  "[-webkit-text-stroke:2px_hsl(var(--accent))]"
+                )}
+              >
+                Jay Chung
+              </span>
+            </span>
+
+            <span
+              className={cn(
+                "relative",
+                "bg-linear-to-b from-primary via-primary to-primary/70",
+                "bg-clip-text text-transparent"
+              )}
+            >
+              Hi, My Name&apos;s <br />
+              <span className="text-accent italic">Jay Chung</span>
+            </span>
           </motion.h1>
 
           <motion.p
