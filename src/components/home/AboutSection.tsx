@@ -6,6 +6,9 @@ import { motion, useReducedMotion } from "framer-motion";
 export const AboutSection = () => {
   const reduceMotion = useReducedMotion();
 
+  const FORCE_MOTION = false;
+  const enableMotion = FORCE_MOTION ? true : !reduceMotion;
+
   return (
     <section
       id="about"
@@ -75,36 +78,29 @@ export const AboutSection = () => {
               <p className="text-center text-3xl md:text-4xl font-semibold leading-[1.2] tracking-tight text-foreground">
                 Great engineering is the{" "}
                 <motion.span
-                  className="inline-grid italic overflow-visible pr-[0.20em] align-baseline will-change-transform"
-                  initial={{ x: 6 }}
+                  className="
+                    inline-grid italic overflow-visible
+                    pr-[0.25em] relative left-[4px]
+                    will-change-transform
+                  "
                   animate={
-                    reduceMotion
-                      ? { x: 6 }
-                      : {
-                          x: [6, -3, 8, -2, 6],
-                          y: [0, -3, 2.5, -2, 0],
-                          rotate: [0, -2.2, 2.2, -1.6, 0],
+                    enableMotion
+                      ? {
+                          x: [0, -18, 22, -14, 0],
+                          y: [0, -10, 6, -8, 0],
+                          rotate: [0, -4, 4, -3, 0],
+                          scale: [1, 1.05, 0.97, 1.05, 1],
                         }
+                      : undefined
                   }
                   transition={
-                    reduceMotion
-                      ? { duration: 0 }
-                      : {
-                          duration: 1.25,
+                    enableMotion
+                      ? {
+                          duration: 1.6,
                           ease: "easeInOut",
                           repeat: Infinity,
-                          repeatType: "mirror",
                         }
-                  }
-                  whileHover={
-                    reduceMotion
-                      ? undefined
-                      : {
-                          x: [6, -8, 12, -5, 6],
-                          y: [0, -6, 4.5, -4, 0],
-                          rotate: [0, -4, 4, -3, 0],
-                          transition: { duration: 0.55, ease: "easeInOut" },
-                        }
+                      : undefined
                   }
                 >
                   <span
@@ -112,10 +108,10 @@ export const AboutSection = () => {
                     className="
                       col-start-1 row-start-1
                       text-transparent
-                      [-webkit-text-stroke:1.05px_rgba(255,120,60,0.45)]
-                      dark:[-webkit-text-stroke:1.05px_rgba(255,150,105,0.30)]
+                      [-webkit-text-stroke:1.1px_rgba(255,120,60,0.45)]
+                      dark:[-webkit-text-stroke:1.1px_rgba(255,150,105,0.30)]
                       pointer-events-none
-                      pr-[0.20em]
+                      pr-[0.25em]
                     "
                   >
                     silent architect
@@ -124,8 +120,8 @@ export const AboutSection = () => {
                   <span
                     className="
                       col-start-1 row-start-1
-                      pr-[0.20em]
-                      bg-linear-to-b from-accent/80 via-accent/55 to-accent/35
+                      pr-[0.25em]
+                      bg-linear-to-b from-accent/85 via-accent/60 to-accent/35
                       bg-clip-text text-transparent
                     "
                   >
@@ -137,8 +133,8 @@ export const AboutSection = () => {
 
               <p className="text-center text-muted-foreground leading-relaxed font-medium">
                 I specialize in bridging the gap between architectural design and
-                low-level execution. My process is rooted in structural integrity and
-                aesthetic creativity.
+                low-level execution. My process is rooted in structural integrity
+                and aesthetic creativity.
               </p>
             </div>
           </motion.div>

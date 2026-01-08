@@ -37,14 +37,57 @@ export const ExperienceSection = () => {
   return (
     <section id="experience" className="py-24 md:py-32 px-6 bg-secondary/10">
       <div className="container max-w-6xl mx-auto space-y-6">
-        <div className="text-center space-y-1">
-          <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
-            Experience
+        {/* UPDATED HEADER: match AboutSection.tsx styling */}
+        <header className="text-center space-y-1">
+          {/* EXPERIENCE (matches "About") */}
+          <h2 className="relative inline-block text-xs font-black uppercase tracking-[0.5em] text-accent">
+            <span
+              aria-hidden
+              className="
+                absolute inset-0
+                text-transparent
+                [-webkit-text-stroke:0.85px_theme(colors.border.DEFAULT)]
+                dark:[-webkit-text-stroke:0.85px_theme(colors.border.muted)]
+                pointer-events-none
+              "
+            >
+              Experience
+            </span>
+            <span className="relative">Experience</span>
           </h2>
-          <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic">
-            Technical Stack
+
+          {/* TECHNICAL STACK (matches "The Philosophy") */}
+          <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic leading-[1.05]">
+            <span className="inline-grid overflow-visible">
+              {/* OUTLINE */}
+              <span
+                aria-hidden
+                className="
+                  col-start-1 row-start-1
+                  text-transparent
+                  [-webkit-text-stroke:1.6px_theme(colors.border.DEFAULT)]
+                  dark:[-webkit-text-stroke:1.6px_theme(colors.border.muted)]
+                  pointer-events-none
+                  pr-[0.55em]
+                "
+              >
+                Technical Stack
+              </span>
+
+              {/* FILL */}
+              <span
+                className="
+                  col-start-1 row-start-1
+                  pr-[0.55em]
+                  bg-linear-to-b from-primary via-primary to-primary/70
+                  bg-clip-text text-transparent
+                "
+              >
+                Technical Stack
+              </span>
+            </span>
           </h3>
-        </div>
+        </header>
 
         <Tabs.Root
           value={activeTab}
@@ -207,14 +250,7 @@ export const ExperienceSection = () => {
           </Tabs.Content>
 
           {/* SKILLS */}
-          <Tabs.Content
-            value="skills"
-            className={cn(
-              "outline-none",
-              "overflow-x-auto",
-              "pb-2"
-            )}
-          >
+          <Tabs.Content value="skills" className={cn("outline-none", "overflow-x-auto", "pb-2")}>
             <div
               className={cn(
                 "grid gap-2 items-start",
@@ -256,12 +292,7 @@ export const ExperienceSection = () => {
                           >
                             <div className="flex items-start justify-between gap-3 text-[10px] font-black uppercase tracking-widest min-w-0">
                               <span className="min-w-0 truncate">{item.name}</span>
-                              <span
-                                className={cn(
-                                  levelClass,
-                                  "shrink-0 whitespace-nowrap"
-                                )}
-                              >
+                              <span className={cn(levelClass, "shrink-0 whitespace-nowrap")}>
                                 {item.level} • {percent}%
                               </span>
                             </div>

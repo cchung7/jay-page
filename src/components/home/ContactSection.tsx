@@ -61,16 +61,60 @@ export const ContactSection = () => {
         <div className="grid grid-cols-1 gap-6">
           {/* Contact Info */}
           <div className="space-y-10">
+            {/* HEADER (UPDATED to match AboutSection.tsx styling) */}
             <div className="text-center space-y-1">
-              <h2 className="text-xs font-black uppercase tracking-[0.5em] text-accent">
-                Contact
+              {/* CONTACT */}
+              <h2 className="relative inline-block text-xs font-black uppercase tracking-[0.5em] text-accent">
+                <span
+                  aria-hidden
+                  className="
+                    absolute inset-0
+                    text-transparent
+                    [-webkit-text-stroke:0.85px_theme(colors.border.DEFAULT)]
+                    dark:[-webkit-text-stroke:0.85px_theme(colors.border.muted)]
+                    pointer-events-none
+                  "
+                >
+                  Contact
+                </span>
+                <span className="relative">Contact</span>
               </h2>
-              <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic">
-                Questions & Inquiries
+
+              {/* QUESTIONS & INQUIRIES */}
+              <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic leading-[1.05]">
+                <span className="inline-grid overflow-visible">
+                  {/* OUTLINE */}
+                  <span
+                    aria-hidden
+                    className="
+                      col-start-1 row-start-1
+                      text-transparent
+                      [-webkit-text-stroke:1.6px_theme(colors.border.DEFAULT)]
+                      dark:[-webkit-text-stroke:1.6px_theme(colors.border.muted)]
+                      pointer-events-none
+                      pr-[0.55em]
+                    "
+                  >
+                    Questions &amp; Inquiries
+                  </span>
+
+                  {/* FILL */}
+                  <span
+                    className="
+                      col-start-1 row-start-1
+                      pr-[0.55em]
+                      bg-linear-to-b from-primary via-primary to-primary/70
+                      bg-clip-text text-transparent
+                    "
+                  >
+                    Questions &amp; Inquiries
+                  </span>
+                </span>
               </h3>
+
               <p className="text-lg text-muted-foreground font-medium max-w-sm leading-relaxed mx-auto">
-                Accepting select architectural commissions and
-                performance-driven engineering roles.
+                Accepting select architectural commissions and performance-driven
+                engineering roles.
               </p>
             </div>
 
@@ -164,8 +208,14 @@ export const ContactSection = () => {
 
             <form onSubmit={handleSubmit} className="relative z-10 space-y-10">
               <div className="text-center">
-                <h3 className="text-center text-3xl md:text-4xl font-black tracking-tight text-foreground">
-                  Contact Me
+                <h3
+                  className={cn(
+                    "text-center text-3xl md:text-4xl font-black tracking-tight",
+                    "text-foreground transition-colors duration-300",
+                    "group-hover:text-accent group-focus-within:text-accent"
+                  )}
+                >
+                  Contact Form:
                 </h3>
               </div>
 
@@ -218,8 +268,6 @@ export const ContactSection = () => {
                       "rounded-2xl border px-4 py-3 text-sm font-bold",
                       status === "success"
                         ? "border-accent/40 bg-accent/10 text-accent"
-                        : status === "error"
-                        ? "border-border/60 bg-secondary/40 text-muted-foreground"
                         : "border-border/60 bg-secondary/40 text-muted-foreground"
                     )}
                   >
