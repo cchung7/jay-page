@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: `"Jay Portfolio" <${process.env.SMTP_USER}>`,
       to: process.env.CONTACT_TO ?? "chung_chul@yahoo.com", // hardcoded recipient fallback
-      replyTo: email,
+      replyTo: { name, address: email },
       subject: `New Contact Form Message from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n`,
     });

@@ -1,15 +1,63 @@
 "use client";
 
+import * as React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, Rocket, MapPin, Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+type FormStatus = "idle" | "sending" | "success" | "error";
+
 export const ContactSection = () => {
+  const [fullName, setFullName] = React.useState("");
+  const [emailAddress, setEmailAddress] = React.useState("");
+  const [userMessage, setUserMessage] = React.useState("");
+
+  const [status, setStatus] = React.useState<FormStatus>("idle");
+  const [statusMessage, setStatusMessage] = React.useState("");
+
+  const isSending = status === "sending";
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    setStatus("sending");
+    setStatusMessage("Sending...");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: fullName,
+          email: emailAddress,
+          message: userMessage,
+        }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        setStatus("error");
+        setStatusMessage(data?.detail || data?.error || "Message failed to send.");
+        return;
+      }
+
+      setStatus("success");
+      setStatusMessage("Message sent. Thank you.");
+
+      setFullName("");
+      setEmailAddress("");
+      setUserMessage("");
+    } catch {
+      setStatus("error");
+      setStatusMessage("Message failed to send. Please try again.");
+    }
+  }
+
   return (
     <section id="contact" className="py-24 md:py-32 px-6 bg-background">
       <div className="container max-w-6xl mx-auto">
-        {/* CHANGED: force stacked layout even on large screens */}
         <div className="grid grid-cols-1 gap-6">
           {/* Contact Info */}
           <div className="space-y-10">
@@ -114,7 +162,7 @@ export const ContactSection = () => {
               <Rocket className="h-16 w-16" />
             </div>
 
-            <form className="relative z-10 space-y-10">
+            <form onSubmit={handleSubmit} className="relative z-10 space-y-10">
               <div className="text-center">
                 <h3 className="text-center text-3xl md:text-4xl font-black tracking-tight text-foreground">
                   Get in Touch
@@ -128,6 +176,9 @@ export const ContactSection = () => {
                   </label>
                   <input
                     type="text"
+                    required
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
                     placeholder="Jane Doe"
                     className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/35 focus:ring-0 outline-none"
                   />
@@ -139,6 +190,9 @@ export const ContactSection = () => {
                   </label>
                   <input
                     type="email"
+                    required
+                    value={emailAddress}
+                    onChange={(e) => setEmailAddress(e.target.value)}
                     placeholder="jane.doe@example.com"
                     className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/35 focus:ring-0 outline-none"
                   />
@@ -149,14 +203,34 @@ export const ContactSection = () => {
                     Your Message
                   </label>
                   <textarea
+                    required
+                    value={userMessage}
+                    onChange={(e) => setUserMessage(e.target.value)}
                     placeholder="Describe your vision..."
                     className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/35 focus:ring-0 outline-none min-h-[150px] resize-none"
                   />
                 </div>
+
+                {/* Success / Fail message */}
+                {status !== "idle" && statusMessage && (
+                  <div
+                    className={cn(
+                      "rounded-2xl border px-4 py-3 text-sm font-bold",
+                      status === "success"
+                        ? "border-accent/40 bg-accent/10 text-accent"
+                        : status === "error"
+                        ? "border-border/60 bg-secondary/40 text-muted-foreground"
+                        : "border-border/60 bg-secondary/40 text-muted-foreground"
+                    )}
+                  >
+                    {statusMessage}
+                  </div>
+                )}
               </div>
 
               <Button
                 type="submit"
+                disabled={isSending}
                 className={cn(
                   "w-full relative overflow-hidden",
                   "h-14 px-6 md:px-10 rounded-full",
@@ -165,15 +239,18 @@ export const ContactSection = () => {
                   "border border-accent/40",
                   "ring-1 ring-white/25 dark:ring-white/10",
                   "shadow-[0_14px_34px_rgba(0,0,0,0.16)] dark:shadow-[0_18px_50px_rgba(0,0,0,0.45)]",
-                  "transition-all duration-300", 
+                  "transition-all duration-300",
                   "hover:scale-105 active:scale-[1.02]",
+                  isSending && "opacity-70 cursor-not-allowed hover:scale-100",
                   "group",
                   "before:absolute before:inset-0 before:pointer-events-none",
                   "before:bg-gradient-to-b before:from-white/25 before:to-transparent",
                   "hover:[&>svg]:translate-x-1"
                 )}
               >
-                <span className="relative z-10">Send Message</span>
+                <span className="relative z-10">
+                  {isSending ? "Sending..." : "Send Message"}
+                </span>
                 <ArrowRight
                   size={16}
                   className="relative z-10 ml-2 transition-transform"

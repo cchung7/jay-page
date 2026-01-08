@@ -211,80 +211,89 @@ export const ExperienceSection = () => {
           <Tabs.Content
             value="skills"
             className={cn(
-              "grid gap-2 outline-none items-start justify-center",
-              "[grid-template-columns:repeat(auto-fit,minmax(320px, 360px))]"
+              "outline-none",
+              // If the viewport becomes narrower than one card, do NOT shrink the card;
+              // allow horizontal scroll instead.
+              "overflow-x-auto",
+              // a little padding so scrollbars don't collide visually
+              "pb-2"
             )}
           >
-            {skills.map((cat, i) => (
-              <motion.div
-                key={cat.name}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="min-w-0"
-              >
-                <Card className="group border border-border/40 rounded-3xl bg-background hover:border-accent/70 transition-all duration-500 h-full p-8 md:p-10 space-y-8 md:space-y-10 min-w-0">
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary shrink-0">
-                      <cat.icon className="h-6 w-6 group-hover:text-accent transition-colors" />
+            <div
+              className={cn(
+                "grid gap-2 items-start",
+                // Center the grid when there's extra space
+                "justify-center",
+                // Fixed card width; auto-fit decides 1/2/3 columns depending on available space.
+                "[grid-template-columns:repeat(auto-fit,360px)]"
+              )}
+            >
+              {skills.map((cat, i) => (
+                <motion.div
+                  key={cat.name}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="min-w-0"
+                >
+                  <Card className="group border border-border/40 rounded-3xl bg-background hover:border-accent/70 transition-all duration-500 h-full p-8 md:p-10 space-y-8 md:space-y-10 min-w-0">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary shrink-0">
+                        <cat.icon className="h-6 w-6 group-hover:text-accent transition-colors" />
+                      </div>
+                      <h4 className="text-xl font-black tracking-tight truncate">
+                        {cat.name}
+                      </h4>
                     </div>
-                    <h4 className="text-xl font-black tracking-tight truncate">
-                      {cat.name}
-                    </h4>
-                  </div>
 
-                  <div className="space-y-4">
-                    {cat.items.map((item, j) => {
-                      // Force ALL levels to the same orange color
-                      const levelClass = "text-accent";
+                    <div className="space-y-4">
+                      {cat.items.map((item, j) => {
+                        const levelClass = "text-accent";
 
-                      const raw = Number(item.percent);
-                      const percent = Number.isFinite(raw)
-                        ? Math.max(0, Math.min(100, raw))
-                        : 0;
+                        const raw = Number(item.percent);
+                        const percent = Number.isFinite(raw)
+                          ? Math.max(0, Math.min(100, raw))
+                          : 0;
 
-                      return (
-                        <div
-                          key={`${cat.name}-${item.name}`}
-                          className="flex flex-col gap-2 min-w-0"
-                        >
-                          <div className="flex items-start justify-between gap-3 text-[10px] font-black uppercase tracking-widest min-w-0">
-                            {/* Left label: can shrink + truncate safely */}
-                            <span className="min-w-0 truncate">{item.name}</span>
-
-                            {/* Right label: never wraps, never gets pushed off */}
-                            <span className={cn(levelClass, "shrink-0 whitespace-nowrap")}>
-                              {item.level} • {percent}%
-                            </span>
-                          </div>
-
-                          {/* Bar track */}
+                        return (
                           <div
-                            className={cn(
-                              "h-2 w-full rounded-full overflow-hidden",
-                              "bg-secondary/60 border border-border/50",
-                              "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),inset_0_-1px_0_rgba(0,0,0,0.25)]"
-                            )}
+                            key={`${cat.name}-${item.name}`}
+                            className="flex flex-col gap-2 min-w-0"
                           >
-                            <motion.div
-                              initial={{ width: 0 }}
-                              whileInView={{ width: `${percent}%` }}
-                              viewport={{ once: true, amount: 0.6 }}
-                              transition={{
-                                duration: 0.9,
-                                delay: i * 0.08 + j * 0.03,
-                                ease: "easeOut",
-                              }}
-                              className="h-full bg-linear-to-r from-accent to-accent/60 shadow-[0_0_18px_rgba(0,0,0,0.15)]"
-                            />
+                            <div className="flex items-start justify-between gap-3 text-[10px] font-black uppercase tracking-widest min-w-0">
+                              <span className="min-w-0 truncate">{item.name}</span>
+                              <span className={cn(levelClass, "shrink-0 whitespace-nowrap")}>
+                                {item.level} • {percent}%
+                              </span>
+                            </div>
+
+                            <div
+                              className={cn(
+                                "h-2 w-full rounded-full overflow-hidden",
+                                "bg-secondary/60 border border-border/50",
+                                "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),inset_0_-1px_0_rgba(0,0,0,0.25)]"
+                              )}
+                            >
+                              <motion.div
+                                initial={{ width: 0 }}
+                                whileInView={{ width: `${percent}%` }}
+                                viewport={{ once: true, amount: 0.6 }}
+                                transition={{
+                                  duration: 0.9,
+                                  delay: i * 0.08 + j * 0.03,
+                                  ease: "easeOut",
+                                }}
+                                className="h-full bg-linear-to-r from-accent to-accent/60 shadow-[0_0_18px_rgba(0,0,0,0.15)]"
+                              />
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
+                        );
+                      })}
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </Tabs.Content>
 
           {/* EDUCATION */}
