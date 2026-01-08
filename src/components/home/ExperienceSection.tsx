@@ -210,7 +210,10 @@ export const ExperienceSection = () => {
           {/* SKILLS */}
           <Tabs.Content
             value="skills"
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 outline-none"
+            className={cn(
+              "grid gap-2 outline-none items-start",
+              "[grid-template-columns:repeat(auto-fit,minmax(360px,1fr))]"
+            )}
           >
             {skills.map((cat, i) => (
               <motion.div
