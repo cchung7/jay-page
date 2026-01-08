@@ -3,53 +3,72 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
-    const { name, email, message } = await req.json();
+    const { name, email, message } = (await req.json()) as {
+      name?: string;
+      email?: string;
+      message?: string;
+    };
 
     if (!name || !email || !message) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
+    // Read env (server-only)
+    const host = process.env.SMTP_HOST || "smtp.hostinger.com";
+    const port = Number(process.env.SMTP_PORT ?? 465);
+    const secure = String(process.env.SMTP_SECURE ?? "true") === "true";
+
     const user = process.env.SMTP_USER;
     const pass = process.env.SMTP_PASS;
 
+    // Safe diagnostics (no secrets)
+    console.log("[contact] SMTP_HOST:", host);
+    console.log("[contact] SMTP_PORT:", port);
+    console.log("[contact] SMTP_SECURE:", secure);
+    console.log("[contact] SMTP_USER present:", Boolean(user));
+    console.log("[contact] SMTP_PASS present:", Boolean(pass));
+    console.log("[contact] CONTACT_TO:", process.env.CONTACT_TO ?? "(default)");
+
     if (!user || !pass) {
       return NextResponse.json(
-        { error: "SMTP credentials missing on server." },
+        { error: "SMTP credentials missing on server. Check Vercel env vars." },
         { status: 500 }
       );
     }
 
     const transporter = nodemailer.createTransport({
-      host: "smtp.hostinger.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user,
-        pass,
-      },
+      host,
+      port,
+      secure,
+      auth: { user, pass },
     });
 
-    // Verify connection & credentials
+    // Verifies the connection/auth early (helpful for debugging)
     await transporter.verify();
 
-    await transporter.sendMail({
-      from: `"Jay Portfolio" <${user}>`,
-      to: "chung_chul@yahoo.com",
+    const to = process.env.CONTACT_TO ?? "chung_chul@yahoo.com";
+
+    const info = await transporter.sendMail({
+      from: `"Jay Portfolio" <${user}>`, // must match authenticated mailbox for many SMTP providers
+      to,
       replyTo: { name, address: email },
       subject: `New Contact Form Message from ${name}`,
-      text: `Name: ${name}
-Email: ${email}
-
-Message:
-${message}`,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n`,
     });
 
+    console.log("[contact] sendMail accepted:", info.accepted);
+    console.log("[contact] messageId:", info.messageId);
+
     return NextResponse.json({ success: true });
-  } catch (err) {
-    console.error("Email send error:", err);
-    return NextResponse.json(
-      { error: "Failed to send email" },
-      { status: 500 }
-    );
+  } catch (err: any) {
+    console.error("[contact] error:", err);
+
+    // Surface common SMTP failures in a user-friendly way (still no secrets)
+    const msg =
+      typeof err?.message === "string"
+        ? err.message
+        : "Failed to send email.";
+
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
