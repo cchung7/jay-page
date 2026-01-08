@@ -42,7 +42,7 @@ export const ExperienceSection = () => {
             Experience
           </h2>
           <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic">
-            My Technical Stack
+            Technical Stack
           </h3>
         </div>
 
@@ -85,7 +85,7 @@ export const ExperienceSection = () => {
                 transition={{ delay: i * 0.1 }}
               >
                 <Card className="h-full border border-border/40 shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-500 rounded-3xl group overflow-hidden bg-background hover:border-accent/70">
-                  <CardContent className="p-10 space-y-6">
+                  <CardContent className="p-10 md:p-12 space-y-6">
                     <div className="flex justify-between items-start">
                       <div className="rounded-2xl bg-secondary flex items-center justify-center transition-colors">
                         <Briefcase
@@ -93,14 +93,13 @@ export const ExperienceSection = () => {
                           className="text-primary group-hover:text-accent transition-colors"
                         />
                       </div>
-
-                      <Badge className="bg-secondary text-primary border-none rounded-lg font-black text-[9px] uppercase tracking-widest">
+                      <Badge className="bg-secondary text-primary border-none rounded-lg font-black text-xs uppercase tracking-wide">
                         {work.period}
                       </Badge>
                     </div>
 
                     <div className="space-y-1">
-                      <h4 className="text-2xl font-black tracking-tight">
+                      <h4 className="text-3xl font-black tracking-tight">
                         {work.role}
                       </h4>
                       <p className="text-accent font-bold tracking-tight">
@@ -141,35 +140,35 @@ export const ExperienceSection = () => {
                 transition={{ delay: i * 0.1 }}
               >
                 <Card className="group border border-border/40 rounded-3xl overflow-hidden bg-background h-full hover:shadow-2xl transition-all duration-500 hover:border-accent/70">
-                  <div
-                    className={cn(
-                      "h-12 mx-3 mt-3",
-                      "flex items-center justify-center",
-                      "rounded-xl",
-                      "bg-secondary/60",
-                      "border border-border/50",
-                      "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.35)]",
-                      "transition-colors group-hover:bg-accent/10"
-                    )}
-                  >
-                    <span
+                  <CardContent className="p-10 md:p-12 space-y-6">
+                    <div
                       className={cn(
-                        "text-[10px] font-black uppercase tracking-widest",
-                        "text-muted-foreground/70",
-                        "transition-colors duration-300",
-                        "group-hover:text-accent"
+                        "h-12",
+                        "flex items-center justify-center",
+                        "rounded-xl",
+                        "bg-secondary/60",
+                        "border border-border/50",
+                        "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.35)]",
+                        "transition-colors group-hover:bg-accent/10"
                       )}
                     >
-                      {proj.type}
-                    </span>
-                  </div>
+                      <span
+                        className={cn(
+                          "text-xs font-black uppercase tracking-widest",
+                          "text-muted-foreground/70",
+                          "transition-colors duration-300",
+                          "group-hover:text-accent"
+                        )}
+                      >
+                        {proj.type}
+                      </span>
+                    </div>
 
-                  <CardContent className="p-2.5 space-y-1">
-                    <div className="flex items-center justify-between">
-                      <h4 className="text-2xl font-black tracking-tight">
+                    <div className="flex items-start justify-between gap-6">
+                      <h4 className="text-3xl font-black tracking-tight pr-4">
                         {proj.name}
                       </h4>
-                      <div className="flex gap-2">
+                      <div className="flex gap-2 shrink-0">
                         <Link
                           href={proj.links.git}
                           className="p-2 rounded-xl bg-secondary hover:bg-accent hover:text-white transition-colors"
@@ -212,19 +211,14 @@ export const ExperienceSection = () => {
             value="skills"
             className={cn(
               "outline-none",
-              // If the viewport becomes narrower than one card, do NOT shrink the card;
-              // allow horizontal scroll instead.
               "overflow-x-auto",
-              // a little padding so scrollbars don't collide visually
               "pb-2"
             )}
           >
             <div
               className={cn(
                 "grid gap-2 items-start",
-                // Center the grid when there's extra space
                 "justify-center",
-                // Fixed card width; auto-fit decides 1/2/3 columns depending on available space.
                 "[grid-template-columns:repeat(auto-fit,360px)]"
               )}
             >
@@ -241,7 +235,7 @@ export const ExperienceSection = () => {
                       <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary shrink-0">
                         <cat.icon className="h-6 w-6 group-hover:text-accent transition-colors" />
                       </div>
-                      <h4 className="text-xl font-black tracking-tight truncate">
+                      <h4 className="text-x1 font-black tracking-tight truncate">
                         {cat.name}
                       </h4>
                     </div>
@@ -262,7 +256,12 @@ export const ExperienceSection = () => {
                           >
                             <div className="flex items-start justify-between gap-3 text-[10px] font-black uppercase tracking-widest min-w-0">
                               <span className="min-w-0 truncate">{item.name}</span>
-                              <span className={cn(levelClass, "shrink-0 whitespace-nowrap")}>
+                              <span
+                                className={cn(
+                                  levelClass,
+                                  "shrink-0 whitespace-nowrap"
+                                )}
+                              >
                                 {item.level} • {percent}%
                               </span>
                             </div>
@@ -305,13 +304,14 @@ export const ExperienceSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
               >
-                <Card className="border border-border/40 rounded-3xl bg-background p-10 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:shadow-lg transition-all group hover:border-accent/70">
+                <Card className="border border-border/40 rounded-3xl bg-background p-10 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:shadow-lg transition-all group hover:border-accent/70">
                   <div className="flex items-center gap-6">
                     <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-all">
                       <GraduationCap className="h-6 w-6" />
                     </div>
-                    <div className="space-y-1 text-left">
-                      <h4 className="text-2xl font-black tracking-tight">
+
+                    <div className="space-y-2 text-left">
+                      <h4 className="text-3xl font-black tracking-tight">
                         {edu.school}
                       </h4>
                       <p className="text-accent font-bold tracking-tight uppercase text-xs">
@@ -320,8 +320,8 @@ export const ExperienceSection = () => {
                     </div>
                   </div>
 
-                  <div className="text-right">
-                    <Badge className="bg-secondary text-primary border-none rounded-lg font-black text-[9px] uppercase tracking-widest mb-2">
+                  <div className="text-left md:text-right space-y-2">
+                    <Badge className="bg-secondary text-primary border-none rounded-lg font-black text-xs uppercase tracking-wide">
                       {edu.period}
                     </Badge>
                     <p className="text-muted-foreground/60 text-[10px] font-black uppercase tracking-widest">

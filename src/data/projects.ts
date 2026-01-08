@@ -8,7 +8,7 @@ export const projects = [
   { name: "Binnerri Pickleball Club (BPC)", 
     type: "Full-Stack Web Application", 
     desc: "BPC features a home page that displays events and members/users. Visitors may apply for membership. An admin page manages all users/members and events.", 
-    links: { live: "https://binnerripickleball.com/", git: "#" }, 
+    links: { live: "#", git: "#" }, 
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "React", "MongoDB", "Ubuntu VPS"]
   },
 ];
