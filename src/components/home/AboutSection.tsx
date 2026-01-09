@@ -99,7 +99,7 @@ export const AboutSection = () => {
                   animate={
                     enableMotion
                       ? {
-                          x: [0, -2, 2, -2, 0],
+                          x: [0, -1, 1, -1, 0],
                           y: [0, -1, 0, -1, 0],
                           scale: [1, 1.01, 0.99, 1.01, 1],
                         }
@@ -108,7 +108,7 @@ export const AboutSection = () => {
                   transition={
                     enableMotion
                       ? {
-                          duration: 1.6,
+                          duration: 2,
                           ease: "easeInOut",
                           repeat: Infinity,
                         }
