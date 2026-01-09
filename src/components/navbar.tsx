@@ -47,14 +47,16 @@ export function Navbar() {
 
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
-  // Neutral styling to match ExperienceSection
+  // Buttons (theme + mobile menu) — add double ring on hover/focus-visible
   const actionClass = cn(
     "h-10 w-10 rounded-full",
     "bg-secondary/30 border border-border/60",
     "text-muted-foreground",
     "shadow-[0_1px_0_rgba(0,0,0,0.22)]",
     "transition-all duration-200",
-    "hover:text-foreground hover:border-accent/60"
+    "hover:text-foreground hover:border-accent/60",
+    "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
+    "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
   );
 
   const navPillClass = cn(
@@ -68,6 +70,7 @@ export function Navbar() {
     "before:bg-gradient-to-b before:from-white/10 before:to-transparent"
   );
 
+  // Nav link pills — add double ring on hover/focus-visible
   const navButtonClass = cn(
     "group h-9",
     "relative inline-flex items-center gap-2 px-3 rounded-full",
@@ -76,7 +79,9 @@ export function Navbar() {
     "border border-border/60",
     "text-muted-foreground",
     "transition-all duration-200",
-    "hover:text-foreground hover:border-accent/60"
+    "hover:text-foreground hover:border-accent/60",
+    "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
+    "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
   );
 
   return (
@@ -154,7 +159,16 @@ export function Navbar() {
                 <div className="flex justify-between items-center mb-12">
                   <span className="font-black uppercase">Menu</span>
                   <Dialog.Close asChild>
-                    <Button variant="ghost" size="icon" aria-label="Close menu">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      aria-label="Close menu"
+                      className={cn(
+                        "rounded-full",
+                        "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
+                        "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                      )}
+                    >
                       <X className="h-5 w-5" />
                     </Button>
                   </Dialog.Close>

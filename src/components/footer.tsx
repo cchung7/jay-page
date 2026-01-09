@@ -31,6 +31,7 @@ export function Footer() {
     "before:pointer-events-none"
   );
 
+  // Footer nav buttons — add double ring on hover/focus-visible
   const pillButtonClass = cn(
     "relative h-9 px-4",
     "inline-flex items-center justify-center",
@@ -40,7 +41,9 @@ export function Footer() {
     "bg-secondary/30",
     "text-muted-foreground",
     "transition-all duration-200",
-    "hover:text-foreground hover:border-accent/60"
+    "hover:text-foreground hover:border-accent/60",
+    "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
+    "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
   );
 
   return (
@@ -70,7 +73,9 @@ export function Footer() {
                 "border border-border/60 bg-secondary/30",
                 "text-muted-foreground",
                 "transition-all duration-200",
-                "hover:text-foreground hover:border-accent/60"
+                "hover:text-foreground hover:border-accent/60",
+                "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
+                "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               )}
             >
               <Icon className="h-4 w-4" />

@@ -46,12 +46,24 @@ export const HeroSection = () => {
           transition={{ duration: 0.6 }}
           className="flex justify-center mb-2"
         >
-          <div className="relative group">
-            <div className="absolute inset-0 bg-accent/15 rounded-full blur-2xl group-hover:bg-accent/25 transition-all duration-700" />
+          <div className="relative group overflow-visible">
+            {/* GLOW: stronger & larger on mobile, sits behind avatar */}
+            <div
+              className={cn(
+                "absolute inset-0 rounded-full pointer-events-none -z-10",
+                // mobile-first: stronger, larger blur
+                "bg-accent/30 blur-[40px]",
+                // from small screens up: your original values
+                "sm:bg-accent/15 sm:blur-2xl",
+                // hover emphasis (kept) with mobile-friendly default
+                "group-hover:bg-accent/40 sm:group-hover:bg-accent/25",
+                "transition-all duration-700"
+              )}
+            />
 
             <div
               className={cn(
-                "relative h-40 w-40 rounded-full",
+                "relative h-40 w-40 rounded-full z-10",
                 surface3D,
                 "shadow-[0_12px_34px_rgba(0,0,0,0.14)] dark:shadow-[0_18px_50px_rgba(0,0,0,0.45)]"
               )}

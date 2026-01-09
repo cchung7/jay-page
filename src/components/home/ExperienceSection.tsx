@@ -1,7 +1,5 @@
 "use client";
 
-// import { Separator } from "@/components/ui/separator";
-
 import * as React from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import { Card, CardContent } from "@/components/ui/card";
@@ -20,26 +18,25 @@ export const ExperienceSection = () => {
   const [activeTab, setActiveTab] = React.useState("work");
 
   React.useEffect(() => {
-    if (window.location.hash === "#projects") {
+    if (typeof window !== "undefined" && window.location.hash === "#projects") {
       setActiveTab("projects");
     }
   }, []);
 
+  // UPDATED: centered emphasis via ring halo (no drop/translate)
   const triggerClass =
     "px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all " +
     "border border-border/60 bg-secondary/30 text-muted-foreground " +
-    "shadow-md shadow-black/20 " +
-    "hover:border-accent/60 hover:text-foreground hover:shadow-lg " +
+    "shadow-none ring-0 " +
+    "hover:border-accent/60 hover:text-foreground hover:ring-2 hover:ring-accent/40 hover:ring-offset-2 hover:ring-offset-background " +
     "data-[state=active]:bg-background data-[state=active]:text-primary " +
-    "data-[state=active]:border-accent data-[state=active]:shadow-xl data-[state=active]:shadow-accent/10 " +
-    "data-[state=active]:-translate-y-0.5";
+    "data-[state=active]:border-accent data-[state=active]:ring-2 data-[state=active]:ring-accent data-[state=active]:ring-offset-2 data-[state=active]:ring-offset-background";
 
   return (
     <section id="experience" className="py-24 md:py-32 px-6 bg-secondary/10">
       <div className="container max-w-6xl mx-auto space-y-6">
-        {/* UPDATED HEADER: match AboutSection.tsx styling */}
+        {/* Header */}
         <header className="text-center space-y-1">
-          {/* EXPERIENCE (matches "About") */}
           <h2 className="relative inline-block text-xs font-black uppercase tracking-[0.5em] text-accent">
             <span
               aria-hidden
@@ -56,10 +53,8 @@ export const ExperienceSection = () => {
             <span className="relative">Experience</span>
           </h2>
 
-          {/* TECHNICAL STACK (matches "The Philosophy") */}
           <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic leading-[1.05]">
             <span className="inline-grid overflow-visible">
-              {/* OUTLINE */}
               <span
                 aria-hidden
                 className="
@@ -73,8 +68,6 @@ export const ExperienceSection = () => {
               >
                 Technical Stack
               </span>
-
-              {/* FILL */}
               <span
                 className="
                   col-start-1 row-start-1
@@ -89,11 +82,7 @@ export const ExperienceSection = () => {
           </h3>
         </header>
 
-        <Tabs.Root
-          value={activeTab}
-          onValueChange={setActiveTab}
-          className="w-full"
-        >
+        <Tabs.Root value={activeTab} onValueChange={setActiveTab} className="w-full">
           {/* Tabs */}
           <Tabs.List
             className="flex flex-wrap justify-center gap-2 mb-4 p-2
@@ -184,23 +173,20 @@ export const ExperienceSection = () => {
               >
                 <Card className="group border border-border/40 rounded-3xl overflow-hidden bg-background h-full hover:shadow-2xl transition-all duration-500 hover:border-accent/70">
                   <CardContent className="p-10 md:p-12 space-y-6">
+                    {/* UPDATED: keep chip readable on hover */}
                     <div
                       className={cn(
-                        "h-12",
-                        "flex items-center justify-center",
-                        "rounded-xl",
-                        "bg-secondary/60",
-                        "border border-border/50",
+                        "h-12 flex items-center justify-center rounded-xl",
+                        "bg-secondary/60 border border-border/50",
                         "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.35)]",
-                        "transition-colors group-hover:bg-accent/10"
+                        "transition-colors group-hover:bg-secondary/70 group-hover:border-accent/60"
                       )}
                     >
                       <span
                         className={cn(
                           "text-xs font-black uppercase tracking-widest",
-                          "text-muted-foreground/70",
-                          "transition-colors duration-300",
-                          "group-hover:text-accent"
+                          "text-muted-foreground/80",
+                          "transition-colors duration-300"
                         )}
                       >
                         {proj.type}
@@ -250,7 +236,10 @@ export const ExperienceSection = () => {
           </Tabs.Content>
 
           {/* SKILLS */}
-          <Tabs.Content value="skills" className={cn("outline-none", "overflow-x-auto", "pb-2")}>
+          <Tabs.Content
+            value="skills"
+            className={cn("outline-none", "overflow-x-auto", "pb-2")}
+          >
             <div
               className={cn(
                 "grid gap-2 items-start",
@@ -279,7 +268,6 @@ export const ExperienceSection = () => {
                     <div className="space-y-4">
                       {cat.items.map((item, j) => {
                         const levelClass = "text-accent";
-
                         const raw = Number(item.percent);
                         const percent = Number.isFinite(raw)
                           ? Math.max(0, Math.min(100, raw))
