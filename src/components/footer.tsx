@@ -31,19 +31,18 @@ export function Footer() {
     "before:pointer-events-none"
   );
 
-  // Footer nav buttons — add double ring on hover/focus-visible
   const pillButtonClass = cn(
-    "relative h-9 px-4",
-    "inline-flex items-center justify-center",
-    "rounded-full",
+    "relative -mt-px h-[2.0rem] px-4",                
+    "inline-flex items-center justify-center rounded-full text-center",
     "text-[11px] font-black uppercase tracking-widest",
-    "border border-border/60",
-    "bg-secondary/30",
+    "bg-secondary/60 border border-border/50",
     "text-muted-foreground",
-    "transition-all duration-200",
-    "hover:text-foreground hover:border-accent/60",
+    "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.35)]",
+    "transition-all duration-300",
+    "hover:bg-secondary/70 hover:border-accent/60 hover:text-foreground",
     "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
-    "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+    "active:ring-2 active:ring-accent active:ring-offset-2 active:ring-offset-background"
   );
 
   return (
@@ -68,14 +67,14 @@ export function Footer() {
               rel="noreferrer"
               aria-label={name}
               className={cn(
-                "h-9 w-9 rounded-full",
+                "relative h-9 w-9 rounded-full",
                 "inline-flex items-center justify-center",
-                "border border-border/60 bg-secondary/30",
-                "text-muted-foreground",
-                "transition-all duration-200",
-                "hover:text-foreground hover:border-accent/60",
+                "bg-secondary text-foreground transition-colors",
+                "hover:bg-accent hover:text-white",
+                "border border-black/30 dark:border-white/30",
+                "shadow-[0_0_0_1.25px_rgba(0,0,0,0.70)]",
                 "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
-                "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               )}
             >
               <Icon className="h-4 w-4" />

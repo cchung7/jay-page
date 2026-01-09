@@ -23,14 +23,16 @@ export const ExperienceSection = () => {
     }
   }, []);
 
-  // UPDATED: centered emphasis via ring halo (no drop/translate)
   const triggerClass =
     "px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all " +
-    "border border-border/60 bg-secondary/30 text-muted-foreground " +
-    "shadow-none ring-0 " +
-    "hover:border-accent/60 hover:text-foreground hover:ring-2 hover:ring-accent/40 hover:ring-offset-2 hover:ring-offset-background " +
-    "data-[state=active]:bg-background data-[state=active]:text-primary " +
-    "data-[state=active]:border-accent data-[state=active]:ring-2 data-[state=active]:ring-accent data-[state=active]:ring-offset-2 data-[state=active]:ring-offset-background";
+    "bg-secondary/60 border border-border/50 text-muted-foreground " +
+    "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.35)] " +
+    "hover:bg-secondary/70 hover:border-accent/60 hover:text-foreground " +
+    "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background " +
+    "data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:border-accent " +
+    "data-[state=active]:shadow-[inset_0_1px_0_rgba(255,255,255,0.10),0_5px_0_rgba(0,0,0,0.35)] " +
+    "data-[state=active]:ring-2 data-[state=active]:ring-accent data-[state=active]:ring-offset-2 data-[state=active]:ring-offset-background " +
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
   return (
     <section id="experience" className="py-24 md:py-32 px-6 bg-secondary/10">
@@ -173,7 +175,6 @@ export const ExperienceSection = () => {
               >
                 <Card className="group border border-border/40 rounded-3xl overflow-hidden bg-background h-full hover:shadow-2xl transition-all duration-500 hover:border-accent/70">
                   <CardContent className="p-10 md:p-12 space-y-6">
-                    {/* UPDATED: keep chip readable on hover */}
                     <div
                       className={cn(
                         "h-12 flex items-center justify-center rounded-xl",
@@ -186,7 +187,8 @@ export const ExperienceSection = () => {
                         className={cn(
                           "text-xs font-black uppercase tracking-widest",
                           "text-muted-foreground/80",
-                          "transition-colors duration-300"
+                          "transition-colors duration-300",
+                          "group-hover:text-accent group-focus-within:text-accent group-active:text-accent"
                         )}
                       >
                         {proj.type}
@@ -200,13 +202,27 @@ export const ExperienceSection = () => {
                       <div className="flex gap-2 shrink-0">
                         <Link
                           href={proj.links.git}
-                          className="p-2 rounded-xl bg-secondary hover:bg-accent hover:text-white transition-colors"
+                          className={cn(
+                            "relative p-2 rounded-xl bg-secondary text-foreground transition-colors",
+                            "hover:bg-accent hover:text-white",
+                            "border border-black/30 dark:border-white/30",
+                            "shadow-[0_0_0_1.25px_rgba(0,0,0,0.70)]",
+                            "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
+                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                          )}
                         >
                           <Github className="h-4 w-4" />
                         </Link>
                         <Link
                           href={proj.links.live}
-                          className="p-2 rounded-xl bg-secondary hover:bg-accent hover:text-white transition-colors"
+                          className={cn(
+                            "relative p-2 rounded-xl bg-secondary text-foreground transition-colors",
+                            "hover:bg-accent hover:text-white",
+                            "border border-black/30 dark:border-white/30",
+                            "shadow-[0_0_0_1.25px_rgba(0,0,0,0.70)]",
+                            "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
+                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                          )}
                         >
                           <ExternalLink className="h-4 w-4" />
                         </Link>

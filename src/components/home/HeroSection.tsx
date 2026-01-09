@@ -47,15 +47,11 @@ export const HeroSection = () => {
           className="flex justify-center mb-2"
         >
           <div className="relative group overflow-visible">
-            {/* GLOW: stronger & larger on mobile, sits behind avatar */}
             <div
               className={cn(
                 "absolute inset-0 rounded-full pointer-events-none -z-10",
-                // mobile-first: stronger, larger blur
                 "bg-accent/30 blur-[40px]",
-                // from small screens up: your original values
                 "sm:bg-accent/15 sm:blur-2xl",
-                // hover emphasis (kept) with mobile-friendly default
                 "group-hover:bg-accent/40 sm:group-hover:bg-accent/25",
                 "transition-all duration-700"
               )}
@@ -109,7 +105,6 @@ export const HeroSection = () => {
               "leading-[1.1]"
             )}
           >
-            {/* OUTLINE LAYER */}
             <span
               aria-hidden
               className={cn(

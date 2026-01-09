@@ -9,7 +9,6 @@ export const AboutSection = () => {
 
   const FORCE_MOTION = false;
 
-  // ADD: detect desktop pointer (mouse/trackpad)
   const [isDesktop, setIsDesktop] = React.useState(false);
   React.useEffect(() => {
     const mq = window.matchMedia("(pointer: fine)");
@@ -19,7 +18,6 @@ export const AboutSection = () => {
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  // CHANGE: allow motion on desktop even if reduceMotion is true
   const enableMotion = FORCE_MOTION ? true : (isDesktop ? true : !reduceMotion);
 
   return (
