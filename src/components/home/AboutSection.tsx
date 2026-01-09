@@ -43,7 +43,7 @@ export const AboutSection = () => {
                   className="
                     absolute inset-0
                     text-transparent
-                    [-webkit-text-stroke:0.85px_var(color-border)]
+                    [-webkit-text-stroke:0.85px_var(--color-border)]
                     dark:[-webkit-text-stroke:0.85px_theme(colors.border.muted)]
                     pointer-events-none
                   "
