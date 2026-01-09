@@ -255,7 +255,7 @@ export const ExperienceSection = () => {
               className={cn(
                 "grid gap-2 items-start",
                 "justify-center",
-                "[grid-template-columns:repeat(auto-fit,360px)]"
+                "[grid-template-columns:repeat(auto-fit,minmax(min(92vw,360px),360px))]"
               )}
             >
               {skills.map((cat, i) => (
@@ -266,12 +266,12 @@ export const ExperienceSection = () => {
                   transition={{ delay: i * 0.1 }}
                   className="min-w-0"
                 >
-                  <Card className="group border border-border/40 rounded-3xl bg-background hover:border-accent/70 transition-all duration-500 h-full p-8 md:p-10 space-y-8 md:space-y-10 min-w-0">
+                  <Card className="group border border-border/40 rounded-3xl bg-background hover:border-accent/70 transition-all duration-500 h-full p-8 md:p-10 space-y-8 md:space-y-10 min-w-0 origin-top scale-[0.92] sm:scale-100">
                     <div className="flex items-center gap-3 min-w-0">
                       <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary shrink-0">
                         <cat.icon className="h-6 w-6 group-hover:text-accent transition-colors" />
                       </div>
-                      <h4 className="text-x1 font-black tracking-tight truncate">
+                      <h4 className="text-2xl sm:text-xl md:text-2xl font-black tracking-tight truncate">
                         {cat.name}
                       </h4>
                     </div>
@@ -290,7 +290,7 @@ export const ExperienceSection = () => {
                             key={`${cat.name}-${item.name}`}
                             className="flex flex-col gap-2 min-w-0"
                           >
-                            <div className="flex items-start justify-between gap-3 text-[10px] font-black uppercase tracking-widest min-w-0">
+                            <div className="flex items-start justify-between gap-3 text-[9px] sm:text-[10px] font-black uppercase tracking-widest min-w-0">
                               <span className="min-w-0 truncate">{item.name}</span>
                               <span className={cn(levelClass, "shrink-0 whitespace-nowrap")}>
                                 {item.level} • {percent}%
