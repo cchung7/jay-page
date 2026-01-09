@@ -73,17 +73,15 @@ export function Navbar() {
 
   const navButtonClass = cn(
     "group",
-    "h-[1.7rem]",
-    "-mt-px",
+    "h-[2.0rem]",             
+    "-mt-px",                    
     "relative inline-flex items-center justify-center gap-2 px-4 rounded-full text-center",
     "text-[11px] font-black uppercase tracking-widest",
     "bg-secondary/60 border border-border/50",
     "text-muted-foreground",
     "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.35)]",
-    "shadow-accent-glow",                 
     "transition-all duration-300",
     "hover:bg-secondary/70 hover:border-accent/60 hover:text-foreground",
-    "hover:shadow-accent-glow",             
     "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background",
     "active:ring-2 active:ring-accent active:ring-offset-2 active:ring-offset-background"
