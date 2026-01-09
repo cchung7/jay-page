@@ -8,17 +8,19 @@ export const AboutSection = () => {
   const reduceMotion = useReducedMotion();
 
   const FORCE_MOTION = false;
-  const enableMotion = FORCE_MOTION ? true : !reduceMotion;
 
-  // Minimal: detect "desktop-ish" screens (fine pointer is typical for mouse/trackpad)
+  // ADD: detect desktop pointer (mouse/trackpad)
   const [isDesktop, setIsDesktop] = React.useState(false);
   React.useEffect(() => {
-    const mq = window.matchMedia("(pointer: fine) and (min-width: 768px)");
+    const mq = window.matchMedia("(pointer: fine)");
     const update = () => setIsDesktop(mq.matches);
     update();
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
   }, []);
+
+  // CHANGE: allow motion on desktop even if reduceMotion is true
+  const enableMotion = FORCE_MOTION ? true : (isDesktop ? true : !reduceMotion);
 
   return (
     <section
@@ -92,38 +94,24 @@ export const AboutSection = () => {
                   className="
                     inline-grid italic overflow-visible
                     pr-[0.25em] relative left-[4px]
-                    will-change-transform transform-gpu
+                    will-change-transform
                   "
                   animate={
                     enableMotion
-                      ? isDesktop
-                        ? {
-                            // Desktop: a bit more alive, still tasteful
-                            x: [0, -4, 4, -3, 0],
-                            y: [0, -2, 1, -2, 0],
-                            scale: [1, 1.015, 0.995, 1.015, 1],
-                          }
-                        : {
-                            // Mobile: calmer, less likely to look “wild”
-                            x: [0, -2, 2, -2, 0],
-                            y: [0, -1, 0, -1, 0],
-                            scale: [1, 1.01, 0.99, 1.01, 1],
-                          }
+                      ? {
+                          x: [0, -2, 2, -2, 0],
+                          y: [0, -1, 0, -1, 0],
+                          scale: [1, 1.01, 0.99, 1.01, 1],
+                        }
                       : undefined
                   }
                   transition={
                     enableMotion
-                      ? isDesktop
-                        ? {
-                            duration: 4.8,
-                            ease: "easeInOut",
-                            repeat: Infinity,
-                          }
-                        : {
-                            duration: 7.5,
-                            ease: "easeInOut",
-                            repeat: Infinity,
-                          }
+                      ? {
+                          duration: 1.6,
+                          ease: "easeInOut",
+                          repeat: Infinity,
+                        }
                       : undefined
                   }
                 >
