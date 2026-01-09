@@ -137,7 +137,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-muted-foreground text-xl md:text-2xl font-medium max-w-2xl mx-auto"
           >
-            I build and deploy scalable, intelligent systems centered on the human
+            I build and deploy scalable, intelligent systems centered around the human
             experience.
           </motion.p>
         </div>

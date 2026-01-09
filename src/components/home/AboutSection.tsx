@@ -86,10 +86,10 @@ export const AboutSection = () => {
                   animate={
                     enableMotion
                       ? {
-                          x: [0, -18, 22, -14, 0],
-                          y: [0, -10, 6, -8, 0],
+                          x: [0, -6, 8, -4, 0],
+                          y: [0, -2, 2, -2, 0],
                           rotate: [0, -4, 4, -3, 0],
-                          scale: [1, 1.05, 0.97, 1.05, 1],
+                          scale: [1, 1.05, 0.99, 1.02, 1],
                         }
                       : undefined
                   }
