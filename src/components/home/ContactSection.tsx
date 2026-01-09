@@ -70,7 +70,7 @@ export const ContactSection = () => {
                   className="
                     absolute inset-0
                     text-transparent
-                    [-webkit-text-stroke:0.85px_theme(colors.border.DEFAULT)]
+                    [-webkit-text-stroke:0.85px_var(--color-border)]
                     dark:[-webkit-text-stroke:0.85px_theme(colors.border.muted)]
                     pointer-events-none
                   "
@@ -89,7 +89,7 @@ export const ContactSection = () => {
                     className="
                       col-start-1 row-start-1
                       text-transparent
-                      [-webkit-text-stroke:1.6px_theme(colors.border.DEFAULT)]
+                      [-webkit-text-stroke:1.6px_var(--color-border)]
                       dark:[-webkit-text-stroke:1.6px_theme(colors.border.muted)]
                       pointer-events-none
                       pr-[0.55em]
@@ -257,7 +257,7 @@ export const ContactSection = () => {
                     value={userMessage}
                     onChange={(e) => setUserMessage(e.target.value)}
                     placeholder="Describe your vision..."
-                    className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/35 focus:ring-0 outline-none min-h-[150px] resize-none"
+                    className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/35 focus:ring-0 outline-none min-h-37.5 resize-none"
                   />
                 </div>
 
@@ -292,7 +292,7 @@ export const ContactSection = () => {
                   isSending && "opacity-70 cursor-not-allowed hover:scale-100",
                   "group",
                   "before:absolute before:inset-0 before:pointer-events-none",
-                  "before:bg-gradient-to-b before:from-white/25 before:to-transparent",
+                  "before:bg-linear-to-b before:from-white/25 before:to-transparent",
                   "hover:[&>svg]:translate-x-1"
                 )}
               >

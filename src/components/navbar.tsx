@@ -142,11 +142,11 @@ export function Navbar() {
         <AnimatePresence>
           {mobileMenuOpen && (
             <Dialog.Portal forceMount>
-              <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm" />
+              <Dialog.Overlay className="fixed inset-0 z-60 bg-black/60 backdrop-blur-sm" />
 
               <Dialog.Content
                 className={cn(
-                  "fixed right-0 top-0 z-[70] h-full w-full max-w-sm",
+                  "fixed right-0 top-0 z-70 h-full w-full max-w-sm",
                   "bg-background/95 backdrop-blur-md",
                   "p-6 shadow-2xl border-l border-border/40"
                 )}

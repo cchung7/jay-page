@@ -46,7 +46,7 @@ export const ExperienceSection = () => {
               className="
                 absolute inset-0
                 text-transparent
-                [-webkit-text-stroke:0.85px_theme(colors.border.DEFAULT)]
+                [-webkit-text-stroke:0.85px_var(--color-border)]
                 dark:[-webkit-text-stroke:0.85px_theme(colors.border.muted)]
                 pointer-events-none
               "
@@ -65,7 +65,7 @@ export const ExperienceSection = () => {
                 className="
                   col-start-1 row-start-1
                   text-transparent
-                  [-webkit-text-stroke:1.6px_theme(colors.border.DEFAULT)]
+                  [-webkit-text-stroke:1.6px_var(--color-border)]
                   dark:[-webkit-text-stroke:1.6px_theme(colors.border.muted)]
                   pointer-events-none
                   pr-[0.55em]
@@ -255,7 +255,7 @@ export const ExperienceSection = () => {
               className={cn(
                 "grid gap-2 items-start",
                 "justify-center",
-                "[grid-template-columns:repeat(auto-fit,360px)]"
+                "grid-cols-[repeat(auto-fit,360px)]"
               )}
             >
               {skills.map((cat, i) => (

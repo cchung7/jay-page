@@ -56,7 +56,7 @@ export const HeroSection = () => {
                 "shadow-[0_12px_34px_rgba(0,0,0,0.14)] dark:shadow-[0_18px_50px_rgba(0,0,0,0.45)]"
               )}
             >
-              <div className="absolute inset-[6px] rounded-full border border-border/50 dark:border-border/60 pointer-events-none" />
+              <div className="absolute inset-1.5 rounded-full border border-border/50 dark:border-border/60 pointer-events-none" />
 
               <Image
                 src="/images/jay_pic.jpg"
@@ -77,7 +77,7 @@ export const HeroSection = () => {
                 "ring-1 ring-white/30 dark:ring-white/10",
                 "shadow-[0_10px_26px_rgba(0,0,0,0.16)] dark:shadow-[0_14px_32px_rgba(0,0,0,0.45)]",
                 "before:absolute before:inset-0 before:rounded-full before:pointer-events-none",
-                "before:bg-gradient-to-b before:from-white/25 before:to-transparent"
+                "before:bg-linear-to-b before:from-white/25 before:to-transparent"
               )}
             >
               <Zap className="h-5 w-5 text-white fill-current relative z-10" />
@@ -164,7 +164,7 @@ export const HeroSection = () => {
               "transition-all hover:scale-105 active:scale-[1.02]",
               "group",
               "before:absolute before:inset-0 before:pointer-events-none",
-              "before:bg-gradient-to-b before:from-white/25 before:to-transparent"
+              "before:bg-linear-to-b before:from-white/25 before:to-transparent"
             )}
           >
             <Link href="#experience" className="relative z-10">
