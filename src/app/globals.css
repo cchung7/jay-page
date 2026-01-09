@@ -114,6 +114,12 @@
   .shadow-3xl {
     box-shadow: 0 35px 60px -15px oklch(var(--primary) / 0.15);
   }
+
+  .shadow-accent-glow {
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--accent) 82%, transparent),
+      0 0 18px 3px color-mix(in srgb, var(--accent) 36%, transparent);
+  }
 }
 
 .glass {
