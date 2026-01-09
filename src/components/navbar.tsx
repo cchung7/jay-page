@@ -47,19 +47,22 @@ export function Navbar() {
 
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
-  // Neutral styling to match ExperienceSection
+  // Buttons
   const actionClass = cn(
     "h-10 w-10 rounded-full",
     "bg-secondary/30 border border-border/60",
     "text-muted-foreground",
     "shadow-[0_1px_0_rgba(0,0,0,0.22)]",
     "transition-all duration-200",
-    "hover:text-foreground hover:border-accent/60"
+    "hover:text-foreground hover:border-accent/60",
+    "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
+    "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
   );
 
   const navPillClass = cn(
-    "relative h-10",
-    "flex items-center gap-2 px-2 rounded-full",
+    "relative",
+    "flex items-center justify-center gap-3 px-3 rounded-full",
+    "py-1.5",
     "bg-secondary/50 backdrop-blur-md",
     "border border-border/60",
     "shadow-[0_1px_0_rgba(0,0,0,0.22)]",
@@ -69,14 +72,19 @@ export function Navbar() {
   );
 
   const navButtonClass = cn(
-    "group h-9",
-    "relative inline-flex items-center gap-2 px-3 rounded-full",
+    "group",
+    "h-[2.0rem]",             
+    "-mt-px",                    
+    "relative inline-flex items-center justify-center gap-2 px-4 rounded-full text-center",
     "text-[11px] font-black uppercase tracking-widest",
-    "bg-secondary/30",
-    "border border-border/60",
+    "bg-secondary/60 border border-border/50",
     "text-muted-foreground",
-    "transition-all duration-200",
-    "hover:text-foreground hover:border-accent/60"
+    "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.35)]",
+    "transition-all duration-300",
+    "hover:bg-secondary/70 hover:border-accent/60 hover:text-foreground",
+    "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+    "active:ring-2 active:ring-accent active:ring-offset-2 active:ring-offset-background"
   );
 
   return (
@@ -92,9 +100,7 @@ export function Navbar() {
       )}
     >
       <div className="container mx-auto px-6">
-        {/* KEY CHANGE: relative row, absolute centered nav, absolute right actions */}
         <div className="relative h-10">
-          {/* Centered Desktop Nav */}
           <nav className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <div className={navPillClass}>
               {navLinks.map(({ name, href, icon: Icon }) => (
@@ -106,7 +112,7 @@ export function Navbar() {
             </div>
           </nav>
 
-          {/* Right Actions (always pinned to the same vertical center) */}
+          {/* Right Actions */}
           <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-2">
             <Button
               variant="ghost"
@@ -154,7 +160,16 @@ export function Navbar() {
                 <div className="flex justify-between items-center mb-12">
                   <span className="font-black uppercase">Menu</span>
                   <Dialog.Close asChild>
-                    <Button variant="ghost" size="icon" aria-label="Close menu">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      aria-label="Close menu"
+                      className={cn(
+                        "rounded-full",
+                        "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
+                        "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                      )}
+                    >
                       <X className="h-5 w-5" />
                     </Button>
                   </Dialog.Close>

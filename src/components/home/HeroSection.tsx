@@ -46,12 +46,20 @@ export const HeroSection = () => {
           transition={{ duration: 0.6 }}
           className="flex justify-center mb-2"
         >
-          <div className="relative group">
-            <div className="absolute inset-0 bg-accent/15 rounded-full blur-2xl group-hover:bg-accent/25 transition-all duration-700" />
+          <div className="relative group overflow-visible">
+            <div
+              className={cn(
+                "absolute inset-0 rounded-full pointer-events-none -z-10",
+                "bg-accent/30 blur-[40px]",
+                "sm:bg-accent/15 sm:blur-2xl",
+                "group-hover:bg-accent/40 sm:group-hover:bg-accent/25",
+                "transition-all duration-700"
+              )}
+            />
 
             <div
               className={cn(
-                "relative h-40 w-40 rounded-full",
+                "relative h-40 w-40 rounded-full z-10",
                 surface3D,
                 "shadow-[0_12px_34px_rgba(0,0,0,0.14)] dark:shadow-[0_18px_50px_rgba(0,0,0,0.45)]"
               )}
@@ -97,7 +105,6 @@ export const HeroSection = () => {
               "leading-[1.1]"
             )}
           >
-            {/* OUTLINE LAYER */}
             <span
               aria-hidden
               className={cn(
@@ -137,7 +144,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-muted-foreground text-xl md:text-2xl font-medium max-w-2xl mx-auto"
           >
-            I build and deploy scalable, intelligent systems centered on the human
+            I build and deploy scalable, intelligent systems centered around human
             experience.
           </motion.p>
         </div>

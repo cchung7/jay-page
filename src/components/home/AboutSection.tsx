@@ -1,13 +1,24 @@
 "use client";
 
 // import { Separator } from "@/components/ui/separator";
+import * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 export const AboutSection = () => {
   const reduceMotion = useReducedMotion();
 
   const FORCE_MOTION = false;
-  const enableMotion = FORCE_MOTION ? true : !reduceMotion;
+
+  const [isDesktop, setIsDesktop] = React.useState(false);
+  React.useEffect(() => {
+    const mq = window.matchMedia("(pointer: fine)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  const enableMotion = FORCE_MOTION ? true : (isDesktop ? true : !reduceMotion);
 
   return (
     <section
@@ -86,17 +97,16 @@ export const AboutSection = () => {
                   animate={
                     enableMotion
                       ? {
-                          x: [0, -18, 22, -14, 0],
-                          y: [0, -10, 6, -8, 0],
-                          rotate: [0, -4, 4, -3, 0],
-                          scale: [1, 1.05, 0.97, 1.05, 1],
+                          x: [0, -1, 1, -1, 0],
+                          y: [0, -1, 0, -1, 0],
+                          scale: [1, 1.01, 0.99, 1.01, 1],
                         }
                       : undefined
                   }
                   transition={
                     enableMotion
                       ? {
-                          duration: 1.6,
+                          duration: 2,
                           ease: "easeInOut",
                           repeat: Infinity,
                         }

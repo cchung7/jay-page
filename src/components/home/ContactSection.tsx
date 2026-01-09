@@ -61,7 +61,7 @@ export const ContactSection = () => {
         <div className="grid grid-cols-1 gap-6">
           {/* Contact Info */}
           <div className="space-y-10">
-            {/* HEADER (UPDATED to match AboutSection.tsx styling) */}
+            {/* HEADER */}
             <div className="text-center space-y-1">
               {/* CONTACT */}
               <h2 className="relative inline-block text-xs font-black uppercase tracking-[0.5em] text-accent">
@@ -83,7 +83,6 @@ export const ContactSection = () => {
               {/* QUESTIONS & INQUIRIES */}
               <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic leading-[1.05]">
                 <span className="inline-grid overflow-visible">
-                  {/* OUTLINE */}
                   <span
                     aria-hidden
                     className="
@@ -98,7 +97,6 @@ export const ContactSection = () => {
                     Questions &amp; Inquiries
                   </span>
 
-                  {/* FILL */}
                   <span
                     className="
                       col-start-1 row-start-1
@@ -118,7 +116,6 @@ export const ContactSection = () => {
               </p>
             </div>
 
-            {/* HORIZONTAL CONTACT ITEMS */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {[
                 {
