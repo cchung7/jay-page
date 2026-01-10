@@ -1,6 +1,6 @@
 export const experience = [
-  { company: "Software Freelancer", 
-    role: "Full Stack Web Developer", 
+  { company: "Freelance Software Developer", 
+    role: "Full-Stack Web Developer", 
     period: "Sep 2024 — Present", 
     desc: "Developed, designed, and/or deployed full-stack software applications for select clientele.", 
     tags: ["Effective Communication", "Python", "MySQL", "MongoDB", "HTML", "Tailwind CSS", "JavaScript", "React", "Typescript", "Next.js", "Flask", "Vite", "VPS", "AWS", "Process Engineering", "Software Engineering", "Product Management", "Customer Relations", "Marketing", "Documentation", "Software Testing"] 
