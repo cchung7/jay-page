@@ -1,4 +1,4 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Ref: https://help.github.com/articles/ignoring-files/
 
 # dependencies
 /node_modules
@@ -30,8 +30,11 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files
+.env
 .env*
+!.env.example
+!.env.sample
 
 # vercel
 .vercel
@@ -40,5 +43,14 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
-.env*.local
+# turbopack / cache
+.turbo/
+node_modules/.cache/
+.cache/
+
+# IDE settings
+.vscode/
+.idea/
+
+# Windows noise
+Thumbs.db
