@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import * as Tooltip from "@radix-ui/react-tooltip";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, Rocket, MapPin, Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -116,11 +117,13 @@ export const ContactSection = () => {
               </p>
             </div>
 
+          <Tooltip.Provider delayDuration={150}>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {[
                 {
                   icon: Mail,
-                  label: "E-Mail",
+                  label: "E-Mail",               // visible small label under the icon
+                  tooltip: "chung_chul@yahoo.com",           // tooltip text (separate)
                   value: "",
                   href: "mailto:chung_chul@yahoo.com",
                   external: false,
@@ -128,6 +131,7 @@ export const ContactSection = () => {
                 {
                   icon: Linkedin,
                   label: "LinkedIn",
+                  tooltip: "View my LinkedIn",
                   value: "",
                   href: "https://www.linkedin.com/in/chul-w-chung",
                   external: true,
@@ -135,6 +139,7 @@ export const ContactSection = () => {
                 {
                   icon: MapPin,
                   label: "Headquarters",
+                  tooltip: "Frisco, TX",
                   value: "",
                   href: "https://www.google.com/maps/search/?api=1&query=Frisco,TX",
                   external: true,
@@ -143,25 +148,37 @@ export const ContactSection = () => {
                 const Icon = item.icon;
 
                 return (
-                  <div
-                    key={i}
-                    className="flex flex-col items-center text-center gap-3 group"
-                  >
+                  <div key={i} className="flex flex-col items-center text-center gap-3 group">
                     {item.href ? (
-                      <Link
-                        href={item.href}
-                        target={item.external ? "_blank" : undefined}
-                        rel={item.external ? "noopener noreferrer" : undefined}
-                        aria-label={item.label}
-                        className="block"
-                      >
-                        <div className="relative group">
-                          <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                          <div className="relative h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary border border-border/50 transition-all transform group-hover:scale-105 active:scale-95 duration-500 shadow-minimal group-hover:shadow-xl group-hover:border-accent/70 group-hover:bg-accent/15 group-hover:text-foreground">
-                            <Icon className="h-6 w-6" />
-                          </div>
-                        </div>
-                      </Link>
+                      <Tooltip.Root>
+                        <Tooltip.Trigger asChild>
+                          <Link
+                            href={item.href}
+                            target={item.external ? "_blank" : undefined}
+                            rel={item.external ? "noopener noreferrer" : undefined}
+                            aria-label={item.label}
+                            className="block"
+                          >
+                            <div className="relative group">
+                              <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                              <div className="relative h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary border border-border/50 transition-all transform group-hover:scale-105 active:scale-95 duration-500 shadow-minimal group-hover:shadow-xl group-hover:border-accent/70 group-hover:bg-accent/15 group-hover:text-foreground">
+                                <Icon className="h-6 w-6" />
+                              </div>
+                            </div>
+                          </Link>
+                        </Tooltip.Trigger>
+
+                        <Tooltip.Portal>
+                          <Tooltip.Content
+                            side="top"
+                            sideOffset={6}
+                            className="z-50 rounded-md bg-background px-2 py-1 text-xs font-semibold text-foreground shadow-lg border border-border"
+                          >
+                            {item.tooltip ?? item.label}
+                            <Tooltip.Arrow className="fill-border" />
+                          </Tooltip.Content>
+                        </Tooltip.Portal>
+                      </Tooltip.Root>
                     ) : (
                       <div className="relative group">
                         <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -186,15 +203,15 @@ export const ContactSection = () => {
                           {item.value}
                         </a>
                       ) : (
-                        <p className="text-lg font-bold tracking-tight">
-                          {item.value}
-                        </p>
+                        <p className="text-lg font-bold tracking-tight">{item.value}</p>
                       )}
                     </div>
                   </div>
                 );
               })}
             </div>
+          </Tooltip.Provider>
+
           </div>
 
           {/* Form */}

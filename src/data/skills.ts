@@ -24,10 +24,10 @@ export const skills: SkillCategory[] = [
     items: [
       { name: "HTML", level: "Intermediate", percent: 60 },
       { name: "CSS", level: "Intermediate", percent: 60 },
-      { name: "JavaScript", level: "Intermediate", percent: 60 },
-      { name: "React", level: "Intermediate", percent: 60 },
+      { name: "JavaScript", level: "Intermediate", percent: 50 },
+      { name: "React", level: "Intermediate", percent: 40 },
       { name: "TypeScript", level: "Intermediate", percent: 50 },
-      { name: "Next.js", level: "Intermediate", percent: 60 },
+      { name: "Next.js", level: "Intermediate", percent: 40 },
     ],
   },
   {
@@ -36,25 +36,27 @@ export const skills: SkillCategory[] = [
     items: [
       { name: "Python", level: "Intermediate", percent: 60 },
       { name: "MySQL", level: "Intermediate", percent: 50 },
-      { name: "MongoDB", level: "Beginner", percent: 20 },
+      { name: "MongoDB", level: "Intermediate", percent: 40 },
+      { name: "Prisma", level: "Intermediate", percent: 30 },
+      { name: "MySQL", level: "Intermediate", percent: 60 },
     ],
   },
   {
-    name: "CI/CD",
+    name: "Deployment Tools",
     icon: Cpu,
     items: [
-      { name: "AWS EC2", level: "Beginner", percent: 20 },
-      { name: "AWS S3", level: "Beginner", percent: 20 },
       { name: "GitHub Actions", level: "Intermediate", percent: 60 },
+      { name: "AWS EC2", level: "Intermediate", percent: 30 },
+      { name: "AWS S3", level: "Intermediate", percent: 30 },
     ],
   },
   {
     name: "AI Tools",
     icon: BrainCircuit,
     items: [
-      { name: "Claude", level: "Beginner", percent: 30 },
-      { name: "ChatGPT", level: "Intermediate", percent: 50 },
-      { name: "ElevenLabs", level: "Beginner", percent: 30 },
+      { name: "Claude", level: "Intermediate", percent: 40 },
+      { name: "ChatGPT", level: "Intermediate", percent: 60 },
+      { name: "ElevenLabs", level: "Intermediate", percent: 40 },
     ],
   },
 ];

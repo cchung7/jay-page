@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import * as Tabs from "@radix-ui/react-tabs";
+import * as Tooltip from "@radix-ui/react-tooltip";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
@@ -107,10 +108,7 @@ export const ExperienceSection = () => {
           </Tabs.List>
 
           {/* WORK */}
-          <Tabs.Content
-            value="work"
-            className="grid grid-cols-1 md:grid-cols-2 gap-2 outline-none"
-          >
+          <Tabs.Content value="work" className="grid grid-cols-1 md:grid-cols-2 gap-2 outline-none">
             {experience.map((work, i) => (
               <motion.div
                 key={work.company}
@@ -122,10 +120,7 @@ export const ExperienceSection = () => {
                   <CardContent className="p-10 md:p-12 space-y-6">
                     <div className="flex justify-between items-start">
                       <div className="rounded-2xl bg-secondary flex items-center justify-center transition-colors">
-                        <Briefcase
-                          size={20}
-                          className="text-primary group-hover:text-accent transition-colors"
-                        />
+                        <Briefcase size={20} className="text-primary group-hover:text-accent transition-colors" />
                       </div>
                       <Badge className="bg-secondary text-primary border-none rounded-lg font-black text-xs uppercase tracking-wide">
                         {work.period}
@@ -133,17 +128,11 @@ export const ExperienceSection = () => {
                     </div>
 
                     <div className="space-y-1">
-                      <h4 className="text-3xl font-black tracking-tight">
-                        {work.role}
-                      </h4>
-                      <p className="text-accent font-bold tracking-tight">
-                        {work.company}
-                      </p>
+                      <h4 className="text-3xl font-black tracking-tight">{work.role}</h4>
+                      <p className="text-accent font-bold tracking-tight">{work.company}</p>
                     </div>
 
-                    <p className="text-muted-foreground leading-relaxed font-medium">
-                      {work.desc}
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed font-medium">{work.desc}</p>
 
                     <div className="flex flex-wrap gap-2 pt-4">
                       {work.tags.map((tag) => (
@@ -162,10 +151,7 @@ export const ExperienceSection = () => {
           </Tabs.Content>
 
           {/* PROJECTS */}
-          <Tabs.Content
-            value="projects"
-            className="grid grid-cols-1 md:grid-cols-2 gap-2 outline-none"
-          >
+          <Tabs.Content value="projects" className="grid grid-cols-1 md:grid-cols-2 gap-2 outline-none">
             {projects.map((proj, i) => (
               <motion.div
                 key={proj.name}
@@ -196,42 +182,84 @@ export const ExperienceSection = () => {
                     </div>
 
                     <div className="flex items-start justify-between gap-6">
-                      <h4 className="text-3xl font-black tracking-tight pr-4">
-                        {proj.name}
-                      </h4>
+                      <h4 className="text-3xl font-black tracking-tight pr-4">{proj.name}</h4>
+
                       <div className="flex gap-2 shrink-0">
-                        <Link
-                          href={proj.links.git}
-                          className={cn(
-                            "relative p-2 rounded-xl bg-secondary text-foreground transition-colors",
-                            "hover:bg-accent hover:text-white",
-                            "border border-black/30 dark:border-white/30",
-                            "shadow-[0_0_0_1.25px_rgba(0,0,0,0.70)]",
-                            "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
-                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                          )}
-                        >
-                          <Github className="h-4 w-4" />
-                        </Link>
-                        <Link
-                          href={proj.links.live}
-                          className={cn(
-                            "relative p-2 rounded-xl bg-secondary text-foreground transition-colors",
-                            "hover:bg-accent hover:text-white",
-                            "border border-black/30 dark:border-white/30",
-                            "shadow-[0_0_0_1.25px_rgba(0,0,0,0.70)]",
-                            "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
-                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                          )}
-                        >
-                          <ExternalLink className="h-4 w-4" />
-                        </Link>
+                        <Tooltip.Provider delayDuration={150}>
+                          {Array.isArray(proj.links.git) &&
+                            proj.links.git.map((repo: any) => (
+                              <Tooltip.Root key={repo.url}>
+                                <Tooltip.Trigger asChild>
+                                  <Link
+                                    href={repo.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={cn(
+                                      "relative p-2 rounded-xl bg-secondary text-foreground transition-colors",
+                                      "hover:bg-accent hover:text-white",
+                                      "border border-black/30 dark:border-white/30",
+                                      "shadow-[0_0_0_1.25px_rgba(0,0,0,0.70)]",
+                                      "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
+                                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                    )}
+                                    aria-label={`GitHub (${repo.label})`}
+                                  >
+                                    <Github className="h-4 w-4" />
+                                  </Link>
+                                </Tooltip.Trigger>
+
+                                <Tooltip.Portal>
+                                  <Tooltip.Content
+                                    side="top"
+                                    sideOffset={6}
+                                    className="z-50 rounded-md bg-background px-2 py-1 text-xs font-semibold text-foreground shadow-lg border border-border"
+                                  >
+                                    {repo.label}
+                                    <Tooltip.Arrow className="fill-border" />
+                                  </Tooltip.Content>
+                                </Tooltip.Portal>
+                              </Tooltip.Root>
+                            ))}
+
+                          {Array.isArray(proj.links.live) &&
+                            proj.links.live.map((site: any) => (
+                              <Tooltip.Root key={site.url}>
+                                <Tooltip.Trigger asChild>
+                                  <Link
+                                    href={site.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={cn(
+                                      "relative p-2 rounded-xl bg-secondary text-foreground transition-colors",
+                                      "hover:bg-accent hover:text-white",
+                                      "border border-black/30 dark:border-white/30",
+                                      "shadow-[0_0_0_1.25px_rgba(0,0,0,0.70)]",
+                                      "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
+                                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                    )}
+                                    aria-label={`Website (${site.label})`}
+                                  >
+                                    <ExternalLink className="h-4 w-4" />
+                                  </Link>
+                                </Tooltip.Trigger>
+
+                                <Tooltip.Portal>
+                                  <Tooltip.Content
+                                    side="top"
+                                    sideOffset={6}
+                                    className="z-50 rounded-md bg-background px-2 py-1 text-xs font-semibold text-foreground shadow-lg border border-border"
+                                  >
+                                    {site.label}
+                                    <Tooltip.Arrow className="fill-border" />
+                                  </Tooltip.Content>
+                                </Tooltip.Portal>
+                              </Tooltip.Root>
+                            ))}
+                        </Tooltip.Provider>
                       </div>
                     </div>
 
-                    <p className="text-muted-foreground font-medium leading-relaxed">
-                      {proj.desc}
-                    </p>
+                    <p className="text-muted-foreground font-medium leading-relaxed">{proj.desc}</p>
 
                     {proj.tags && proj.tags.length > 0 && (
                       <div className="flex flex-wrap gap-2 pt-4">
@@ -252,17 +280,8 @@ export const ExperienceSection = () => {
           </Tabs.Content>
 
           {/* SKILLS */}
-          <Tabs.Content
-            value="skills"
-            className={cn("outline-none", "overflow-x-auto", "pb-2")}
-          >
-            <div
-              className={cn(
-                "grid gap-2 items-start",
-                "justify-center",
-                "grid-cols-[repeat(auto-fit,360px)]"
-              )}
-            >
+          <Tabs.Content value="skills" className={cn("outline-none", "overflow-x-auto", "pb-2")}>
+            <div className={cn("grid gap-2 items-start", "justify-center", "grid-cols-[repeat(auto-fit,360px)]")}>
               {skills.map((cat, i) => (
                 <motion.div
                   key={cat.name}
@@ -285,15 +304,10 @@ export const ExperienceSection = () => {
                       {cat.items.map((item, j) => {
                         const levelClass = "text-accent";
                         const raw = Number(item.percent);
-                        const percent = Number.isFinite(raw)
-                          ? Math.max(0, Math.min(100, raw))
-                          : 0;
+                        const percent = Number.isFinite(raw) ? Math.max(0, Math.min(100, raw)) : 0;
 
                         return (
-                          <div
-                            key={`${cat.name}-${item.name}`}
-                            className="flex flex-col gap-2 min-w-0"
-                          >
+                          <div key={`${cat.name}-${item.name}`} className="flex flex-col gap-2 min-w-0">
                             <div className="flex items-start justify-between gap-3 text-[9px] sm:text-[10px] font-black uppercase tracking-widest min-w-0">
                               <span className="min-w-0 truncate">{item.name}</span>
                               <span className={cn(levelClass, "shrink-0 whitespace-nowrap")}>
@@ -346,12 +360,8 @@ export const ExperienceSection = () => {
                     </div>
 
                     <div className="space-y-2 text-left">
-                      <h4 className="text-3xl font-black tracking-tight">
-                        {edu.school}
-                      </h4>
-                      <p className="text-accent font-bold tracking-tight uppercase text-xs">
-                        {edu.degree}
-                      </p>
+                      <h4 className="text-3xl font-black tracking-tight">{edu.school}</h4>
+                      <p className="text-accent font-bold tracking-tight uppercase text-xs">{edu.degree}</p>
                     </div>
                   </div>
 
