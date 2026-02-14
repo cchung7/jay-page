@@ -88,6 +88,7 @@ export function Footer() {
                   <Tooltip.Content
                     side="top"
                     sideOffset={6}
+                    // Tooltip format
                     className="z-50 rounded-md bg-background px-2 py-1 text-xs font-semibold text-foreground shadow-lg border border-border"
                   >
                     {name}
@@ -100,7 +101,7 @@ export function Footer() {
         </div>
 
         <div className="space-y-1">
-          <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground/60">
+          <p className="text-[12px] font-bold uppercase tracking-widest text-muted-foreground/60">
             Jay’s Portfolio
           </p>
           <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/40">

@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { Briefcase, GraduationCap, Github, ExternalLink } from "lucide-react";
 
-import Link from "next/link";
+import { SmartLink } from "@/components/shared/SmartLink";
 import { experience } from "@/data/experience";
 import { projects } from "@/data/projects";
 import { skills } from "@/data/skills";
@@ -40,7 +40,7 @@ export const ExperienceSection = () => {
       <div className="container max-w-6xl mx-auto space-y-6">
         {/* Header */}
         <header className="text-center space-y-1">
-          <h2 className="relative inline-block text-xs font-black uppercase tracking-[0.5em] text-accent">
+          <h2 className="relative inline-block text-sm font-black uppercase tracking-[0.5em] text-accent">
             <span
               aria-hidden
               className="
@@ -51,9 +51,13 @@ export const ExperienceSection = () => {
                 pointer-events-none
               "
             >
+              {/* Title 3D outline */}
               Experience
             </span>
-            <span className="relative">Experience</span>
+            <span className="relative">
+              {/* Title text */}
+              Experience
+            </span>
           </h2>
 
           <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic leading-[1.05]">
@@ -119,8 +123,8 @@ export const ExperienceSection = () => {
                 <Card className="h-full border border-border/40 shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-500 rounded-3xl group overflow-hidden bg-background hover:border-accent/70">
                   <CardContent className="p-10 md:p-12 space-y-6">
                     <div className="flex justify-between items-start">
-                      <div className="rounded-2xl bg-secondary flex items-center justify-center transition-colors">
-                        <Briefcase size={20} className="text-primary group-hover:text-accent transition-colors" />
+                      <div className="h-14 w-14 shrink-0 flex-none rounded-2xl bg-secondary flex items-center justify-center text-primary transition-all group-hover:bg-accent group-hover:text-white">
+                        <Briefcase className="h-6 w-6 transition-colors" />
                       </div>
                       <Badge className="bg-secondary text-primary border-none rounded-lg font-black text-xs uppercase tracking-wide">
                         {work.period}
@@ -128,7 +132,7 @@ export const ExperienceSection = () => {
                     </div>
 
                     <div className="space-y-1">
-                      <h4 className="text-3xl font-black tracking-tight">{work.role}</h4>
+                      <h4 className="min-w-0 text-3xl font-black tracking-tight">{work.role}</h4>
                       <p className="text-accent font-bold tracking-tight">{work.company}</p>
                     </div>
 
@@ -138,6 +142,7 @@ export const ExperienceSection = () => {
                       {work.tags.map((tag) => (
                         <span
                           key={tag}
+                          // Skills cards
                           className="text-[10px] font-bold uppercase tracking-widest text-foreground/80 bg-secondary/50 border border-border/70 px-3 py-1 rounded-full"
                         >
                           {tag}
@@ -151,61 +156,51 @@ export const ExperienceSection = () => {
           </Tabs.Content>
 
           {/* PROJECTS */}
-          <Tabs.Content value="projects" className="grid grid-cols-1 md:grid-cols-2 gap-2 outline-none">
-            {projects.map((proj, i) => (
-              <motion.div
-                key={proj.name}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <Card className="group border border-border/40 rounded-3xl overflow-hidden bg-background h-full hover:shadow-2xl transition-all duration-500 hover:border-accent/70">
-                  <CardContent className="p-10 md:p-12 space-y-6">
-                    <div
-                      className={cn(
-                        "h-12 flex items-center justify-center rounded-xl",
-                        "bg-secondary/60 border border-border/50",
-                        "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.35)]",
-                        "transition-colors group-hover:bg-secondary/70 group-hover:border-accent/60"
-                      )}
-                    >
-                      <span
+          <Tooltip.Provider delayDuration={150}>
+            <Tabs.Content value="projects" className="grid grid-cols-1 md:grid-cols-2 gap-2 outline-none">
+              {projects.map((proj, i) => (
+                <motion.div
+                  key={proj.name}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <Card className="group border border-border/40 rounded-3xl overflow-hidden bg-background h-full hover:shadow-2xl transition-all duration-500 hover:border-accent/70">
+                    <CardContent className="p-10 md:p-12 space-y-6">
+                      <div
                         className={cn(
-                          "text-xs font-black uppercase tracking-widest",
-                          "text-muted-foreground/80",
-                          "transition-colors duration-300",
-                          "group-hover:text-accent group-focus-within:text-accent group-active:text-accent"
+                          "h-12 flex items-center justify-center rounded-xl",
+                          "bg-secondary/60 border border-border/50",
+                          "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.35)]",
+                          "transition-all",
+                          "group-hover:bg-accent group-hover:text-white group-hover:border-accent/70"
                         )}
                       >
-                        {proj.type}
-                      </span>
-                    </div>
+                        <span
+                          className={cn(
+                            "text-xs font-black uppercase tracking-widest",
+                            "text-muted-foreground/120",
+                            "transition-colors duration-300",
+                            "group-hover:text-white"
+                          )}
+                        >
+                          {proj.type}
+                        </span>
+                      </div>
 
-                    <div className="flex items-start justify-between gap-6">
-                      <h4 className="text-3xl font-black tracking-tight pr-4">{proj.name}</h4>
+                      <div className="flex items-start justify-between gap-6">
+                        <h4 className="min-w-0 text-3xl font-black tracking-tight pr-4">{proj.name}</h4>
 
-                      <div className="flex gap-2 shrink-0">
-                        <Tooltip.Provider delayDuration={150}>
+                        <div className="flex flex-wrap gap-2 shrink-0">
                           {Array.isArray(proj.links.git) &&
                             proj.links.git.map((repo: any) => (
-                              <Tooltip.Root key={repo.url}>
+                              <Tooltip.Root key={`${repo.url}-${repo.label}`}>
                                 <Tooltip.Trigger asChild>
-                                  <Link
-                                    href={repo.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={cn(
-                                      "relative p-2 rounded-xl bg-secondary text-foreground transition-colors",
-                                      "hover:bg-accent hover:text-white",
-                                      "border border-black/30 dark:border-white/30",
-                                      "shadow-[0_0_0_1.25px_rgba(0,0,0,0.70)]",
-                                      "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
-                                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                                    )}
-                                    aria-label={`GitHub (${repo.label})`}
-                                  >
-                                    <Github className="h-4 w-4" />
-                                  </Link>
+                                  <span className="inline-flex">
+                                    <SmartLink href={repo.url} disabled={!!repo.disabled} ariaLabel={`GitHub (${repo.label})`}>
+                                      <Github className="h-4 w-4" />
+                                    </SmartLink>
+                                  </span>
                                 </Tooltip.Trigger>
 
                                 <Tooltip.Portal>
@@ -223,24 +218,13 @@ export const ExperienceSection = () => {
 
                           {Array.isArray(proj.links.live) &&
                             proj.links.live.map((site: any) => (
-                              <Tooltip.Root key={site.url}>
+                              <Tooltip.Root key={`${site.url}-${site.label}`}>
                                 <Tooltip.Trigger asChild>
-                                  <Link
-                                    href={site.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={cn(
-                                      "relative p-2 rounded-xl bg-secondary text-foreground transition-colors",
-                                      "hover:bg-accent hover:text-white",
-                                      "border border-black/30 dark:border-white/30",
-                                      "shadow-[0_0_0_1.25px_rgba(0,0,0,0.70)]",
-                                      "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
-                                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                                    )}
-                                    aria-label={`Website (${site.label})`}
-                                  >
-                                    <ExternalLink className="h-4 w-4" />
-                                  </Link>
+                                  <span className="inline-flex">
+                                    <SmartLink href={site.url} disabled={!!site.disabled} ariaLabel={`Website (${site.label})`}>
+                                      <ExternalLink className="h-4 w-4" />
+                                    </SmartLink>
+                                  </span>
                                 </Tooltip.Trigger>
 
                                 <Tooltip.Portal>
@@ -255,29 +239,30 @@ export const ExperienceSection = () => {
                                 </Tooltip.Portal>
                               </Tooltip.Root>
                             ))}
-                        </Tooltip.Provider>
+                        </div>
                       </div>
-                    </div>
 
-                    <p className="text-muted-foreground font-medium leading-relaxed">{proj.desc}</p>
+                      <p className="text-muted-foreground font-medium leading-relaxed">{proj.desc}</p>
 
-                    {proj.tags && proj.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-2 pt-4">
-                        {proj.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-[10px] font-bold uppercase tracking-widest text-foreground/80 bg-secondary/50 border border-border/70 px-3 py-1 rounded-full"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </Tabs.Content>
+                      {proj.tags && proj.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2 pt-4">
+                          {proj.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              // Skills cards
+                              className="text-[10px] font-bold uppercase tracking-widest text-foreground/80 bg-secondary/50 border border-border/70 px-3 py-1 rounded-full"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </Tabs.Content>
+          </Tooltip.Provider>
 
           {/* SKILLS */}
           <Tabs.Content value="skills" className={cn("outline-none", "overflow-x-auto", "pb-2")}>
@@ -292,8 +277,8 @@ export const ExperienceSection = () => {
                 >
                   <Card className="group border border-border/40 rounded-3xl bg-background hover:border-accent/70 transition-all duration-500 h-full p-8 md:p-10 space-y-8 md:space-y-10 min-w-0 origin-top scale-[0.92] sm:scale-100">
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary shrink-0">
-                        <cat.icon className="h-6 w-6 group-hover:text-accent transition-colors" />
+                      <div className="h-14 w-14 shrink-0 flex-none rounded-2xl bg-secondary flex items-center justify-center text-primary transition-all group-hover:bg-accent group-hover:text-white">
+                        <cat.icon className="h-6 w-6 transition-colors" />
                       </div>
                       <h4 className="text-2xl sm:text-xl md:text-2xl font-black tracking-tight truncate">
                         {cat.name}
@@ -307,7 +292,7 @@ export const ExperienceSection = () => {
                         const percent = Number.isFinite(raw) ? Math.max(0, Math.min(100, raw)) : 0;
 
                         return (
-                          <div key={`${cat.name}-${item.name}`} className="flex flex-col gap-2 min-w-0">
+                          <div key={`${cat.name}-${item.name}-${j}`} className="flex flex-col gap-2 min-w-0">
                             <div className="flex items-start justify-between gap-3 text-[9px] sm:text-[10px] font-black uppercase tracking-widest min-w-0">
                               <span className="min-w-0 truncate">{item.name}</span>
                               <span className={cn(levelClass, "shrink-0 whitespace-nowrap")}>
@@ -355,12 +340,12 @@ export const ExperienceSection = () => {
               >
                 <Card className="border border-border/40 rounded-3xl bg-background p-10 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:shadow-lg transition-all group hover:border-accent/70">
                   <div className="flex items-center gap-6">
-                    <div className="h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-all">
+                    <div className="h-14 w-14 shrink-0 flex-none rounded-2xl bg-secondary flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-all">
                       <GraduationCap className="h-6 w-6" />
                     </div>
 
                     <div className="space-y-2 text-left">
-                      <h4 className="text-3xl font-black tracking-tight">{edu.school}</h4>
+                      <h4 className="min-w-0 text-3xl font-black tracking-tight">{edu.school}</h4>
                       <p className="text-accent font-bold tracking-tight uppercase text-xs">{edu.degree}</p>
                     </div>
                   </div>

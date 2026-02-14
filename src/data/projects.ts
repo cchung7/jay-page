@@ -6,14 +6,16 @@ export const projects = [
     links: {
       live: [
         {
-          label: "Live Demo",
+          label: "Live Demo (Render)",
           url: "https://clap-v1-2-render.onrender.com/",
+          disabled: false,
         },
       ],
       git: [
         {
-          label: "FE/BE Monorepo",
+          label: "Frontend & Backend Git (Public)",
           url: "https://github.com/cchung7/clap_v1.2-render",
+          disabled: false,
         },
       ],
     },
@@ -35,18 +37,21 @@ export const projects = [
     links: {
       live: [
         {
-          label: "Live Website",
+          label: "Live Website (Hostinger VPS)",
           url: "https://binnerripickleball.com/",
+          disabled: false,
         },
       ],
       git: [
         {
-          label: "Frontend",
+          label: "Frontend Git (Private)",
           url: "https://github.com/cchung7/bpc_fe",
+          disabled: true,
         },
         {
-          label: "Backend",
+          label: "Backend Git (Private)",
           url: "https://github.com/cchung7/bpc_be",
+          disabled: true,
         },
       ],
     },

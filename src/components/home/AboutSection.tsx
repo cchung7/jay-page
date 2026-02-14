@@ -37,7 +37,7 @@ export const AboutSection = () => {
             {/* HEADER */}
             <header className="text-center space-y-1">
               {/* ABOUT */}
-              <h2 className="relative inline-block text-xs font-black uppercase tracking-[0.5em] text-accent">
+              <h2 className="relative inline-block text-sm font-black uppercase tracking-[0.5em] text-accent">
                 <span
                   aria-hidden
                   className="

@@ -46,17 +46,18 @@ export const HeroSection = () => {
           transition={{ duration: 0.6 }}
           className="flex justify-center mb-2"
         >
-          <div className="relative group overflow-visible">
+          {/* Glow ring */}
+          <div className="relative group overflow-visible isolate">
+            {/* glow */}
             <div
               className={cn(
-                "absolute inset-0 rounded-full pointer-events-none -z-10",
-                "bg-accent/30 blur-[40px]",
-                "sm:bg-accent/15 sm:blur-2xl",
-                "group-hover:bg-accent/40 sm:group-hover:bg-accent/25",
-                "transition-all duration-700"
+                "absolute -inset-20 rounded-full pointer-events-none z-0",
+                "[background:radial-gradient(circle,rgba(249,84,28,0.6)_0%,rgba(249,84,28,0.35)_30%,rgba(249,84,28,0.15)_55%,rgba(249,84,28,0)_75%)]",
+                "opacity-90",
+                "transition-all duration-700 group-hover:opacity-100"
               )}
             />
-
+            {/* Avatar */}
             <div
               className={cn(
                 "relative h-40 w-40 rounded-full z-10",
@@ -79,7 +80,8 @@ export const HeroSection = () => {
             {/* Zap badge */}
             <div
               className={cn(
-                "absolute -bottom-2 -right-2 h-10 w-10 rounded-full flex items-center justify-center",
+                "absolute -bottom-2 -right-1 h-10 w-10 rounded-full flex items-center justify-center",
+                "z-20",
                 "bg-accent text-white",
                 "border border-border/40",
                 "ring-1 ring-white/30 dark:ring-white/10",

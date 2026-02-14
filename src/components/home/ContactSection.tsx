@@ -65,7 +65,7 @@ export const ContactSection = () => {
             {/* HEADER */}
             <div className="text-center space-y-1">
               {/* CONTACT */}
-              <h2 className="relative inline-block text-xs font-black uppercase tracking-[0.5em] text-accent">
+              <h2 className="relative inline-block text-sm font-black uppercase tracking-[0.5em] text-accent">
                 <span
                   aria-hidden
                   className="
@@ -76,9 +76,13 @@ export const ContactSection = () => {
                     pointer-events-none
                   "
                 >
-                  Contact
+                  {/* Title outline */}
+                  Contact Me
                 </span>
-                <span className="relative">Contact</span>
+                <span className="relative">
+                  {/* Title text */}
+                  Contact Me
+                </span>
               </h2>
 
               {/* QUESTIONS & INQUIRIES */}
@@ -172,6 +176,7 @@ export const ContactSection = () => {
                           <Tooltip.Content
                             side="top"
                             sideOffset={6}
+                            // Tooltip format
                             className="z-50 rounded-md bg-background px-2 py-1 text-xs font-semibold text-foreground shadow-lg border border-border"
                           >
                             {item.tooltip ?? item.label}
@@ -189,7 +194,7 @@ export const ContactSection = () => {
                     )}
 
                     <div className="space-y-0.5">
-                      <p className="text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/50">
+                      <p className="text-[12px] font-black uppercase tracking-[0.25em] text-muted-foreground/50">
                         {item.label}
                       </p>
 
@@ -235,8 +240,8 @@ export const ContactSection = () => {
 
               <div className="space-y-6">
                 <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 focus-within:border-accent/80">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
-                    Full Name
+                  <label className="text-[12px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
+                    Full Name*
                   </label>
                   <input
                     type="text"
@@ -249,8 +254,8 @@ export const ContactSection = () => {
                 </div>
 
                 <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 focus-within:border-accent/80">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
-                    Email Address
+                  <label className="text-[12px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
+                    Email Address*
                   </label>
                   <input
                     type="email"
@@ -263,8 +268,8 @@ export const ContactSection = () => {
                 </div>
 
                 <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 focus-within:border-accent/80">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
-                    Your Message
+                  <label className="text-[12px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
+                    Your Message*
                   </label>
                   <textarea
                     required
