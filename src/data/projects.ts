@@ -60,6 +60,7 @@ export const projects = [
       "TypeScript",
       "React",
       "MongoDB",
+      "Prisma ORM",
       "Tailwind CSS",
       "Authentication & Authorization",
       "Ubuntu VPS Deployment"

@@ -122,7 +122,7 @@ export const ExperienceSection = () => {
               >
                 <Card className="h-full border border-border/40 shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-500 rounded-3xl group overflow-hidden bg-background hover:border-accent/70">
                   <CardContent className="p-10 md:p-12 space-y-6">
-                    <div className="flex justify-between items-start">
+                    <div className="flex justify-between items-center">
                       <div className="h-14 w-14 shrink-0 flex-none rounded-2xl bg-secondary flex items-center justify-center text-primary transition-all group-hover:bg-accent group-hover:text-white">
                         <Briefcase className="h-6 w-6 transition-colors" />
                       </div>
@@ -169,7 +169,9 @@ export const ExperienceSection = () => {
                     <CardContent className="p-10 md:p-12 space-y-6">
                       <div
                         className={cn(
-                          "h-12 flex items-center justify-center rounded-xl",
+                          "w-full mx-auto",
+                          "min-h-12 px-4 py-2",
+                          "flex items-center justify-center rounded-xl",
                           "bg-secondary/60 border border-border/50",
                           "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.35)]",
                           "transition-all",
@@ -178,7 +180,10 @@ export const ExperienceSection = () => {
                       >
                         <span
                           className={cn(
-                            "text-xs font-black uppercase tracking-widest",
+                            "w-full text-center",
+                            "text-[10px] sm:text-xs font-black uppercase",
+                            "tracking-[0.18em] sm:tracking-widest",
+                            "leading-tight",
                             "text-muted-foreground/120",
                             "transition-colors duration-300",
                             "group-hover:text-white"
@@ -295,9 +300,16 @@ export const ExperienceSection = () => {
                           <div key={`${cat.name}-${item.name}-${j}`} className="flex flex-col gap-2 min-w-0">
                             <div className="flex items-start justify-between gap-3 text-[9px] sm:text-[10px] font-black uppercase tracking-widest min-w-0">
                               <span className="min-w-0 truncate">{item.name}</span>
-                              <span className={cn(levelClass, "shrink-0 whitespace-nowrap")}>
+                              {/* LEVEL + PERCENTAGE */}
+                              {/* <span className={cn(levelClass, "shrink-0 whitespace-nowrap")}>
                                 {item.level} • {percent}%
+                              </span> */}
+                              
+                              {/* LEVEL (only) */}
+                              <span className={cn(levelClass, "shrink-0 whitespace-nowrap")}>
+                                {item.level}
                               </span>
+
                             </div>
 
                             <div
@@ -338,26 +350,25 @@ export const ExperienceSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
               >
-                <Card className="border border-border/40 rounded-3xl bg-background p-10 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:shadow-lg transition-all group hover:border-accent/70">
+                <Card className="border border-border/40 rounded-3xl bg-background p-10 md:p-12 flex flex-col items-center text-center gap-6 hover:shadow-lg transition-all group hover:border-accent/70">
                   <div className="flex items-center gap-6">
                     <div className="h-14 w-14 shrink-0 flex-none rounded-2xl bg-secondary flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-all">
                       <GraduationCap className="h-6 w-6" />
                     </div>
 
                     <div className="space-y-2 text-left">
-                      <h4 className="min-w-0 text-3xl font-black tracking-tight">{edu.school}</h4>
-                      <p className="text-accent font-bold tracking-tight uppercase text-xs">{edu.degree}</p>
+                      <h4 className="min-w-0 text-3xl font-black tracking-tight">
+                        {edu.school}
+                      </h4>
+                      <p className="text-accent font-bold tracking-tight uppercase text-xs">
+                        {edu.degree}
+                      </p>
                     </div>
                   </div>
 
-                  <div className="text-left md:text-right space-y-2">
-                    <Badge className="bg-secondary text-primary border-none rounded-lg font-black text-xs uppercase tracking-wide">
-                      {edu.period}
-                    </Badge>
-                    <p className="text-muted-foreground/60 text-[10px] font-black uppercase tracking-widest">
-                      {edu.honors}
-                    </p>
-                  </div>
+                  <Badge className="bg-secondary text-primary border-none rounded-lg font-black text-xs uppercase tracking-wide">
+                    {edu.period}
+                  </Badge>
                 </Card>
               </motion.div>
             ))}
