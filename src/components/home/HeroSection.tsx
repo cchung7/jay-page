@@ -51,12 +51,12 @@ export const HeroSection = () => {
             {/* glow */}
             <div
               className={cn(
-                "absolute -inset-20 rounded-full pointer-events-none z-0",
-                "[background:radial-gradient(circle,rgba(249,84,28,0.6)_0%,rgba(249,84,28,0.35)_30%,rgba(249,84,28,0.15)_55%,rgba(249,84,28,0)_75%)]",
-                "opacity-90",
-                "transition-all duration-700 group-hover:opacity-100"
+                "absolute -inset-12 rounded-full pointer-events-none z-0",
+                "opacity-90 transition-all duration-700 group-hover:opacity-100",
+                "[background:radial-gradient(circle,hsl(var(--hero-glow)/0.42)_0%,hsl(var(--hero-glow)/0.22)_28%,hsl(var(--hero-glow)/0.10)_52%,hsl(var(--hero-glow)/0)_72%)]"
               )}
             />
+
             {/* Avatar */}
             <div
               className={cn(
@@ -67,14 +67,21 @@ export const HeroSection = () => {
             >
               <div className="absolute inset-1.5 rounded-full border border-border/50 dark:border-border/60 pointer-events-none" />
 
-              <Image
-                src="/images/jay_pic.jpg"
-                alt="Jay Chung headshot"
-                fill
-                priority
-                className="rounded-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 rounded-full pointer-events-none shadow-[inset_0_0_0_1px_rgba(0,0,0,0.06)] dark:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.05)]" />
+              <div className="absolute inset-0 rounded-full overflow-hidden transition-transform duration-500 group-hover:scale-110">
+                <Image
+                  src="/images/jay_pic.jpg"
+                  alt="Profile Picture"
+                  fill
+                  priority
+                  className="rounded-full object-cover hero-avatar-img"
+                />
+
+                {/* Theme-driven color tone */}
+                <div className="absolute inset-0 rounded-full pointer-events-none hero-avatar-overlay" />
+
+                {/* Gloss highlight */}
+                <div className="absolute inset-0 rounded-full pointer-events-none hero-avatar-gloss" />
+              </div>
             </div>
 
             {/* Zap badge */}
@@ -117,15 +124,8 @@ export const HeroSection = () => {
                 "dark:[-webkit-text-stroke:2px_hsl(var(--border))]"
               )}
             >
+              {/* TItle Text */}
               Hi, My Name&apos;s <br />
-              <span
-                className={cn(
-                  "italic",
-                  "[-webkit-text-stroke:2px_hsl(var(--accent))]"
-                )}
-              >
-                Jay Chung
-              </span>
             </span>
 
             <span
@@ -136,7 +136,10 @@ export const HeroSection = () => {
               )}
             >
               Hi, My Name&apos;s <br />
-              <span className="text-accent italic">Jay Chung</span>
+
+              <span className="text-accent italic text-4xl md:text-6xl">
+                Jay Chung
+              </span>
             </span>
           </motion.h1>
 
