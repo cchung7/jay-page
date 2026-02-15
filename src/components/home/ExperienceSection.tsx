@@ -281,12 +281,11 @@ export const ExperienceSection = () => {
                   className="min-w-0"
                 >
                   <Card className="group border border-border/40 rounded-3xl bg-background hover:border-accent/70 transition-all duration-500 h-full p-8 md:p-10 space-y-8 md:space-y-10 min-w-0 origin-top scale-[0.92] sm:scale-100">
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="h-14 w-14 shrink-0 ...">
-                        <cat.icon className="h-6 w-6" />
+                    <div className="flex items-center gap-8 min-w-0">
+                      <div className="h-14 w-14 shrink-0 flex-none rounded-2xl bg-secondary flex items-center justify-center text-primary transition-all group-hover:bg-accent group-hover:text-white">
+                        <cat.icon className="h-6 w-6 transition-colors" />
                       </div>
-
-                      <h4 className="min-w-0 break-words text-2xl font-black tracking-tight">
+                      <h4 className="text-3xl sm:text-2xl md:text-3xl font-black tracking-tight min-w-0 whitespace-normal break-words leading-tight">
                         {cat.name}
                       </h4>
                     </div>
