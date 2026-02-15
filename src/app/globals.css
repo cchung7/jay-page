@@ -56,9 +56,9 @@
   /* Avatar gloss highlight (LIGHT): soft white reflection */
   --avatar-gloss: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.55) 0%,
-    rgba(255, 255, 255, 0.25) 30%,
-    rgba(255, 255, 255, 0.08) 55%,
+    rgba(255, 255, 255, 0.20) 0%,
+    rgba(255, 255, 255, 0.08) 30%,
+    rgba(255, 255, 255, 0.03) 55%,
     rgba(255, 255, 255, 0) 75%
   );
 
@@ -219,7 +219,9 @@
 
   .hero-avatar-gloss {
     background: var(--avatar-gloss);
-    mix-blend-mode: overlay;
+    opacity: 0.9;
+    /* overlay (dramatic), soft-light (refined), screen (shiny) */
+    mix-blend-mode: soft-light;
   }
 
   .shadow-master {

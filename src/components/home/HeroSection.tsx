@@ -137,7 +137,7 @@ export const HeroSection = () => {
             >
               Hi, My Name&apos;s <br />
 
-              <span className="text-accent italic text-4xl md:text-6xl">
+              <span className="text-accent italic text-5xl md:text-7xl">
                 Jay Chung
               </span>
             </span>

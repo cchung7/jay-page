@@ -21,18 +21,17 @@ export const projects = [
     },
     tags: [
       "Python",
-      "Flask",
-      "Machine Learning",
+      "LightGBM",
       "RESTful APIs",
+      "Machine Learning Model Deployment",
       "React",
-      "Vite",
       "Tailwind CSS",
-      "Render (Cloud Deployment)"
+      "Cloud Deployment (Render / Vercel)"
     ],
   },
   {
     name: "Binnerri Pickleball Club (BPC)",
-    type: "Membership & Event Platform",
+    type: "Membership, Event & Admin Platform",
     desc: "BPC is a production-grade web platform supporting membership applications, event management, and administrative workflows. The system features role-based access control, dynamic event publishing, and an admin dashboard for user and operational management.",
     links: {
       live: [
@@ -56,14 +55,24 @@ export const projects = [
       ],
     },
     tags: [
+      // Frontend
       "Next.js",
-      "TypeScript",
       "React",
-      "MongoDB",
-      "Prisma ORM",
+      "TypeScript",
       "Tailwind CSS",
-      "Authentication & Authorization",
-      "Ubuntu VPS Deployment"
-    ],
+      // Backend
+      "Node.js (Express)",
+      "MongoDB Atlas",
+      "Prisma ORM",
+      // Security & Access Control
+      "JWT Authentication",
+      "Role-Based Access Control (RBAC)",
+      "Email Verification (OTP)",
+      // Media & Storage
+      "File Upload Handling (Multer)",
+      "DigitalOcean Spaces (S3)",
+      // Infrastructure
+      "VPS Deployment"
+    ]
   },
 ];
