@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mail, Rocket, MapPin, Linkedin } from "lucide-react";
+import { ArrowRight, Mail, Rocket, Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
@@ -18,6 +18,33 @@ export const ContactSection = () => {
   const [statusMessage, setStatusMessage] = React.useState("");
 
   const isSending = status === "sending";
+
+  const inputWrapperClass = cn(
+    "group space-y-2 rounded-2xl",
+    // Outline
+    "border border-[hsl(var(--primary)/0.20)]",
+    "bg-background/10",
+    "px-4 py-3",
+    "transform transition-all duration-200",
+    // Base glow per theme (teal/orange)
+    "shadow-[0_10px_28px_hsl(var(--accent)/0.18),inset_0_1px_0_rgba(255,255,255,0.06)]",
+    "hover:-translate-y-[3px]",
+    "hover:border-accent/70",
+    // Hover glow
+    "hover:shadow-[0_18px_42px_hsl(var(--accent)/0.30),0_0_20px_hsl(var(--accent)/0.20)]",
+    "focus-within:border-accent/80"
+  );
+
+const contactIconClass = cn(
+  "relative h-14 w-14 rounded-2xl",
+  "bg-secondary flex items-center justify-center",
+  "text-primary border border-border/50",
+  "transition-all duration-500 transform",
+  "shadow-[0_12px_40px_8px_hsl(var(--primary)/0.22),inset_0_1px_0_rgba(255,255,255,0.06)]",
+  "group-hover:scale-105 active:scale-95",
+  "group-hover:border-accent/70 group-hover:bg-accent/15 group-hover:text-foreground",
+  "group-hover:shadow-[0_20px_60px_10px_hsl(var(--primary)/0.28),0_0_24px_hsl(var(--primary)/0.22)]"
+);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -40,7 +67,9 @@ export const ContactSection = () => {
 
       if (!res.ok) {
         setStatus("error");
-        setStatusMessage(data?.detail || data?.error || "Message failed to send.");
+        setStatusMessage(
+          data?.detail || data?.error || "Message failed to send."
+        );
         return;
       }
 
@@ -121,102 +150,101 @@ export const ContactSection = () => {
               </p>
             </div>
 
-          <Tooltip.Provider delayDuration={150}>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {[
-                {
-                  icon: Mail,
-                  label: "E-Mail",               // visible small label under the icon
-                  tooltip: "chung_chul@yahoo.com",           // tooltip text (separate)
-                  value: "",
-                  href: "mailto:chung_chul@yahoo.com",
-                  external: false,
-                },
-                {
-                  icon: Linkedin,
-                  label: "LinkedIn",
-                  tooltip: "View my LinkedIn",
-                  value: "",
-                  href: "https://www.linkedin.com/in/chul-w-chung",
-                  external: true,
-                },
-                {
-                  icon: MapPin,
-                  label: "Headquarters",
-                  tooltip: "Frisco, TX",
-                  value: "",
-                  href: "https://www.google.com/maps/search/?api=1&query=Frisco,TX",
-                  external: true,
-                },
-              ].map((item, i) => {
-                const Icon = item.icon;
+            <Tooltip.Provider delayDuration={150}>
+              <div className="grid grid-cols-2 gap-3 md:gap-2 max-w-sm mx-auto">
+                {[
+                  {
+                    icon: Mail,
+                    label: "E-Mail",
+                    tooltip: "chung_chul@yahoo.com",
+                    value: "",
+                    href: "mailto:chung_chul@yahoo.com",
+                    external: false,
+                  },
+                  {
+                    icon: Linkedin,
+                    label: "LinkedIn",
+                    tooltip: "View my LinkedIn",
+                    value: "",
+                    href: "https://www.linkedin.com/in/chul-w-chung",
+                    external: true,
+                  },
+                ].map((item, i) => {
+                  const Icon = item.icon;
 
-                return (
-                  <div key={i} className="flex flex-col items-center text-center gap-3 group">
-                    {item.href ? (
-                      <Tooltip.Root>
-                        <Tooltip.Trigger asChild>
-                          <Link
+                  return (
+                    <div
+                      key={i}
+                      className="flex flex-col items-center text-center gap-3 group min-w-0"
+                    >
+                      {item.href ? (
+                        <Tooltip.Root>
+                          <Tooltip.Trigger asChild>
+                            <Link
+                              href={item.href}
+                              target={item.external ? "_blank" : undefined}
+                              rel={
+                                item.external ? "noopener noreferrer" : undefined
+                              }
+                              aria-label={item.label}
+                              className="block"
+                            >
+                              <div className="relative group">
+                                <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                                <div className={contactIconClass}>
+                                  <Icon className="h-6 w-6" />
+                                </div>
+                              </div>
+                            </Link>
+                          </Tooltip.Trigger>
+
+                          <Tooltip.Portal>
+                            <Tooltip.Content
+                              side="top"
+                              sideOffset={6}
+                              className="z-50 rounded-md bg-background px-2 py-1 text-xs font-semibold text-foreground shadow-lg border border-border"
+                            >
+                              {item.tooltip ?? item.label}
+                              <Tooltip.Arrow className="fill-border" />
+                            </Tooltip.Content>
+                          </Tooltip.Portal>
+                        </Tooltip.Root>
+                      ) : (
+                        <div className="relative group">
+                          <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                          <div className="relative h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary border border-border/50 transition-all duration-500 shadow-minimal group-hover:border-accent/70 group-hover:bg-accent/15 group-hover:text-foreground">
+                            <Icon className="h-6 w-6" />
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="space-y-0.5 min-w-0">
+                        <p className="text-[12px] font-black uppercase tracking-[0.25em] text-muted-foreground/50">
+                          {item.label}
+                        </p>
+
+                        {item.href ? (
+                          <a
                             href={item.href}
                             target={item.external ? "_blank" : undefined}
-                            rel={item.external ? "noopener noreferrer" : undefined}
-                            aria-label={item.label}
-                            className="block"
+                            rel={
+                              item.external ? "noopener noreferrer" : undefined
+                            }
+                            className="text-lg font-bold tracking-tight hover:text-accent transition-colors underline underline-offset-4 decoration-border/60 hover:decoration-accent whitespace-nowrap"
                           >
-                            <div className="relative group">
-                              <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                              <div className="relative h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary border border-border/50 transition-all transform group-hover:scale-105 active:scale-95 duration-500 shadow-minimal group-hover:shadow-xl group-hover:border-accent/70 group-hover:bg-accent/15 group-hover:text-foreground">
-                                <Icon className="h-6 w-6" />
-                              </div>
-                            </div>
-                          </Link>
-                        </Tooltip.Trigger>
-
-                        <Tooltip.Portal>
-                          <Tooltip.Content
-                            side="top"
-                            sideOffset={6}
-                            // Tooltip format
-                            className="z-50 rounded-md bg-background px-2 py-1 text-xs font-semibold text-foreground shadow-lg border border-border"
-                          >
-                            {item.tooltip ?? item.label}
-                            <Tooltip.Arrow className="fill-border" />
-                          </Tooltip.Content>
-                        </Tooltip.Portal>
-                      </Tooltip.Root>
-                    ) : (
-                      <div className="relative group">
-                        <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                        <div className="relative h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary border border-border/50 transition-all duration-500 shadow-minimal group-hover:border-accent/70 group-hover:bg-accent/15 group-hover:text-foreground">
-                          <Icon className="h-6 w-6" />
-                        </div>
+                            {item.value}
+                          </a>
+                        ) : (
+                          <p className="text-lg font-bold tracking-tight">
+                            {item.value}
+                          </p>
+                        )}
                       </div>
-                    )}
-
-                    <div className="space-y-0.5">
-                      <p className="text-[12px] font-black uppercase tracking-[0.25em] text-muted-foreground/50">
-                        {item.label}
-                      </p>
-
-                      {item.href ? (
-                        <a
-                          href={item.href}
-                          target={item.external ? "_blank" : undefined}
-                          rel={item.external ? "noopener noreferrer" : undefined}
-                          className="text-lg font-bold tracking-tight hover:text-accent transition-colors underline underline-offset-4 decoration-border/60 hover:decoration-accent"
-                        >
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="text-lg font-bold tracking-tight">{item.value}</p>
-                      )}
                     </div>
-                  </div>
-                );
-              })}
-            </div>
-          </Tooltip.Provider>
-
+                  );
+                })}
+              </div>
+            </Tooltip.Provider>
           </div>
 
           {/* Form */}
@@ -239,8 +267,8 @@ export const ContactSection = () => {
               </div>
 
               <div className="space-y-6">
-                <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 focus-within:border-accent/80">
-                  <label className="text-[12px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
+                <div className={inputWrapperClass}>
+                  <label className="text-[12px] font-black uppercase tracking-widest text-foreground/80 ml-1 group-hover:text-accent transition-colors">
                     Full Name*
                   </label>
                   <input
@@ -249,12 +277,12 @@ export const ContactSection = () => {
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Jane Doe"
-                    className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/35 focus:ring-0 outline-none"
+                    className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/45 focus:ring-0 outline-none"
                   />
                 </div>
 
-                <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 focus-within:border-accent/80">
-                  <label className="text-[12px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
+                <div className={inputWrapperClass}>
+                  <label className="text-[12px] font-black uppercase tracking-widest text-foreground/80 ml-1 group-hover:text-accent transition-colors">
                     Email Address*
                   </label>
                   <input
@@ -263,12 +291,12 @@ export const ContactSection = () => {
                     value={emailAddress}
                     onChange={(e) => setEmailAddress(e.target.value)}
                     placeholder="jane.doe@example.com"
-                    className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/35 focus:ring-0 outline-none"
+                    className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/45 focus:ring-0 outline-none"
                   />
                 </div>
 
-                <div className="group space-y-2 rounded-2xl border border-border/50 bg-background/10 px-4 py-3 transition-colors hover:border-accent/70 focus-within:border-accent/80">
-                  <label className="text-[12px] font-black uppercase tracking-widest text-foreground/70 ml-1 group-hover:text-accent transition-colors">
+                <div className={inputWrapperClass}>
+                  <label className="text-[12px] font-black uppercase tracking-widest text-foreground/80 ml-1 group-hover:text-accent transition-colors">
                     Your Message*
                   </label>
                   <textarea
@@ -276,7 +304,7 @@ export const ContactSection = () => {
                     value={userMessage}
                     onChange={(e) => setUserMessage(e.target.value)}
                     placeholder="Describe your vision..."
-                    className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/35 focus:ring-0 outline-none min-h-37.5 resize-none"
+                    className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/45 focus:ring-0 outline-none min-h-37.5 resize-none"
                   />
                 </div>
 

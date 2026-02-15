@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { useTheme } from "next-themes";
 import {
   motion,
   AnimatePresence,
@@ -12,16 +11,8 @@ import {
 import * as Dialog from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import {
-  Sun,
-  Moon,
-  Menu,
-  X,
-  ArrowUpRight,
-  User,
-  Briefcase,
-  Mail,
-} from "lucide-react";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
+import { Menu, X, ArrowUpRight, User, Briefcase, Mail } from "lucide-react";
 
 const navLinks = [
   { name: "About", href: "/#about", icon: User },
@@ -33,11 +24,7 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
-  const [mounted, setMounted] = React.useState(false);
-  const { theme, setTheme } = useTheme();
   const { scrollY } = useScroll();
-
-  React.useEffect(() => setMounted(true), []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const prev = scrollY.getPrevious() ?? 0;
@@ -45,15 +32,15 @@ export function Navbar() {
     setScrolled(latest > 50);
   });
 
-  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
-
   // Buttons
   const actionClass = cn(
     "h-10 w-10 rounded-full",
-    "bg-secondary/30 border border-border/60",
+    "bg-transparent border border-border/60",
     "text-muted-foreground",
     "shadow-[0_1px_0_rgba(0,0,0,0.22)]",
     "transition-all duration-200",
+    "hover:bg-black/5 dark:hover:bg-white/5",
+    "active:bg-black/5 dark:active:bg-white/5",
     "hover:text-foreground hover:border-accent/60",
     "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
     "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
@@ -73,8 +60,8 @@ export function Navbar() {
 
   const navButtonClass = cn(
     "group",
-    "h-[2.0rem]",             
-    "-mt-px",                    
+    "h-[2.0rem]",
+    "-mt-px",
     "relative inline-flex items-center justify-center gap-2 px-4 rounded-full text-center",
     "text-[11px] font-black uppercase tracking-widest",
     "bg-secondary/60 border border-border/50",
@@ -114,21 +101,7 @@ export function Navbar() {
 
           {/* Right Actions */}
           <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className={actionClass}
-              aria-label="Toggle theme"
-            >
-              {mounted ? (
-                theme === "dark" ? (
-                  <Sun className="h-5 w-5" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                )
-              ) : null}
-            </Button>
+            <ThemeToggle className={actionClass} />
 
             <Button
               variant="ghost"
