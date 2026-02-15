@@ -1,8 +1,8 @@
 export const projects = [
   {
-    name: "County Level Air Quality Prediction (CLAP)",
-    type: "Full-Stack Web Application",
-    desc: "CLAP is a single-page web application that utilizes a Machine-Learning model and historical AQI data to predict the future AQI for over 770+ U.S. county locations.",
+    name: "County-Level Air Quality Prediction (CLAP)",
+    type: "Predictive Analytics Platform",
+    desc: "CLAP is a production-deployed single-page web application that leverages a machine learning model trained on historical EPA AQI datasets to forecast future AQI values for 770+ U.S. counties. The platform integrates a Flask-based API backend with a React frontend for real-time prediction and visualization.",
     links: {
       live: [
         {
@@ -13,7 +13,7 @@ export const projects = [
       ],
       git: [
         {
-          label: "Frontend & Backend Git (Public)",
+          label: "Frontend & Backend Repository (Public)",
           url: "https://github.com/cchung7/clap_v1.2-render",
           disabled: false,
         },
@@ -22,18 +22,18 @@ export const projects = [
     tags: [
       "Python",
       "Flask",
-      "HTML",
-      "Tailwind CSS",
-      "JavaScript",
+      "Machine Learning",
+      "RESTful APIs",
       "React",
       "Vite",
-      "Render",
+      "Tailwind CSS",
+      "Render (Cloud Deployment)"
     ],
   },
   {
     name: "Binnerri Pickleball Club (BPC)",
-    type: "Full-Stack Web Application",
-    desc: "BPC features a home page that displays events and members/users. Visitors may apply for membership. An admin page manages all users/members and events.",
+    type: "Membership & Event Platform",
+    desc: "BPC is a production-grade web platform supporting membership applications, event management, and administrative workflows. The system features role-based access control, dynamic event publishing, and an admin dashboard for user and operational management.",
     links: {
       live: [
         {
@@ -44,12 +44,12 @@ export const projects = [
       ],
       git: [
         {
-          label: "Frontend Git (Private)",
+          label: "Frontend Repository (Private)",
           url: "https://github.com/cchung7/bpc_fe",
           disabled: true,
         },
         {
-          label: "Backend Git (Private)",
+          label: "Backend Repository (Private)",
           url: "https://github.com/cchung7/bpc_be",
           disabled: true,
         },
@@ -58,10 +58,11 @@ export const projects = [
     tags: [
       "Next.js",
       "TypeScript",
-      "Tailwind CSS",
       "React",
       "MongoDB",
-      "Ubuntu VPS",
+      "Tailwind CSS",
+      "Authentication & Authorization",
+      "Ubuntu VPS Deployment"
     ],
   },
 ];
