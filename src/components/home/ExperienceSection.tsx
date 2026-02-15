@@ -271,7 +271,12 @@ export const ExperienceSection = () => {
 
           {/* SKILLS */}
           <Tabs.Content value="skills" className={cn("outline-none", "overflow-x-auto", "pb-2")}>
-            <div className={cn("grid gap-2 items-start", "justify-center", "grid-cols-[repeat(auto-fit,360px)]")}>
+            <div
+              className={cn(
+                "grid gap-2 items-start justify-center",
+                "grid-cols-1 sm:grid-cols-[repeat(auto-fit,360px)]"
+              )}
+            >
               {skills.map((cat, i) => (
                 <motion.div
                   key={cat.name}

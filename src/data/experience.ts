@@ -3,7 +3,7 @@ export const experience = [
     role: "Full-Stack Web Developer", 
     period: "Sep 2024 — Present", 
     desc: "Developed, designed, and/or deployed full-stack software applications for select clientele.", 
-    tags: ["Python", "MySQL", "MongoDB", "HTML5", "Tailwind CSS", "JavaScript ES6+", "Typescript", "React", "Next.js", "Flask", "Vite", "RESTful APIs", "Cloud Deployment (AWS)", "VPS Administration", "CI/CD", "Requirements Validation", "Software Architecture", "Product Strategy", "Technical Documentation", "Software Testing", "Quality Assurance"] 
+    tags: ["Python", "MySQL", "MongoDB", "HTML5", "Tailwind CSS", "JavaScript ES6+", "Typescript", "React", "Next.js", "Flask", "Vite", "RESTful APIs", "Cloud Deployment", "VPS Administration", "CI/CD", "Requirements Validation", "Software Architecture", "Product Strategy", "Technical Documentation", "Software Testing", "Quality Assurance"] 
   },
   { company: "Jonsson School Student Council (JSSC)", 
     role: "President", 
