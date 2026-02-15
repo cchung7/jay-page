@@ -23,10 +23,10 @@ export const projects = [
       "Python",
       "LightGBM",
       "RESTful APIs",
-      "Machine Learning Model Deployment",
+      "ML Model Deployment",
       "React",
       "Tailwind CSS",
-      "Cloud Deployment (Render / Vercel)"
+      "Cloud Deployment"
     ],
   },
   {
@@ -66,7 +66,7 @@ export const projects = [
       "Prisma ORM",
       // Security & Access Control
       "JWT Authentication",
-      "Role-Based Access Control (RBAC)",
+      "Role-Based Access Control",
       "Email Verification (OTP)",
       // Media & Storage
       "File Upload Handling (Multer)",
