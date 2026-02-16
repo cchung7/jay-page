@@ -184,6 +184,25 @@
   .cta-shadow-hover:hover {
     box-shadow: var(--cta-shadow-hover);
   }
+
+  /* Icon outline color for the contact icons */
+  .contact-icon {
+    color: rgba(0, 0, 0, 0.4) !important; /* light mode */
+    border-color: rgba(0, 0, 0, 0.2) !important;
+  }
+  .dark .contact-icon {
+    color: rgba(255, 255, 255, 0.6) !important; /* dark mode */
+    border-color: rgba(255, 255, 255, 0.2) !important
+  }
+
+  .contact-icon svg,
+  .contact-icon svg * {
+    stroke: currentColor !important;
+  }
+
+  .contact-icon svg * {
+    fill: none !important;
+  }
 }
 
 @keyframes gradient {

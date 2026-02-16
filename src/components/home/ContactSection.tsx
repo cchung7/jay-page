@@ -19,33 +19,35 @@ export const ContactSection = () => {
 
   const isSending = status === "sending";
 
-const inputWrapperClass = cn(
-  "group space-y-2 rounded-2xl",
-  // Outline
-  "border border-[hsl(var(--primary)/0.20)]",
-  "bg-background/10",
-  "px-4 py-3",
-  "transform transition-all duration-200",
-  // Base glow
-  "shadow-[0_10px_28px_hsl(var(--primary)/0.08),inset_0_1px_0_rgba(255,255,255,0.06)]",
-  "hover:-translate-y-[3px]",
-  "hover:border-accent/70",
-  // Hover glow
-  "hover:shadow-[0_18px_42px_hsl(var(--primary)/0.12),0_0_20px_hsl(var(--primary)/0.12)]",
+  const inputWrapperClass = cn(
+    "group space-y-2 rounded-2xl",
+    // Outline
+    "border border-[hsl(var(--primary)/0.20)]",
+    "bg-background/10",
+    "px-4 py-3",
+    "transform transition-all duration-200",
+    // Base glow
+    "shadow-[0_10px_28px_hsl(var(--primary)/0.08),inset_0_1px_0_rgba(255,255,255,0.06)]",
+    "hover:-translate-y-[3px]",
+    "hover:border-accent/70",
+    // Hover glow
+    "hover:shadow-[0_18px_42px_hsl(var(--primary)/0.12),0_0_20px_hsl(var(--primary)/0.12)]",
 
-  "focus-within:border-accent/80"
-);
+    "focus-within:border-accent/80"
+  );
 
-const contactIconClass = cn(
-  "relative h-14 w-14 rounded-2xl",
-  "bg-secondary flex items-center justify-center",
-  "text-primary border border-border/50",
-  "transition-all duration-500 transform",
-  "shadow-[0_12px_40px_8px_hsl(var(--primary)/0.12),inset_0_1px_0_rgba(255,255,255,0.06)]",
-  "group-hover:scale-105 active:scale-95",
-  "group-hover:border-accent/70 group-hover:bg-accent/15 group-hover:text-foreground",
-  "group-hover:shadow-[0_20px_60px_10px_hsl(var(--primary)/0.12),0_0_24px_hsl(var(--primary)/0.12)]"
-);
+  const contactIconClass = cn(
+    "contact-icon",
+    "relative h-14 w-14 rounded-2xl",
+    "bg-secondary flex items-center justify-center",
+    "text-black dark:text-white",
+    "border border-black/25 dark:border-white/25",
+    "transition-all duration-500 transform",
+    "shadow-[0_12px_40px_8px_hsl(var(--primary)/0.12),inset_0_1px_0_rgba(255,255,255,0.06)]",
+    "group-hover:scale-105 active:scale-95",
+    "group-hover:border-accent/70 group-hover:bg-accent/15",
+    "group-hover:shadow-[0_20px_60px_10px_hsl(var(--primary)/0.12),0_0_24px_hsl(var(--primary)/0.12)]"
+  );
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -146,114 +148,107 @@ const contactIconClass = cn(
               </h3>
 
               <p className="text-lg text-muted-foreground font-medium max-w-sm leading-relaxed mx-auto">
-                Accepting select architectural commissions and performance-driven
-                engineering roles.
+                Accepting select architectural commissions and performance-driven engineering roles.
               </p>
-            </div>
+              </div>
 
-            <Tooltip.Provider delayDuration={150}>
-              <div className="grid grid-cols-2 gap-3 md:gap-2 max-w-sm mx-auto">
-                {[
-                  {
-                    icon: Mail,
-                    label: "E-Mail",
-                    tooltip: "chung_chul@yahoo.com",
-                    value: "",
-                    href: "mailto:chung_chul@yahoo.com",
-                    external: false,
-                  },
-                  {
-                    icon: Linkedin,
-                    label: "LinkedIn",
-                    tooltip: "View my LinkedIn",
-                    value: "",
-                    href: "https://www.linkedin.com/in/chul-w-chung",
-                    external: true,
-                  },
-                ].map((item, i) => {
-                  const Icon = item.icon;
+              <Tooltip.Provider delayDuration={150}>
+                <div className="grid grid-cols-2 gap-3 md:gap-2 max-w-sm mx-auto">
+                  {[
+                    {
+                      icon: Mail,
+                      label: "E-Mail",
+                      tooltip: "chung_chul@yahoo.com",
+                      value: "",
+                      href: "mailto:chung_chul@yahoo.com",
+                      external: false,
+                    },
+                    {
+                      icon: Linkedin,
+                      label: "LinkedIn",
+                      tooltip: "View my LinkedIn",
+                      value: "",
+                      href: "https://www.linkedin.com/in/chul-w-chung",
+                      external: true,
+                    },
+                  ].map((item, i) => {
+                    const Icon = item.icon;
 
-                  return (
-                    <div
-                      key={i}
-                      className="flex flex-col items-center text-center gap-3 group min-w-0"
-                    >
-                      {item.href ? (
-                        <Tooltip.Root>
-                          <Tooltip.Trigger asChild>
-                            <Link
+                    return (
+                      <div
+                        key={i}
+                        className="flex flex-col items-center text-center gap-3 group min-w-0"
+                      >
+                        {item.href ? (
+                          <Tooltip.Root>
+                            <Tooltip.Trigger asChild>
+                              <Link
+                                href={item.href}
+                                target={item.external ? "_blank" : undefined}
+                                rel={item.external ? "noopener noreferrer" : undefined}
+                                aria-label={item.label}
+                                className="block"
+                              >
+                                <div className="relative group">
+                                  <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                                  <div className={contactIconClass}>
+                                    <Icon className="h-6 w-6 transition-colors" />
+                                  </div>
+                                </div>
+                              </Link>
+                            </Tooltip.Trigger>
+
+                            <Tooltip.Portal>
+                              <Tooltip.Content
+                                side="top"
+                                sideOffset={6}
+                                className="z-50 rounded-md bg-background px-2 py-1 text-xs font-semibold text-foreground shadow-lg border border-border"
+                              >
+                                {item.tooltip ?? item.label}
+                                <Tooltip.Arrow className="fill-border" />
+                              </Tooltip.Content>
+                            </Tooltip.Portal>
+                          </Tooltip.Root>
+                        ) : (
+                          <div className="relative group">
+                            <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                            <div className="contact-icon relative h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-black dark:text-white border border-black/25 dark:border-white/25 transition-all duration-500 shadow-minimal group-hover:border-accent/70 group-hover:bg-accent/15">
+                              <Icon className="h-6 w-6 transition-colors" />
+                            </div>
+                          </div>
+                        )}
+
+                        <div className="space-y-0.5 min-w-0">
+                          <p
+                            className={cn(
+                              "text-[12px] font-black uppercase tracking-[0.25em] transition-colors",
+                              "text-muted-foreground/80",
+                              "group-hover:text-accent",
+                              "dark:group-hover:text-accent"
+                            )}
+                          >
+                            {item.label}
+                          </p>
+
+                          {item.href ? (
+                            <a
                               href={item.href}
                               target={item.external ? "_blank" : undefined}
-                              rel={
-                                item.external ? "noopener noreferrer" : undefined
-                              }
-                              aria-label={item.label}
-                              className="block"
+                              rel={item.external ? "noopener noreferrer" : undefined}
+                              className="text-lg font-bold tracking-tight hover:text-accent transition-colors underline underline-offset-4 decoration-border/60 hover:decoration-accent whitespace-nowrap"
                             >
-                              <div className="relative group">
-                                <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                                <div className={contactIconClass}>
-                                  <Icon className="h-6 w-6 text-primary group-hover:text-accent transition-colors" />
-                                </div>
-                              </div>
-                            </Link>
-                          </Tooltip.Trigger>
-
-                          <Tooltip.Portal>
-                            <Tooltip.Content
-                              side="top"
-                              sideOffset={6}
-                              className="z-50 rounded-md bg-background px-2 py-1 text-xs font-semibold text-foreground shadow-lg border border-border"
-                            >
-                              {item.tooltip ?? item.label}
-                              <Tooltip.Arrow className="fill-border" />
-                            </Tooltip.Content>
-                          </Tooltip.Portal>
-                        </Tooltip.Root>
-                      ) : (
-                        <div className="relative group">
-                          <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                          <div className="relative h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-primary border border-border/50 transition-all duration-500 shadow-minimal group-hover:border-accent/70 group-hover:bg-accent/15 group-hover:text-foreground">
-                            <Icon className="h-6 w-6" />
-                          </div>
-                        </div>
-                      )}
-
-                      <div className="space-y-0.5 min-w-0">
-                        <p
-                          className={cn(
-                            "text-[12px] font-black uppercase tracking-[0.25em] transition-colors",
-                            "text-muted-foreground/80",
-                            "group-hover:text-accent",
-                            "dark:group-hover:text-accent"
+                              {item.value}
+                            </a>
+                          ) : (
+                            <p className="text-lg font-bold tracking-tight">{item.value}</p>
                           )}
-                        >
-                          {item.label}
-                        </p>
-
-                        {item.href ? (
-                          <a
-                            href={item.href}
-                            target={item.external ? "_blank" : undefined}
-                            rel={
-                              item.external ? "noopener noreferrer" : undefined
-                            }
-                            className="text-lg font-bold tracking-tight hover:text-accent transition-colors underline underline-offset-4 decoration-border/60 hover:decoration-accent whitespace-nowrap"
-                          >
-                            {item.value}
-                          </a>
-                        ) : (
-                          <p className="text-lg font-bold tracking-tight">
-                            {item.value}
-                          </p>
-                        )}
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
+              </Tooltip.Provider>
               </div>
-            </Tooltip.Provider>
-          </div>
 
           {/* Form */}
           <div className="bg-secondary/25 p-3 md:p-20 rounded-[2.5rem] border border-border/60 ring-1 ring-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)] relative overflow-hidden group">
