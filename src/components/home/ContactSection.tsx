@@ -27,11 +27,11 @@ const inputWrapperClass = cn(
   "px-4 py-3",
   "transform transition-all duration-200",
   // Base glow
-  "shadow-[0_10px_28px_hsl(var(--primary)/0.18),inset_0_1px_0_rgba(255,255,255,0.06)]",
+  "shadow-[0_10px_28px_hsl(var(--primary)/0.08),inset_0_1px_0_rgba(255,255,255,0.06)]",
   "hover:-translate-y-[3px]",
   "hover:border-accent/70",
   // Hover glow
-  "hover:shadow-[0_18px_42px_hsl(var(--primary)/0.30),0_0_20px_hsl(var(--primary)/0.22)]",
+  "hover:shadow-[0_18px_42px_hsl(var(--primary)/0.12),0_0_20px_hsl(var(--primary)/0.12)]",
 
   "focus-within:border-accent/80"
 );
@@ -41,10 +41,10 @@ const contactIconClass = cn(
   "bg-secondary flex items-center justify-center",
   "text-primary border border-border/50",
   "transition-all duration-500 transform",
-  "shadow-[0_12px_40px_8px_hsl(var(--primary)/0.40),inset_0_1px_0_rgba(255,255,255,0.06)]",
+  "shadow-[0_12px_40px_8px_hsl(var(--primary)/0.20),inset_0_1px_0_rgba(255,255,255,0.06)]",
   "group-hover:scale-105 active:scale-95",
   "group-hover:border-accent/70 group-hover:bg-accent/15 group-hover:text-foreground",
-  "group-hover:shadow-[0_20px_60px_10px_hsl(var(--primary)/0.28),0_0_24px_hsl(var(--primary)/0.22)]"
+  "group-hover:shadow-[0_20px_60px_10px_hsl(var(--primary)/0.12),0_0_24px_hsl(var(--primary)/0.12)]"
 );
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
