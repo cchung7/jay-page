@@ -43,7 +43,8 @@ export const ContactSection = () => {
     "text-black dark:text-white",
     "border border-black/25 dark:border-white/25",
     "transition-all duration-500 transform",
-    "shadow-[0_12px_40px_8px_hsl(var(--primary)/0.12),inset_0_1px_0_rgba(255,255,255,0.06)]",
+    // Icon glow
+    "shadow-[0_12px_40px_8px_hsl(var(--primary)/0.14),inset_0_1px_0_rgba(255,255,255,0.06)]",
     "group-hover:scale-105 active:scale-95",
     "group-hover:border-accent/70 group-hover:bg-accent/15",
     "group-hover:shadow-[0_20px_60px_10px_hsl(var(--primary)/0.12),0_0_24px_hsl(var(--primary)/0.12)]"

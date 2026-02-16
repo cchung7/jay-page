@@ -187,11 +187,11 @@
 
   /* Icon outline color for the contact icons */
   .contact-icon {
-    color: rgba(0, 0, 0, 0.4) !important; /* light mode */
+    color: rgba(0, 0, 0, 0.7) !important; /* light mode */
     border-color: rgba(0, 0, 0, 0.2) !important;
   }
   .dark .contact-icon {
-    color: rgba(255, 255, 255, 0.6) !important; /* dark mode */
+    color: rgba(255, 255, 255, 0.7) !important; /* dark mode */
     border-color: rgba(255, 255, 255, 0.2) !important
   }
 
