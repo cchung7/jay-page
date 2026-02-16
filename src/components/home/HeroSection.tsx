@@ -211,14 +211,14 @@ export const HeroSection = () => {
               "font-black uppercase tracking-widest",
               "bg-secondary/30 text-foreground",
               "border border-border/60",
-              "ring-1 ring-white/30 dark:ring-white/10",
+              "ring-1 ring-white/350 dark:ring-white/10",
               "backdrop-blur-md",
               "cta-shadow cta-shadow-hover",
               "transition-all hover:scale-105 active:scale-[1.02]",
               "hover:bg-secondary/40",
               "group",
               "before:absolute before:inset-0 before:pointer-events-none",
-              "before:bg-linear-to-b before:from-white/35 before:to-transparent dark:before:from-white/10"
+              "before:bg-linear-to-b before:from-white/20 before:to-transparent dark:before:from-white/05"
             )}
           >
             <span className="relative z-10">
