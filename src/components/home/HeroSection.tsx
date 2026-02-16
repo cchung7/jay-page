@@ -19,16 +19,35 @@ export const HeroSection = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
 
-  const surface3D = cn(
+  const surface3DBase = cn(
     "relative overflow-hidden",
     "bg-secondary/30",
     "border border-border/60",
     "ring-1 ring-white/30 dark:ring-white/10",
-    "shadow-[0_10px_30px_rgba(0,0,0,0.10)] dark:shadow-[0_14px_40px_rgba(0,0,0,0.35)]",
     "backdrop-blur-md",
     "before:absolute before:inset-0 before:pointer-events-none",
     "before:bg-gradient-to-b before:from-white/35 before:to-transparent dark:before:from-white/10"
   );
+
+  const scrollToId = React.useCallback((id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    // ensure it re-triggers even if you click the same hash again
+    if (window.location.hash === `#${id}`) {
+      const url = new URL(window.location.href);
+      url.hash = "";
+      window.history.replaceState(null, "", url.toString());
+      url.hash = id;
+      window.history.replaceState(null, "", url.toString());
+    } else {
+      const url = new URL(window.location.href);
+      url.hash = id;
+      window.history.replaceState(null, "", url.toString());
+    }
+  }, []);
 
   return (
     <section
@@ -53,7 +72,7 @@ export const HeroSection = () => {
               className={cn(
                 "absolute -inset-12 rounded-full pointer-events-none z-0",
                 "opacity-90 transition-all duration-700 group-hover:opacity-100",
-                "[background:radial-gradient(circle,hsl(var(--hero-glow)/0.42)_0%,hsl(var(--hero-glow)/0.22)_28%,hsl(var(--hero-glow)/0.10)_52%,hsl(var(--hero-glow)/0)_72%)]"
+                "[background:radial-gradient(circle,hsl(var(--hero-glow)/0.42)_0%,hsl(var(--hero-glow)/0.50)_28%,hsl(var(--hero-glow)/0.15)_52%,hsl(var(--hero-glow)/0.02)_72%)]"
               )}
             />
 
@@ -61,7 +80,7 @@ export const HeroSection = () => {
             <div
               className={cn(
                 "relative h-40 w-40 rounded-full z-10",
-                surface3D,
+                surface3DBase,
                 "shadow-[0_12px_34px_rgba(0,0,0,0.14)] dark:shadow-[0_18px_50px_rgba(0,0,0,0.45)]"
               )}
             >
@@ -76,10 +95,7 @@ export const HeroSection = () => {
                   className="rounded-full object-cover hero-avatar-img"
                 />
 
-                {/* Theme-driven color tone */}
                 <div className="absolute inset-0 rounded-full pointer-events-none hero-avatar-overlay" />
-
-                {/* Gloss highlight */}
                 <div className="absolute inset-0 rounded-full pointer-events-none hero-avatar-gloss" />
               </div>
             </div>
@@ -124,7 +140,6 @@ export const HeroSection = () => {
                 "dark:[-webkit-text-stroke:2px_hsl(var(--border))]"
               )}
             >
-              {/* TItle Text */}
               Hi, My Name&apos;s <br />
             </span>
 
@@ -136,7 +151,6 @@ export const HeroSection = () => {
               )}
             >
               Hi, My Name&apos;s <br />
-
               <span className="text-accent italic text-5xl md:text-7xl">
                 Jay Chung
               </span>
@@ -162,9 +176,10 @@ export const HeroSection = () => {
           className="flex flex-wrap justify-center gap-8 mt-9"
         >
           <Button
-            asChild
+            type="button"
             size="lg"
             variant="destructive"
+            onClick={() => scrollToId("experience")}
             className={cn(
               "relative overflow-hidden",
               "h-14 px-6 md:px-10 rounded-full",
@@ -179,28 +194,36 @@ export const HeroSection = () => {
               "before:bg-linear-to-b before:from-white/25 before:to-transparent"
             )}
           >
-            <Link href="#experience" className="relative z-10">
+            <span className="relative z-10 inline-flex items-center">
               View My Work{" "}
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </span>
           </Button>
 
           <Button
-            asChild
+            type="button"
             size="lg"
             variant="secondary"
+            onClick={() => scrollToId("contact")}
             className={cn(
-              "h-14 px-10 rounded-full",
+              "relative overflow-hidden",
+              "h-14 px-6 md:px-10 rounded-full",
               "font-black uppercase tracking-widest",
-              surface3D,
-              "text-foreground",
+              "bg-secondary/30 text-foreground",
+              "border border-border/60",
+              "ring-1 ring-white/30 dark:ring-white/10",
+              "backdrop-blur-md",
+              "cta-shadow cta-shadow-hover",
               "transition-all hover:scale-105 active:scale-[1.02]",
-              "hover:bg-secondary/40"
+              "hover:bg-secondary/40",
+              "group",
+              "before:absolute before:inset-0 before:pointer-events-none",
+              "before:bg-linear-to-b before:from-white/35 before:to-transparent dark:before:from-white/10"
             )}
           >
-            <Link href="#contact" className="relative z-10">
+            <span className="relative z-10">
               Message Me
-            </Link>
+            </span>
           </Button>
         </motion.div>
       </motion.div>

@@ -19,28 +19,29 @@ export const ContactSection = () => {
 
   const isSending = status === "sending";
 
-  const inputWrapperClass = cn(
-    "group space-y-2 rounded-2xl",
-    // Outline
-    "border border-[hsl(var(--primary)/0.20)]",
-    "bg-background/10",
-    "px-4 py-3",
-    "transform transition-all duration-200",
-    // Base glow per theme (teal/orange)
-    "shadow-[0_10px_28px_hsl(var(--accent)/0.18),inset_0_1px_0_rgba(255,255,255,0.06)]",
-    "hover:-translate-y-[3px]",
-    "hover:border-accent/70",
-    // Hover glow
-    "hover:shadow-[0_18px_42px_hsl(var(--accent)/0.30),0_0_20px_hsl(var(--accent)/0.20)]",
-    "focus-within:border-accent/80"
-  );
+const inputWrapperClass = cn(
+  "group space-y-2 rounded-2xl",
+  // Outline
+  "border border-[hsl(var(--primary)/0.20)]",
+  "bg-background/10",
+  "px-4 py-3",
+  "transform transition-all duration-200",
+  // Base glow
+  "shadow-[0_10px_28px_hsl(var(--primary)/0.18),inset_0_1px_0_rgba(255,255,255,0.06)]",
+  "hover:-translate-y-[3px]",
+  "hover:border-accent/70",
+  // Hover glow
+  "hover:shadow-[0_18px_42px_hsl(var(--primary)/0.30),0_0_20px_hsl(var(--primary)/0.22)]",
+
+  "focus-within:border-accent/80"
+);
 
 const contactIconClass = cn(
   "relative h-14 w-14 rounded-2xl",
   "bg-secondary flex items-center justify-center",
   "text-primary border border-border/50",
   "transition-all duration-500 transform",
-  "shadow-[0_12px_40px_8px_hsl(var(--primary)/0.22),inset_0_1px_0_rgba(255,255,255,0.06)]",
+  "shadow-[0_12px_40px_8px_hsl(var(--primary)/0.40),inset_0_1px_0_rgba(255,255,255,0.06)]",
   "group-hover:scale-105 active:scale-95",
   "group-hover:border-accent/70 group-hover:bg-accent/15 group-hover:text-foreground",
   "group-hover:shadow-[0_20px_60px_10px_hsl(var(--primary)/0.28),0_0_24px_hsl(var(--primary)/0.22)]"
@@ -192,7 +193,7 @@ const contactIconClass = cn(
                               <div className="relative group">
                                 <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                                 <div className={contactIconClass}>
-                                  <Icon className="h-6 w-6" />
+                                  <Icon className="h-6 w-6 text-primary group-hover:text-accent transition-colors" />
                                 </div>
                               </div>
                             </Link>
@@ -219,7 +220,14 @@ const contactIconClass = cn(
                       )}
 
                       <div className="space-y-0.5 min-w-0">
-                        <p className="text-[12px] font-black uppercase tracking-[0.25em] text-muted-foreground/50">
+                        <p
+                          className={cn(
+                            "text-[12px] font-black uppercase tracking-[0.25em] transition-colors",
+                            "text-muted-foreground/80",
+                            "group-hover:text-accent",
+                            "dark:group-hover:text-accent"
+                          )}
+                        >
                           {item.label}
                         </p>
 

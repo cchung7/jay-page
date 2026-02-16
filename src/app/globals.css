@@ -33,27 +33,14 @@
 
 /* LIGHT MODE */
 :root {
-  /* Background: slightly cooler + darker than #E0E0E2 for separation */
-  /* #D2D8E2 (cool silver-blue) */
   --background: 218 24% 86%;
-
-  /* Default text: much darker steel so paragraphs + UI labels pop */
-  /* #1F2D3A (deep steel) */
   --foreground: 210 30% 18%;
 
-  /* Hero glow color (LIGHT): complements accent in light mode */
-  /* #2BB7A8 (teal) */
   --hero-glow: 173 62% 44%;
 
-  /* Avatar filter (LIGHT): cool + slightly dim to match silver/teal environment */
-  /* brightness(0.94) contrast(1.06) saturate(0.90) hue-rotate(-20deg) (filter) */
   --avatar-filter: brightness(1.00) contrast(1.10) saturate(0.96) hue-rotate(-6deg);
-
-  /* Optional avatar overlay (LIGHT): subtle teal tone to harmonize */
-  /* rgba(43, 183, 168, 0.08) (teal overlay) */
   --avatar-overlay: rgba(43, 183, 168, 0.08);
 
-  /* Avatar gloss highlight (LIGHT): soft white reflection */
   --avatar-gloss: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.20) 0%,
@@ -62,73 +49,42 @@
     rgba(255, 255, 255, 0) 75%
   );
 
-  /* Cards: brighter than background to read as surfaces */
-  /* #EEF2F7 (frosted white) */
   --card: 214 33% 95%;
-  /* #1F2D3A (deep steel) */
   --card-foreground: 210 30% 18%;
 
-  /* Primary: used for headings and high-emphasis text */
-  /* #1B2A3A (midnight steel) */
   --primary: 212 36% 16%;
-  /* #F8FAFC (near-white) */
   --primary-foreground: 210 40% 98%;
 
-  /* Secondary: controls pills/sections, should be distinct but not loud */
-  /* #C2CAD8 (soft slate) */
   --secondary: 220 20% 81%;
-  /* #223244 (slate ink) */
   --secondary-foreground: 212 33% 20%;
 
-  /* Accent: keep teal but deepen it so it doesn’t wash out */
-  /* #2BB7A8 (teal) */
   --accent: 173 62% 44%;
-  /* #062A28 (deep teal ink) */
   --accent-foreground: 176 75% 10%;
 
-  /* Muted: subtle surfaces (chips, subtle blocks) */
-  /* #D7DEE9 (misty blue-gray) */
   --muted: 218 28% 88%;
-  /* Muted text: true secondary text (readable, not faded) */
-  /* #4B5E73 (slate blue) */
   --muted-foreground: 212 22% 37%;
 
-  /* Borders/inputs: visible separation on card and bg */
-  /* #B7C1D1 (cool gray) */
   --border: 218 18% 77%;
-  /* #B7C1D1 (cool gray) */
   --input: 218 18% 77%;
-
-  /* Focus ring uses accent (teal) */
-  /* #2BB7A8 (teal) */
   --ring: 173 62% 44%;
 
   --radius: 1rem;
+
+  /* CTA shadow tokens (LIGHT) */
+  --cta-shadow: 0 16px 40px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.10);
+  --cta-shadow-hover: 0 22px 56px rgba(0,0,0,0.38);
 }
 
 /* DARK MODE */
 .dark {
-  /* Background: near-black slate */
-  /* #09090B (near-black) */
   --background: 240 10% 4%;
-
-  /* Default text: near-white */
-  /* #FAFAFA (near-white) */
   --foreground: 0 0% 98%;
 
-  /* Hero glow color (DARK): energetic highlight in dark mode */
-  /* #F97316 (orange) */
   --hero-glow: 15 95% 54%;
 
-  /* Avatar filter (DARK): none */
-  /* none (filter) */
   --avatar-filter: none;
-
-  /* Avatar overlay (DARK): transparent */
-  /* transparent (overlay) */
   --avatar-overlay: transparent;
 
-  /* Avatar gloss highlight (DARK): much subtler reflection */
   --avatar-gloss: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.20) 0%,
@@ -137,49 +93,30 @@
     rgba(255, 255, 255, 0) 75%
   );
 
-  /* Card surfaces: dark elevated layer */
-  /* #19191C (charcoal) */
   --card: 240 6% 10%;
-  /* #FAFAFA (near-white) */
   --card-foreground: 0 0% 98%;
 
-  /* Primary: headings/high emphasis on dark backgrounds */
-  /* #FAFAFA (near-white) */
   --primary: 0 0% 98%;
-  /* #09090B (near-black) */
   --primary-foreground: 240 10% 4%;
 
-  /* Secondary: subtle containers */
-  /* #262629 (dark slate) */
   --secondary: 240 4% 16%;
-  /* #FAFAFA (near-white) */
   --secondary-foreground: 0 0% 98%;
 
-  /* Accent: brand/interactive color in dark mode */
-  /* #F97316 (orange) */
   --accent: 15 95% 54%;
-  /* #FAFAFA (near-white) */
   --accent-foreground: 0 0% 98%;
 
-  /* Muted: low-emphasis surfaces */
-  /* #262629 (dark slate) */
   --muted: 240 4% 16%;
-  /* Muted text: descriptions, helper text */
-  /* #A1A1AA (cool gray) */
   --muted-foreground: 240 5% 65%;
 
-  /* Borders/inputs: subtle separators in dark mode */
-  /* #262629 (dark slate) */
   --border: 240 4% 16%;
-  /* #262629 (dark slate) */
   --input: 240 4% 16%;
-
-  /* Focus ring: matches accent */
-  /* #F97316 (orange) */
   --ring: 15 95% 54%;
+
+  /* CTA shadow tokens (DARK) */
+  --cta-shadow: 0 10px 30px rgba(255,255,255,0.14), inset 0 1px 0 rgba(255,255,255,0.08);
+  --cta-shadow-hover: 0 16px 42px rgba(255,255,255,0.22), 0 0 28px rgba(255,255,255,0.16);
 }
 
-/* Avatar tone correction driven by theme variables */
 .hero-avatar-img {
   filter: var(--avatar-filter);
 }
@@ -220,7 +157,6 @@
   .hero-avatar-gloss {
     background: var(--avatar-gloss);
     opacity: 0.9;
-    /* overlay (dramatic), soft-light (refined), screen (shiny) */
     mix-blend-mode: soft-light;
   }
 
@@ -240,6 +176,14 @@
   .shadow-accent-glow {
     box-shadow:
       0 0 20px 3px color-mix(in srgb, hsl(var(--accent)) 36%, transparent);
+  }
+
+  /* CTA shadow utilities */
+  .cta-shadow {
+    box-shadow: var(--cta-shadow);
+  }
+  .cta-shadow-hover:hover {
+    box-shadow: var(--cta-shadow-hover);
   }
 }
 

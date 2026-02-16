@@ -172,8 +172,8 @@ export const ExperienceSection = () => {
                           "w-full mx-auto",
                           "min-h-12 px-4 py-2",
                           "flex items-center justify-center rounded-xl",
-                          "bg-secondary/60 border border-border/50",
-                          "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.35)]",
+                          "bg-secondary/80 border border-border/50",
+                          "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.10)]",
                           "transition-all",
                           "group-hover:bg-accent group-hover:text-white group-hover:border-accent/70"
                         )}
