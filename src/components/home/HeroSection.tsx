@@ -91,6 +91,7 @@ export const HeroSection = () => {
                   src="/images/jay_pic.jpg"
                   alt="Profile Picture"
                   fill
+                  sizes="(max-width: 768px) 160px, 160px"
                   priority
                   className="rounded-full object-cover hero-avatar-img"
                 />
@@ -173,7 +174,7 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex flex-wrap justify-center gap-8 mt-9"
+          className="flex flex-wrap justify-center gap-4 sm:gap-8 mt-9"
         >
           <Button
             type="button"

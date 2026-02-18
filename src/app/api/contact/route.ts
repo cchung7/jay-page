@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+export const runtime = "nodejs";
+
+export async function GET() {
+  return NextResponse.json({ ok: true, message: "Contact API is running." });
+}
+
 export async function POST(req: Request) {
   try {
     const { name, email, message } = (await req.json()) as {
@@ -13,7 +19,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
-    // Read env
     const host = process.env.SMTP_HOST || "smtp.hostinger.com";
     const port = Number(process.env.SMTP_PORT ?? 465);
     const secure = String(process.env.SMTP_SECURE ?? "true") === "true";
@@ -21,7 +26,6 @@ export async function POST(req: Request) {
     const user = process.env.SMTP_USER;
     const pass = process.env.SMTP_PASS;
 
-    // Dev dagnostics
     if (process.env.NODE_ENV !== "production") {
       console.log("[contact] SMTP_HOST:", host);
       console.log("[contact] SMTP_PORT:", port);
@@ -46,7 +50,6 @@ export async function POST(req: Request) {
       auth: { user, pass },
     });
 
-    // Verify SMTP connection
     await transporter.verify();
 
     const to = process.env.CONTACT_TO ?? "chung_chul@yahoo.com";
