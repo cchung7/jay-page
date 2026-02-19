@@ -37,6 +37,9 @@ export const skills: SkillCategory[] = [
     items: [
       { name: "Python", level: "Functional", percent: 40 },
       { name: "Flask", level: "Functional", percent: 40 },
+      { name: "NumPy", level: "Functional", percent: 30 },
+      { name: "pandas", level: "Functional", percent: 30 },
+      { name: "scikit-learn", level: "Functional", percent: 30 },
       { name: "MySQL", level: "Familiar", percent: 25 },
       { name: "MongoDB", level: "Proficient", percent: 45 },
       { name: "Prisma ORM", level: "Proficient", percent: 45 },
