@@ -138,7 +138,7 @@ export const AboutSection = () => {
                     silent architect
                   </span>
                 </motion.span>{" "}
-                of human ambition
+                of human ambition and superintelligence.
               </p>
 
               <p className="text-center text-muted-foreground leading-relaxed font-medium">

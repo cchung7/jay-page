@@ -164,7 +164,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-muted-foreground text-xl md:text-2xl font-medium max-w-2xl mx-auto"
           >
-            I build and deploy scalable, intelligent systems centered around human
+            I build and deploy scalable, intelligent systems centered around the human
             experience.
           </motion.p>
         </div>
@@ -235,7 +235,7 @@ export const HeroSection = () => {
         className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground/40"
       >
         <span className="text-[10px] uppercase font-black tracking-[0.4em]">
-          Scroll
+          Scroll down
         </span>
         <ArrowDown className="h-4 w-4" />
       </motion.div>

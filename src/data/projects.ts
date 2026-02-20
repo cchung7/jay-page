@@ -21,10 +21,15 @@ export const projects = [
     },
     tags: [
       "Python",
+      "Flask",
+      "NumPy",
+      "Pandas",
+      "Scikit-learn",
       "LightGBM",
       "RESTful APIs",
       "ML Model Deployment",
       "React",
+      "Vite",
       "Tailwind CSS",
       "Cloud Deployment"
     ],

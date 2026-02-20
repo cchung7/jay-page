@@ -15,7 +15,7 @@ export const experience = [
     role: "Practical Nursing Specialist (68C)", 
     period: "Ended: Nov 2022", 
     desc: "Served as a Licensed Practical Nurse (LPN) for the U.S. Army; medically retired in 2022.", 
-    tags: ["Clinical Operations", "Patient-Centered Care", "Medical Documentation", "Crisis Response", "Process Compliance", "Healthcare Administration"] 
+    tags: ["Leadership", "Discipline", "Clinical Operations", "Patient-Centered Care", "Medical Documentation", "Crisis Response", "Process Compliance", "Healthcare Administration"] 
   },
   { company: "BTI Solutions", 
     role: "QA Engineer I", 
