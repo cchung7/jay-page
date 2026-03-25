@@ -33,45 +33,45 @@
 
 /* LIGHT MODE */
 :root {
-  --background: 218 24% 86%;
-  --foreground: 210 30% 18%;
+  --background: 40 35% 97%;
+  --foreground: 220 22% 15%;
 
-  --hero-glow: 173 62% 44%;
+  --hero-glow: 34 88% 58%;
 
-  --avatar-filter: brightness(1.00) contrast(1.10) saturate(0.96) hue-rotate(-6deg);
-  --avatar-overlay: rgba(43, 183, 168, 0.08);
+  --avatar-filter: brightness(1.01) contrast(1.08) saturate(0.95) hue-rotate(-4deg);
+  --avatar-overlay: rgba(191, 138, 61, 0.08);
 
   --avatar-gloss: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.20) 0%,
-    rgba(255, 255, 255, 0.08) 30%,
-    rgba(255, 255, 255, 0.03) 55%,
+    rgba(255, 255, 255, 0.26) 0%,
+    rgba(255, 255, 255, 0.12) 30%,
+    rgba(255, 255, 255, 0.04) 55%,
     rgba(255, 255, 255, 0) 75%
   );
 
-  --card: 214 33% 95%;
-  --card-foreground: 210 30% 18%;
+  --card: 36 30% 99%;
+  --card-foreground: 220 22% 15%;
 
-  --primary: 212 36% 16%;
-  --primary-foreground: 210 40% 98%;
+  --primary: 220 24% 16%;
+  --primary-foreground: 42 30% 98%;
 
-  --secondary: 220 20% 81%;
-  --secondary-foreground: 212 33% 20%;
+  --secondary: 36 24% 92%;
+  --secondary-foreground: 220 16% 24%;
 
-  --accent: 173 62% 44%;
-  --accent-foreground: 176 75% 10%;
+  --accent: 35 78% 52%;
+  --accent-foreground: 28 70% 12%;
 
-  --muted: 218 28% 88%;
-  --muted-foreground: 212 22% 37%;
+  --muted: 40 22% 94%;
+  --muted-foreground: 218 10% 38%;
 
-  --border: 218 18% 77%;
-  --input: 218 18% 77%;
-  --ring: 173 62% 44%;
+  --border: 35 18% 84%;
+  --input: 35 18% 84%;
+  --ring: 35 78% 52%;
 
   --radius: 1rem;
 
-  --cta-shadow: 0 16px 40px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.10);
-  --cta-shadow-hover: 0 22px 56px rgba(0,0,0,0.38);
+  --cta-shadow: 0 16px 40px rgba(38, 32, 24, 0.12), inset 0 1px 0 rgba(255,255,255,0.72);
+  --cta-shadow-hover: 0 22px 56px rgba(38, 32, 24, 0.16);
 }
 
 /* DARK MODE */
@@ -143,10 +143,10 @@
 
 @layer utilities {
   .glass {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.50);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(77, 61, 35, 0.10);
   }
   .dark .glass {
     background: rgba(255, 255, 255, 0.03);
@@ -160,21 +160,21 @@
   }
 
   .shadow-master {
-    box-shadow: 0 20px 80px -15px oklch(0 0 0 / 0.08);
+    box-shadow: 0 20px 80px -15px rgba(48, 35, 18, 0.08);
   }
   .shadow-hover {
-    box-shadow: 0 40px 100px -20px oklch(0 0 0 / 0.12);
+    box-shadow: 0 40px 100px -20px rgba(48, 35, 18, 0.12);
   }
   .shadow-upper {
-    box-shadow: 0 -20px 80px -15px oklch(0 0 0 / 0.05);
+    box-shadow: 0 -20px 80px -15px rgba(48, 35, 18, 0.05);
   }
   .shadow-3xl {
-    box-shadow: 0 35px 60px -15px oklch(var(--primary) / 0.15);
+    box-shadow: 0 35px 60px -15px hsl(var(--primary) / 0.15);
   }
 
   .shadow-accent-glow {
     box-shadow:
-      0 0 20px 3px color-mix(in srgb, hsl(var(--accent)) 36%, transparent);
+      0 0 20px 3px color-mix(in srgb, hsl(var(--accent)) 34%, transparent);
   }
 
   /* CTA shadow utilities */
@@ -187,12 +187,12 @@
 
   /* Icon outline color for the contact icons */
   .contact-icon {
-    color: rgba(0, 0, 0, 0.7) !important; /* light mode */
-    border-color: rgba(0, 0, 0, 0.2) !important;
+    color: rgba(33, 28, 21, 0.78) !important; /* light mode */
+    border-color: rgba(33, 28, 21, 0.18) !important;
   }
   .dark .contact-icon {
     color: rgba(255, 255, 255, 0.7) !important; /* dark mode */
-    border-color: rgba(255, 255, 255, 0.2) !important
+    border-color: rgba(255, 255, 255, 0.2) !important;
   }
 
   .contact-icon svg,

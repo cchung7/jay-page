@@ -72,7 +72,7 @@ export const HeroSection = () => {
               className={cn(
                 "absolute -inset-12 rounded-full pointer-events-none z-0",
                 "opacity-90 transition-all duration-700 group-hover:opacity-100",
-                "[background:radial-gradient(circle,hsl(var(--hero-glow)/0.42)_0%,hsl(var(--hero-glow)/0.50)_28%,hsl(var(--hero-glow)/0.15)_52%,hsl(var(--hero-glow)/0.02)_72%)]"
+"[background:radial-gradient(circle,hsl(var(--hero-glow)/0.21)_0%,hsl(var(--hero-glow)/0.25)_28%,hsl(var(--hero-glow)/0.075)_52%,hsl(var(--hero-glow)/0.01)_72%)]"
               )}
             />
 
