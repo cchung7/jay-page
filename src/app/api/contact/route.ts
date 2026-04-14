@@ -3,28 +3,51 @@ import nodemailer from "nodemailer";
 
 export const runtime = "nodejs";
 
+const DEFAULT_SMTP_HOST = "smtp.hostinger.com";
+const DEFAULT_SMTP_PORT = 465;
+const DEFAULT_CONTACT_TO = "chung_chul@yahoo.com";
+
+type ContactRequestBody = {
+  name?: string;
+  email?: string;
+  message?: string;
+};
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export async function GET() {
   return NextResponse.json({ ok: true, message: "Contact API is running." });
 }
 
 export async function POST(req: Request) {
   try {
-    const { name, email, message } = (await req.json()) as {
-      name?: string;
-      email?: string;
-      message?: string;
-    };
+    const body = (await req.json().catch(() => null)) as ContactRequestBody | null;
+
+    const name = body?.name?.trim() ?? "";
+    const email = body?.email?.trim() ?? "";
+    const message = body?.message?.trim() ?? "";
 
     if (!name || !email || !message) {
-      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Please complete all required fields." },
+        { status: 400 }
+      );
     }
 
-    const host = process.env.SMTP_HOST || "smtp.hostinger.com";
-    const port = Number(process.env.SMTP_PORT ?? 465);
+    if (!EMAIL_RE.test(email)) {
+      return NextResponse.json(
+        { error: "Please enter a valid email address." },
+        { status: 400 }
+      );
+    }
+
+    const host = process.env.SMTP_HOST?.trim() || DEFAULT_SMTP_HOST;
+    const port = Number(process.env.SMTP_PORT ?? DEFAULT_SMTP_PORT);
     const secure = String(process.env.SMTP_SECURE ?? "true") === "true";
 
-    const user = process.env.SMTP_USER;
-    const pass = process.env.SMTP_PASS;
+    const user = process.env.SMTP_USER?.trim();
+    const pass = process.env.SMTP_PASS?.trim();
+    const to = process.env.CONTACT_TO?.trim() || DEFAULT_CONTACT_TO;
 
     if (process.env.NODE_ENV !== "production") {
       console.log("[contact] SMTP_HOST:", host);
@@ -32,7 +55,7 @@ export async function POST(req: Request) {
       console.log("[contact] SMTP_SECURE:", secure);
       console.log("[contact] SMTP_USER present:", Boolean(user));
       console.log("[contact] SMTP_PASS present:", Boolean(pass));
-      console.log("[contact] CONTACT_TO:", process.env.CONTACT_TO ?? "(default)");
+      console.log("[contact] CONTACT_TO present:", Boolean(to));
     }
 
     if (!user || !pass) {
@@ -52,18 +75,25 @@ export async function POST(req: Request) {
 
     await transporter.verify();
 
-    const to = process.env.CONTACT_TO ?? "chung_chul@yahoo.com";
-
     const info = await transporter.sendMail({
       from: `"Jay Portfolio" <${user}>`,
       to,
       replyTo: { name, address: email },
       subject: `New Contact Form Message from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n`,
+      text: [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        "",
+        "Message:",
+        message,
+        "",
+      ].join("\n"),
     });
 
-    console.log("[contact] sendMail accepted:", info.accepted);
-    console.log("[contact] messageId:", info.messageId);
+    if (process.env.NODE_ENV !== "production") {
+      console.log("[contact] sendMail accepted:", info.accepted);
+      console.log("[contact] messageId:", info.messageId);
+    }
 
     return NextResponse.json({ success: true });
   } catch (err: unknown) {

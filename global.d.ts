@@ -1,3 +1,4 @@
+// Declaration tells TypeScript's checker what *.css imports mean
 declare module "*.css";
 
 declare module "*.module.css" {

@@ -15,7 +15,10 @@ type SmartLinkProps = {
 };
 
 export const SmartLink = React.forwardRef<HTMLAnchorElement, SmartLinkProps>(
-  ({ href, disabled = false, className, children, target, rel, ariaLabel }, ref) => {
+  (
+    { href, disabled = false, className, children, target, rel, ariaLabel },
+    ref
+  ) => {
     const isInternal = href.startsWith("/");
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -32,12 +35,11 @@ export const SmartLink = React.forwardRef<HTMLAnchorElement, SmartLinkProps>(
       tabIndex: disabled ? -1 : 0,
       "aria-label": ariaLabel,
       className: cn(
-        "relative p-2 rounded-xl bg-secondary text-foreground transition-colors",
-        "border border-black/30 dark:border-white/30",
-        "shadow-[0_0_0_1.25px_rgba(0,0,0,0.70)]",
+        "relative rounded-xl border border-white/20 bg-secondary p-2 text-foreground transition-colors",
+        "shadow-[0_0_0_1px_rgba(255,255,255,0.08)]",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         disabled
-          ? "opacity-35 grayscale cursor-not-allowed"
+          ? "cursor-not-allowed opacity-35 grayscale"
           : "hover:bg-accent hover:text-white hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
         className
       ),

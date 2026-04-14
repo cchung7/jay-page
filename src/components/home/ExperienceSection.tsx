@@ -3,17 +3,20 @@
 import * as React from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import * as Tooltip from "@radix-ui/react-tooltip";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { Briefcase, GraduationCap, Github, ExternalLink } from "lucide-react";
+import { Briefcase, ExternalLink, Github, GraduationCap } from "lucide-react";
 
+import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { SectionChip } from "@/components/shared/SectionChip";
+import { SectionHeader } from "@/components/shared/SectionHeader";
 import { SmartLink } from "@/components/shared/SmartLink";
+import { SurfacePanel } from "@/components/shared/SurfacePanel";
+import { education } from "@/data/education";
 import { experience } from "@/data/experience";
 import { projects } from "@/data/projects";
 import { skills } from "@/data/skills";
-import { education } from "@/data/education";
-import { cn } from "@/lib/utils";
 
 export const ExperienceSection = () => {
   const [activeTab, setActiveTab] = React.useState("work");
@@ -24,129 +27,82 @@ export const ExperienceSection = () => {
     }
   }, []);
 
-  const triggerClass =
-    "px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all " +
-    "bg-secondary/60 border border-border/50 text-muted-foreground " +
-    "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.35)] " +
-    "hover:bg-secondary/70 hover:border-accent/60 hover:text-foreground " +
-    "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background " +
-    "data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:border-accent " +
-    "data-[state=active]:shadow-[inset_0_1px_0_rgba(255,255,255,0.10),0_5px_0_rgba(0,0,0,0.35)] " +
-    "data-[state=active]:ring-2 data-[state=active]:ring-accent data-[state=active]:ring-offset-2 data-[state=active]:ring-offset-background " +
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+  const triggerClass = cn(
+    "rounded-xl px-5 py-3 text-xs font-black uppercase tracking-[0.18em]",
+    "text-muted-foreground transition-all duration-200",
+    "hover:bg-white/[0.06] hover:text-foreground",
+    "data-[state=active]:bg-white/[0.06] data-[state=active]:text-foreground",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+  );
 
   return (
-    <section id="experience" className="py-24 md:py-32 px-6 bg-secondary/10">
-      <div className="container max-w-6xl mx-auto space-y-6">
-        {/* Header */}
-        <header className="text-center space-y-1">
-          <h2 className="relative inline-block text-sm font-black uppercase tracking-[0.5em] text-accent">
-            <span
-              aria-hidden
-              className="
-                absolute inset-0
-                text-transparent
-                [-webkit-text-stroke:0.85px_var(--color-border)]
-                dark:[-webkit-text-stroke:0.85px_theme(colors.border.muted)]
-                pointer-events-none
-              "
-            >
-              {/* Title 3D outline */}
-              Experience
-            </span>
-            <span className="relative">
-              {/* Title text */}
-              Experience
-            </span>
-          </h2>
+    <section id="experience" className="bg-secondary/10 px-6 py-24 md:py-32">
+      <div className="container mx-auto max-w-6xl space-y-6">
+        <SectionHeader eyebrow="Experience" title="Technical Stack" />
 
-          <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic leading-[1.05]">
-            <span className="inline-grid overflow-visible">
-              <span
-                aria-hidden
-                className="
-                  col-start-1 row-start-1
-                  text-transparent
-                  [-webkit-text-stroke:1.6px_var(--color-border)]
-                  dark:[-webkit-text-stroke:1.6px_theme(colors.border.muted)]
-                  pointer-events-none
-                  pr-[0.55em]
-                "
-              >
-                Technical Stack
-              </span>
-              <span
-                className="
-                  col-start-1 row-start-1
-                  pr-[0.55em]
-                  bg-linear-to-b from-primary via-primary to-primary/70
-                  bg-clip-text text-transparent
-                "
-              >
-                Technical Stack
-              </span>
-            </span>
-          </h3>
-        </header>
+        <Tabs.Root
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="w-full"
+        >
+          <div className="flex justify-center">
+            <SurfacePanel className="rounded-[1.75rem] p-2">
+              <Tabs.List className="flex flex-wrap items-center justify-center gap-1.5">
+                <Tabs.Trigger value="work" className={triggerClass}>
+                  Work
+                </Tabs.Trigger>
+                <Tabs.Trigger value="projects" className={triggerClass}>
+                  Projects
+                </Tabs.Trigger>
+                <Tabs.Trigger value="skills" className={triggerClass}>
+                  Skills
+                </Tabs.Trigger>
+                <Tabs.Trigger value="edu" className={triggerClass}>
+                  Education
+                </Tabs.Trigger>
+              </Tabs.List>
+            </SurfacePanel>
+          </div>
 
-        <Tabs.Root value={activeTab} onValueChange={setActiveTab} className="w-full">
-          {/* Tabs */}
-          <Tabs.List
-            className="flex flex-wrap justify-center gap-2 mb-4 p-2
-                       bg-secondary/50 backdrop-blur-md rounded-2xl
-                       border border-border/50 shadow-lg shadow-black/20
-                       max-w-fit mx-auto"
+          <Tabs.Content
+            value="work"
+            className="mt-6 grid grid-cols-1 gap-3 outline-none md:grid-cols-2"
           >
-            <Tabs.Trigger value="work" className={triggerClass}>
-              Work
-            </Tabs.Trigger>
-            <Tabs.Trigger value="projects" className={triggerClass}>
-              Projects
-            </Tabs.Trigger>
-            <Tabs.Trigger value="skills" className={triggerClass}>
-              Skills
-            </Tabs.Trigger>
-            <Tabs.Trigger value="edu" className={triggerClass}>
-              Education
-            </Tabs.Trigger>
-          </Tabs.List>
-
-          {/* WORK */}
-          <Tabs.Content value="work" className="grid grid-cols-1 md:grid-cols-2 gap-2 outline-none">
             {experience.map((work, i) => (
               <motion.div
                 key={work.company}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.08 }}
               >
-                <Card className="h-full border border-border/40 shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-500 rounded-3xl group overflow-hidden bg-background hover:border-accent/70">
-                  <CardContent className="p-10 md:p-12 space-y-6">
-                    <div className="flex justify-between items-center">
-                      <div className="h-14 w-14 shrink-0 flex-none rounded-2xl bg-secondary flex items-center justify-center text-primary transition-all group-hover:bg-accent group-hover:text-white">
+                <Card className="group h-full overflow-hidden rounded-3xl border border-border/40 bg-background shadow-sm transition-all duration-500 hover:translate-y-[-2px] hover:border-accent/70 hover:shadow-xl">
+                  <CardContent className="space-y-6 p-10 md:p-12">
+                    <div className="flex items-center justify-between">
+                      <div className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-secondary text-primary transition-all group-hover:bg-accent group-hover:text-white">
                         <Briefcase className="h-6 w-6 transition-colors" />
                       </div>
-                      <Badge className="bg-secondary text-primary border-none rounded-lg font-black text-xs uppercase tracking-wide">
+
+                      <Badge className="rounded-lg border-none bg-secondary text-xs font-black uppercase tracking-wide text-primary">
                         {work.period}
                       </Badge>
                     </div>
 
                     <div className="space-y-1">
-                      <h4 className="min-w-0 text-3xl font-black tracking-tight">{work.role}</h4>
-                      <p className="text-accent font-bold tracking-tight">{work.company}</p>
+                      <h4 className="min-w-0 text-3xl font-black tracking-tight">
+                        {work.role}
+                      </h4>
+                      <p className="font-bold tracking-tight text-accent">
+                        {work.company}
+                      </p>
                     </div>
 
-                    <p className="text-muted-foreground leading-relaxed font-medium">{work.desc}</p>
+                    <p className="font-medium leading-relaxed text-muted-foreground">
+                      {work.desc}
+                    </p>
 
                     <div className="flex flex-wrap gap-2 pt-4">
                       {work.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          // Skills cards
-                          className="text-[10px] font-bold uppercase tracking-widest text-foreground/80 bg-secondary/50 border border-border/70 px-3 py-1 rounded-full"
-                        >
-                          {tag}
-                        </span>
+                        <SectionChip key={tag}>{tag}</SectionChip>
                       ))}
                     </div>
                   </CardContent>
@@ -155,37 +111,29 @@ export const ExperienceSection = () => {
             ))}
           </Tabs.Content>
 
-          {/* PROJECTS */}
           <Tooltip.Provider delayDuration={150}>
-            <Tabs.Content value="projects" className="grid grid-cols-1 md:grid-cols-2 gap-2 outline-none">
+            <Tabs.Content
+              value="projects"
+              className="mt-6 grid grid-cols-1 gap-3 outline-none md:grid-cols-2"
+            >
               {projects.map((proj, i) => (
                 <motion.div
                   key={proj.name}
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: i * 0.08 }}
                 >
-                  <Card className="group border border-border/40 rounded-3xl overflow-hidden bg-background h-full hover:shadow-2xl transition-all duration-500 hover:border-accent/70">
-                    <CardContent className="p-10 md:p-12 space-y-6">
+                  <Card className="group h-full overflow-hidden rounded-3xl border border-border/40 bg-background transition-all duration-500 hover:translate-y-[-2px] hover:border-accent/70 hover:shadow-2xl">
+                    <CardContent className="space-y-6 p-10 md:p-12">
                       <div
                         className={cn(
-                          "w-full mx-auto",
-                          "min-h-12 px-4 py-2",
-                          "flex items-center justify-center rounded-xl",
-                          "bg-secondary/80 border border-border/50",
-                          "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.10)]",
-                          "transition-all",
-                          "group-hover:bg-accent group-hover:text-white group-hover:border-accent/70"
+                          "mx-auto flex min-h-12 w-full items-center justify-center rounded-xl border border-border/50 bg-secondary/75 px-4 py-2",
+                          "transition-all group-hover:border-accent/70 group-hover:bg-accent group-hover:text-white"
                         )}
                       >
                         <span
                           className={cn(
-                            "w-full text-center",
-                            "text-[10px] sm:text-xs font-black uppercase",
-                            "tracking-[0.18em] sm:tracking-widest",
-                            "leading-tight",
-                            "text-muted-foreground/120",
-                            "transition-colors duration-300",
+                            "w-full text-center text-[10px] font-black uppercase leading-tight tracking-[0.18em] text-muted-foreground transition-colors duration-300 sm:text-xs sm:tracking-widest",
                             "group-hover:text-white"
                           )}
                         >
@@ -194,74 +142,82 @@ export const ExperienceSection = () => {
                       </div>
 
                       <div className="flex items-start justify-between gap-6">
-                        <h4 className="min-w-0 text-3xl font-black tracking-tight pr-4">{proj.name}</h4>
+                        <h4 className="min-w-0 pr-4 text-3xl font-black tracking-tight">
+                          {proj.name}
+                        </h4>
 
-                        <div className="flex flex-wrap gap-2 shrink-0">
-                          {Array.isArray(proj.links.git) &&
-                            proj.links.git.map((repo: any) => (
-                              <Tooltip.Root key={`${repo.url}-${repo.label}`}>
-                                <Tooltip.Trigger asChild>
-                                  <span className="inline-flex">
-                                    <SmartLink href={repo.url} disabled={!!repo.disabled} ariaLabel={`GitHub (${repo.label})`}>
-                                      <Github className="h-4 w-4" />
-                                    </SmartLink>
-                                  </span>
-                                </Tooltip.Trigger>
+                        <div className="flex shrink-0 flex-wrap gap-2">
+                          {Array.isArray(proj.links.git)
+                            ? proj.links.git.map((repo: any) => (
+                                <Tooltip.Root key={`${repo.url}-${repo.label}`}>
+                                  <Tooltip.Trigger asChild>
+                                    <span className="inline-flex">
+                                      <SmartLink
+                                        href={repo.url}
+                                        disabled={!!repo.disabled}
+                                        ariaLabel={`GitHub (${repo.label})`}
+                                      >
+                                        <Github className="h-4 w-4" />
+                                      </SmartLink>
+                                    </span>
+                                  </Tooltip.Trigger>
 
-                                <Tooltip.Portal>
-                                  <Tooltip.Content
-                                    side="top"
-                                    sideOffset={6}
-                                    className="z-50 rounded-md bg-background px-2 py-1 text-xs font-semibold text-foreground shadow-lg border border-border"
-                                  >
-                                    {repo.label}
-                                    <Tooltip.Arrow className="fill-border" />
-                                  </Tooltip.Content>
-                                </Tooltip.Portal>
-                              </Tooltip.Root>
-                            ))}
+                                  <Tooltip.Portal>
+                                    <Tooltip.Content
+                                      side="top"
+                                      sideOffset={6}
+                                      className="z-50 rounded-md border border-border bg-background px-2 py-1 text-xs font-semibold text-foreground shadow-lg"
+                                    >
+                                      {repo.label}
+                                      <Tooltip.Arrow className="fill-border" />
+                                    </Tooltip.Content>
+                                  </Tooltip.Portal>
+                                </Tooltip.Root>
+                              ))
+                            : null}
 
-                          {Array.isArray(proj.links.live) &&
-                            proj.links.live.map((site: any) => (
-                              <Tooltip.Root key={`${site.url}-${site.label}`}>
-                                <Tooltip.Trigger asChild>
-                                  <span className="inline-flex">
-                                    <SmartLink href={site.url} disabled={!!site.disabled} ariaLabel={`Website (${site.label})`}>
-                                      <ExternalLink className="h-4 w-4" />
-                                    </SmartLink>
-                                  </span>
-                                </Tooltip.Trigger>
+                          {Array.isArray(proj.links.live)
+                            ? proj.links.live.map((site: any) => (
+                                <Tooltip.Root key={`${site.url}-${site.label}`}>
+                                  <Tooltip.Trigger asChild>
+                                    <span className="inline-flex">
+                                      <SmartLink
+                                        href={site.url}
+                                        disabled={!!site.disabled}
+                                        ariaLabel={`Website (${site.label})`}
+                                      >
+                                        <ExternalLink className="h-4 w-4" />
+                                      </SmartLink>
+                                    </span>
+                                  </Tooltip.Trigger>
 
-                                <Tooltip.Portal>
-                                  <Tooltip.Content
-                                    side="top"
-                                    sideOffset={6}
-                                    className="z-50 rounded-md bg-background px-2 py-1 text-xs font-semibold text-foreground shadow-lg border border-border"
-                                  >
-                                    {site.label}
-                                    <Tooltip.Arrow className="fill-border" />
-                                  </Tooltip.Content>
-                                </Tooltip.Portal>
-                              </Tooltip.Root>
-                            ))}
+                                  <Tooltip.Portal>
+                                    <Tooltip.Content
+                                      side="top"
+                                      sideOffset={6}
+                                      className="z-50 rounded-md border border-border bg-background px-2 py-1 text-xs font-semibold text-foreground shadow-lg"
+                                    >
+                                      {site.label}
+                                      <Tooltip.Arrow className="fill-border" />
+                                    </Tooltip.Content>
+                                  </Tooltip.Portal>
+                                </Tooltip.Root>
+                              ))
+                            : null}
                         </div>
                       </div>
 
-                      <p className="text-muted-foreground font-medium leading-relaxed">{proj.desc}</p>
+                      <p className="font-medium leading-relaxed text-muted-foreground">
+                        {proj.desc}
+                      </p>
 
-                      {proj.tags && proj.tags.length > 0 && (
+                      {proj.tags && proj.tags.length > 0 ? (
                         <div className="flex flex-wrap gap-2 pt-4">
                           {proj.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              // Skills cards
-                              className="text-[10px] font-bold uppercase tracking-widest text-foreground/80 bg-secondary/50 border border-border/70 px-3 py-1 rounded-full"
-                            >
-                              {tag}
-                            </span>
+                            <SectionChip key={tag}>{tag}</SectionChip>
                           ))}
                         </div>
-                      )}
+                      ) : null}
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -269,11 +225,13 @@ export const ExperienceSection = () => {
             </Tabs.Content>
           </Tooltip.Provider>
 
-          {/* SKILLS */}
-          <Tabs.Content value="skills" className={cn("outline-none", "overflow-x-auto", "pb-2")}>
+          <Tabs.Content
+            value="skills"
+            className={cn("mt-6 overflow-x-auto pb-2 outline-none")}
+          >
             <div
               className={cn(
-                "grid gap-2 items-start justify-center",
+                "grid items-start justify-center gap-3",
                 "grid-cols-1 sm:grid-cols-[repeat(auto-fit,360px)]"
               )}
             >
@@ -282,48 +240,39 @@ export const ExperienceSection = () => {
                   key={cat.name}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: i * 0.08 }}
                   className="min-w-0"
                 >
-                  <Card className="group border border-border/40 rounded-3xl bg-background hover:border-accent/70 transition-all duration-500 h-full p-8 md:p-10 space-y-8 md:space-y-10 min-w-0 origin-top scale-[0.92] sm:scale-100">
-                    <div className="flex items-center gap-8 min-w-0">
-                      <div className="h-14 w-14 shrink-0 flex-none rounded-2xl bg-secondary flex items-center justify-center text-primary transition-all group-hover:bg-accent group-hover:text-white">
+                  <Card className="group h-full min-w-0 origin-top scale-[0.92] space-y-8 rounded-3xl border border-border/40 bg-background p-8 transition-all duration-500 hover:border-accent/70 md:p-10 sm:scale-100">
+                    <div className="flex min-w-0 items-center gap-8">
+                      <div className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-secondary text-primary transition-all group-hover:bg-accent group-hover:text-white">
                         <cat.icon className="h-6 w-6 transition-colors" />
                       </div>
-                      <h4 className="text-3xl sm:text-2xl md:text-3xl font-black tracking-tight min-w-0 whitespace-normal break-words leading-tight">
+                      <h4 className="min-w-0 whitespace-normal break-words text-3xl font-black leading-tight tracking-tight sm:text-2xl md:text-3xl">
                         {cat.name}
                       </h4>
                     </div>
 
                     <div className="space-y-4">
                       {cat.items.map((item, j) => {
-                        const levelClass = "text-accent";
                         const raw = Number(item.percent);
-                        const percent = Number.isFinite(raw) ? Math.max(0, Math.min(100, raw)) : 0;
+                        const percent = Number.isFinite(raw)
+                          ? Math.max(0, Math.min(100, raw))
+                          : 0;
 
                         return (
-                          <div key={`${cat.name}-${item.name}-${j}`} className="flex flex-col gap-2 min-w-0">
-                            <div className="flex items-start justify-between gap-3 text-[9px] sm:text-[10px] font-black uppercase tracking-widest min-w-0">
+                          <div
+                            key={`${cat.name}-${item.name}-${j}`}
+                            className="flex min-w-0 flex-col gap-2"
+                          >
+                            <div className="flex min-w-0 items-start justify-between gap-3 text-[9px] font-black uppercase tracking-widest sm:text-[10px]">
                               <span className="min-w-0 truncate">{item.name}</span>
-                              {/* LEVEL + PERCENTAGE */}
-                              {/* <span className={cn(levelClass, "shrink-0 whitespace-nowrap")}>
-                                {item.level} • {percent}%
-                              </span> */}
-                              
-                              {/* LEVEL (only) */}
-                              <span className={cn(levelClass, "shrink-0 whitespace-nowrap")}>
+                              <span className="shrink-0 whitespace-nowrap text-accent">
                                 {item.level}
                               </span>
-
                             </div>
 
-                            <div
-                              className={cn(
-                                "h-2 w-full rounded-full overflow-hidden",
-                                "bg-secondary/60 border border-border/50",
-                                "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),inset_0_-1px_0_rgba(0,0,0,0.25)]"
-                              )}
-                            >
+                            <div className="h-2 w-full overflow-hidden rounded-full border border-border/50 bg-secondary/60">
                               <motion.div
                                 initial={{ width: 0 }}
                                 whileInView={{ width: `${percent}%` }}
@@ -333,7 +282,7 @@ export const ExperienceSection = () => {
                                   delay: i * 0.08 + j * 0.03,
                                   ease: "easeOut",
                                 }}
-                                className="h-full bg-linear-to-r from-accent to-accent/60 shadow-[0_0_18px_rgba(0,0,0,0.15)]"
+                                className="h-full bg-linear-to-r from-accent to-accent/60"
                               />
                             </div>
                           </div>
@@ -346,18 +295,17 @@ export const ExperienceSection = () => {
             </div>
           </Tabs.Content>
 
-          {/* EDUCATION */}
-          <Tabs.Content value="edu" className="space-y-6 outline-none">
+          <Tabs.Content value="edu" className="mt-6 space-y-6 outline-none">
             {education.map((edu, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.08 }}
               >
-                <Card className="border border-border/40 rounded-3xl bg-background p-10 md:p-12 flex flex-col items-center text-center gap-6 hover:shadow-lg transition-all group hover:border-accent/70">
+                <Card className="group flex flex-col items-center gap-6 rounded-3xl border border-border/40 bg-background p-10 text-center transition-all hover:translate-y-[-2px] hover:border-accent/70 hover:shadow-lg md:p-12">
                   <div className="flex items-center gap-6">
-                    <div className="h-14 w-14 shrink-0 flex-none rounded-2xl bg-secondary flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-all">
+                    <div className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-secondary text-primary transition-all group-hover:bg-accent group-hover:text-white">
                       <GraduationCap className="h-6 w-6" />
                     </div>
 
@@ -365,13 +313,13 @@ export const ExperienceSection = () => {
                       <h4 className="min-w-0 text-3xl font-black tracking-tight">
                         {edu.school}
                       </h4>
-                      <p className="text-accent font-bold tracking-tight uppercase text-xs">
+                      <p className="text-xs font-bold uppercase tracking-tight text-accent">
                         {edu.degree}
                       </p>
                     </div>
                   </div>
 
-                  <Badge className="bg-secondary text-primary border-none rounded-lg font-black text-xs uppercase tracking-wide">
+                  <Badge className="rounded-lg border-none bg-secondary text-xs font-black uppercase tracking-wide text-primary">
                     {edu.period}
                   </Badge>
                 </Card>

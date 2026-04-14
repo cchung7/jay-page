@@ -1,29 +1,40 @@
 # Jay Page – Personal Portfolio
 
-A performance-focused personal portfolio built with Next.js App Router, Tailwind CSS, and a production-ready contact API.
+A dark-first personal portfolio built with Next.js App Router, Tailwind CSS, Framer Motion, and a production-ready contact form backed by a Next.js API route and SMTP.
 
 ## Tech Stack
-- Next.js (App Router)
+
+- Next.js 16 (App Router)
 - React 19
-- Tailwind CSS
-- Framer Motion
-- Nodemailer (SMTP contact form)
-- Radix UI
 - TypeScript
+- Tailwind CSS v4
+- Framer Motion
+- Radix UI
+- Sonner
+- Nodemailer
 
-## Features
-- Responsive, mobile-first design
-- Dark / Light mode theming
-- Animated UI with reduced-motion support
-- Server-side contact form with SMTP email delivery
-- Accessible form inputs and labels
+## Current Features
 
-## Getting Started (Local Development)
+- Responsive single-page portfolio layout
+- Dark-only visual theme
+- Animated hero, about, experience, and contact sections
+- Projects / work / skills / education tab system
+- Contact form powered by `/api/contact`
+- SMTP-based email delivery for contact submissions
+- Absolute imports via `@/*` → `src/*`
 
-### Prerequisites
-- Node.js ≥ 18
-- npm
+## Project Structure
 
-### Installation
-```bash
-npm install
+```text
+src/
+  app/
+    api/contact/route.ts
+    globals.css
+    layout.tsx
+    page.tsx
+  components/
+    home/
+    shared/
+    ui/
+  data/
+  lib/

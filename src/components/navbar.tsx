@@ -3,73 +3,38 @@
 import * as React from "react";
 import Link from "next/link";
 import {
-  motion,
   AnimatePresence,
-  useScroll,
+  motion,
   useMotionValueEvent,
+  useScroll,
 } from "framer-motion";
 import * as Dialog from "@radix-ui/react-dialog";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ArrowUpRight, User, Briefcase, Mail } from "lucide-react";
-
-const navLinks = [
-  { name: "About", href: "/#about", icon: User },
-  { name: "Experience", href: "/#experience", icon: Briefcase },
-  { name: "Contact", href: "/#contact", icon: Mail },
-];
+import { PillNav } from "@/components/shared/PillNav";
+import { siteNavLinks } from "@/components/shared/site-nav";
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    const prev = scrollY.getPrevious() ?? 0;
-    setHidden(latest > prev && latest > 150);
-    setScrolled(latest > 50);
+    const previous = scrollY.getPrevious() ?? 0;
+    setHidden(latest > previous && latest > 150);
+    setScrolled(latest > 48);
   });
 
-  const actionClass = cn(
-    "h-10 w-10 rounded-full",
-    "bg-transparent border border-border/60",
-    "text-muted-foreground",
-    "shadow-[0_1px_0_rgba(0,0,0,0.22)]",
+  const menuButtonClass = cn(
+    "h-10 w-10 rounded-full border border-white/10 bg-[rgba(30,30,36,0.58)] text-muted-foreground",
+    "backdrop-blur-xl ring-1 ring-white/5 shadow-[0_10px_28px_rgba(0,0,0,0.24)]",
     "transition-all duration-200",
-    "hover:bg-black/5 dark:hover:bg-white/5",
-    "active:bg-black/5 dark:active:bg-white/5",
-    "hover:text-foreground hover:border-accent/60",
-    "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
-    "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-  );
-
-  const navPillClass = cn(
-    "relative",
-    "flex items-center justify-center gap-3 px-3 rounded-full",
-    "py-1.5",
-    "bg-secondary/50 backdrop-blur-md",
-    "border border-border/60",
-    "shadow-[0_1px_0_rgba(0,0,0,0.22)]",
-    "ring-1 ring-white/10",
-    "before:pointer-events-none before:absolute before:inset-0 before:rounded-full",
-    "before:bg-gradient-to-b before:from-white/10 before:to-transparent"
-  );
-
-  const navButtonClass = cn(
-    "group",
-    "h-[2.0rem]",
-    "-mt-px",
-    "relative inline-flex items-center justify-center gap-2 px-4 rounded-full text-center",
-    "text-[11px] font-black uppercase tracking-widest",
-    "bg-secondary/60 border border-border/50",
-    "text-muted-foreground",
-    "shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_0_rgba(0,0,0,0.35)]",
-    "transition-all duration-300",
-    "hover:bg-secondary/70 hover:border-accent/60 hover:text-foreground",
-    "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-    "active:ring-2 active:ring-accent active:ring-offset-2 active:ring-offset-background"
+    "hover:bg-white/[0.06] hover:border-accent/40 hover:text-foreground",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
   );
 
   return (
@@ -80,30 +45,28 @@ export function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border/40 py-2"
-          : "bg-transparent py-3"
+          ? "border-b border-white/6 bg-[rgba(14,14,18,0.72)] py-3 backdrop-blur-xl"
+          : "bg-transparent py-4"
       )}
     >
       <div className="container mx-auto px-6">
-        <div className="relative h-10">
-          <nav className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className={navPillClass}>
-              {navLinks.map(({ name, href, icon: Icon }) => (
-                <Link key={name} href={href} className={navButtonClass}>
-                  <Icon className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-                  {name}
-                </Link>
-              ))}
-            </div>
-          </nav>
+        <div className="relative flex h-11 items-center justify-center">
+          <div className="hidden md:block">
+            <PillNav
+              items={siteNavLinks}
+              ariaLabel="Primary navigation"
+              className="rounded-[1.75rem]"
+              itemClassName="h-10 px-5"
+            />
+          </div>
 
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 md:hidden">
+          <div className="absolute right-0 md:hidden">
             <Button
               variant="ghost"
               size="icon"
-              className={actionClass}
-              onClick={() => setMobileMenuOpen(true)}
+              className={menuButtonClass}
               aria-label="Open menu"
+              onClick={() => setMobileMenuOpen(true)}
             >
               <Menu className="h-5 w-5" />
             </Button>
@@ -113,54 +76,82 @@ export function Navbar() {
 
       <Dialog.Root open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
         <AnimatePresence>
-          {mobileMenuOpen && (
+          {mobileMenuOpen ? (
             <Dialog.Portal forceMount>
               <Dialog.Overlay className="fixed inset-0 z-60 bg-black/60 backdrop-blur-sm" />
 
               <Dialog.Content
                 className={cn(
                   "fixed right-0 top-0 z-70 h-full w-full max-w-sm",
-                  "bg-background/95 backdrop-blur-md",
-                  "p-6 shadow-2xl border-l border-border/40"
+                  "border-l border-white/10 bg-background/95 px-6 py-6 shadow-2xl backdrop-blur-xl"
                 )}
               >
-                <div className="flex justify-between items-center mb-12">
-                  <span className="font-black uppercase">Menu</span>
+                <Dialog.Title className="sr-only">Navigation Menu</Dialog.Title>
+
+                <div className="mb-8 flex items-center justify-between">
+                  <div className="space-y-1">
+                    <span className="text-sm font-black uppercase tracking-[0.22em] text-muted-foreground">
+                      Menu
+                    </span>
+                  </div>
+
                   <Dialog.Close asChild>
                     <Button
                       variant="ghost"
                       size="icon"
                       aria-label="Close menu"
-                      className={cn(
-                        "rounded-full",
-                        "hover:ring-2 hover:ring-accent hover:ring-offset-2 hover:ring-offset-background",
-                        "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                      )}
+                      className={menuButtonClass}
                     >
                       <X className="h-5 w-5" />
                     </Button>
                   </Dialog.Close>
                 </div>
 
-                <div className="flex flex-col gap-4">
-                  {navLinks.map(({ name, href, icon: Icon }) => (
+                <div className="flex flex-col gap-3">
+                  {siteNavLinks.map(({ name, href, icon: Icon }) => (
                     <Link
                       key={name}
                       href={href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="flex justify-between items-center text-3xl font-black uppercase"
+                      className={cn(
+                        "group flex items-center justify-between rounded-2xl border border-white/8 bg-secondary/20 px-4 py-4",
+                        "transition-all duration-200",
+                        "hover:border-accent/35 hover:bg-white/[0.045]",
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                      )}
                     >
-                      <span className="flex items-center gap-2">
-                        <Icon className="h-6 w-6" />
-                        {name}
+                      <span className="flex items-center gap-3">
+                        <span
+                          className={cn(
+                            "flex h-10 w-10 items-center justify-center rounded-xl",
+                            "border border-white/8 bg-white/[0.03]",
+                            "text-muted-foreground transition-all duration-200",
+                            "group-hover:border-accent/30 group-hover:text-accent"
+                          )}
+                        >
+                          <Icon className="h-4 w-4" />
+                        </span>
+
+                        <span className="text-lg font-black uppercase tracking-[0.14em] text-foreground">
+                          {name}
+                        </span>
                       </span>
-                      <ArrowUpRight className="h-6 w-6" />
+
+                      <span
+                        className={cn(
+                          "flex h-9 w-9 items-center justify-center rounded-full",
+                          "text-muted-foreground transition-all duration-200",
+                          "group-hover:bg-white/[0.05] group-hover:text-foreground"
+                        )}
+                      >
+                        <ArrowUpRight className="h-4 w-4" />
+                      </span>
                     </Link>
                   ))}
                 </div>
               </Dialog.Content>
             </Dialog.Portal>
-          )}
+          ) : null}
         </AnimatePresence>
       </Dialog.Root>
     </motion.header>

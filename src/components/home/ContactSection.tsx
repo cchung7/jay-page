@@ -1,13 +1,32 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import * as Tooltip from "@radix-ui/react-tooltip";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Mail, Rocket, Linkedin } from "lucide-react";
+import { ArrowRight, Linkedin, Mail, Rocket } from "lucide-react";
+
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { SectionHeader } from "@/components/shared/SectionHeader";
+import { SurfacePanel } from "@/components/shared/SurfacePanel";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
+
+const contactItems = [
+  {
+    icon: Mail,
+    label: "Email",
+    tooltip: "chung_chul@yahoo.com",
+    href: "mailto:chung_chul@yahoo.com",
+    external: false,
+  },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    tooltip: "View my LinkedIn",
+    href: "https://www.linkedin.com/in/chul-w-chung",
+    external: true,
+  },
+] as const;
 
 export const ContactSection = () => {
   const [fullName, setFullName] = React.useState("");
@@ -20,34 +39,16 @@ export const ContactSection = () => {
   const isSending = status === "sending";
 
   const inputWrapperClass = cn(
-    "group space-y-2 rounded-2xl",
-    // Outline
-    "border border-[hsl(var(--primary)/0.20)]",
-    "bg-background/10",
-    "px-4 py-3",
-    "transform transition-all duration-200",
-    // Base glow
-    "shadow-[0_10px_28px_hsl(var(--primary)/0.08),inset_0_1px_0_rgba(255,255,255,0.06)]",
-    "hover:-translate-y-[3px]",
-    "hover:border-accent/70",
-    // Hover glow
-    "hover:shadow-[0_18px_42px_hsl(var(--primary)/0.12),0_0_20px_hsl(var(--primary)/0.12)]",
-
-    "focus-within:border-accent/80"
+    "group space-y-2 rounded-2xl border border-[hsl(var(--primary)/0.14)] bg-background/15 px-4 py-3",
+    "transition-all duration-200",
+    "hover:border-accent/35 hover:bg-white/[0.02]",
+    "focus-within:border-accent/50"
   );
 
   const contactIconClass = cn(
-    "contact-icon",
-    "relative h-14 w-14 rounded-2xl",
-    "bg-secondary flex items-center justify-center",
-    "text-black dark:text-white",
-    "border border-black/25 dark:border-white/25",
-    "transition-all duration-500 transform",
-    // Icon glow
-    "shadow-[0_12px_40px_8px_hsl(var(--primary)/0.14),inset_0_1px_0_rgba(255,255,255,0.06)]",
-    "group-hover:scale-105 active:scale-95",
-    "group-hover:border-accent/70 group-hover:bg-accent/15",
-    "group-hover:shadow-[0_20px_60px_10px_hsl(var(--primary)/0.12),0_0_24px_hsl(var(--primary)/0.12)]"
+    "contact-icon relative flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-secondary/55",
+    "transition-all duration-300",
+    "hover:border-accent/35 hover:bg-white/[0.05]"
   );
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -90,292 +91,190 @@ export const ContactSection = () => {
   }
 
   return (
-    <section id="contact" className="py-24 md:py-32 px-6 bg-background">
-      <div className="container max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 gap-6">
-          {/* Contact Info */}
+    <section id="contact" className="bg-background px-6 py-24 md:py-32">
+      <div className="container mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 gap-8">
           <div className="space-y-10">
-            {/* HEADER */}
-            <div className="text-center space-y-1">
-              {/* CONTACT */}
-              <h2 className="relative inline-block text-sm font-black uppercase tracking-[0.5em] text-accent">
-                <span
-                  aria-hidden
-                  className="
-                    absolute inset-0
-                    text-transparent
-                    [-webkit-text-stroke:0.85px_var(--color-border)]
-                    dark:[-webkit-text-stroke:0.85px_theme(colors.border.muted)]
-                    pointer-events-none
-                  "
-                >
-                  {/* Title outline */}
-                  Contact Me
-                </span>
-                <span className="relative">
-                  {/* Title text */}
-                  Contact Me
-                </span>
-              </h2>
+            <SectionHeader
+              eyebrow="Contact"
+              title="Questions & Inquiries"
+              description="Accepting select architectural commissions and performance-driven engineering roles."
+            />
 
-              {/* QUESTIONS & INQUIRIES */}
-              <h3 className="text-5xl md:text-6xl font-black tracking-tighter italic leading-[1.05]">
-                <span className="inline-grid overflow-visible">
-                  <span
-                    aria-hidden
-                    className="
-                      col-start-1 row-start-1
-                      text-transparent
-                      [-webkit-text-stroke:1.6px_var(--color-border)]
-                      dark:[-webkit-text-stroke:1.6px_theme(colors.border.muted)]
-                      pointer-events-none
-                      pr-[0.55em]
-                    "
-                  >
-                    Questions &amp; Inquiries
-                  </span>
+            <Tooltip.Provider delayDuration={150}>
+              <div className="mx-auto grid max-w-sm grid-cols-2 gap-3 md:gap-4">
+                {contactItems.map((item) => {
+                  const Icon = item.icon;
 
-                  <span
-                    className="
-                      col-start-1 row-start-1
-                      pr-[0.55em]
-                      bg-linear-to-b from-primary via-primary to-primary/70
-                      bg-clip-text text-transparent
-                    "
-                  >
-                    Questions &amp; Inquiries
-                  </span>
-                </span>
-              </h3>
-
-              <p className="text-lg text-muted-foreground font-medium max-w-sm leading-relaxed mx-auto">
-                Accepting select architectural commissions and performance-driven engineering roles.
-              </p>
-              </div>
-
-              <Tooltip.Provider delayDuration={150}>
-                <div className="grid grid-cols-2 gap-3 md:gap-2 max-w-sm mx-auto">
-                  {[
-                    {
-                      icon: Mail,
-                      label: "E-Mail",
-                      tooltip: "chung_chul@yahoo.com",
-                      value: "",
-                      href: "mailto:chung_chul@yahoo.com",
-                      external: false,
-                    },
-                    {
-                      icon: Linkedin,
-                      label: "LinkedIn",
-                      tooltip: "View my LinkedIn",
-                      value: "",
-                      href: "https://www.linkedin.com/in/chul-w-chung",
-                      external: true,
-                    },
-                  ].map((item, i) => {
-                    const Icon = item.icon;
-
-                    return (
-                      <div
-                        key={i}
-                        className="flex flex-col items-center text-center gap-3 group min-w-0"
-                      >
-                        {item.href ? (
-                          <Tooltip.Root>
-                            <Tooltip.Trigger asChild>
-                              <Link
-                                href={item.href}
-                                target={item.external ? "_blank" : undefined}
-                                rel={item.external ? "noopener noreferrer" : undefined}
-                                aria-label={item.label}
-                                className="block"
-                              >
-                                <div className="relative group">
-                                  <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                                  <div className={contactIconClass}>
-                                    <Icon className="h-6 w-6 transition-colors" />
-                                  </div>
-                                </div>
-                              </Link>
-                            </Tooltip.Trigger>
-
-                            <Tooltip.Portal>
-                              <Tooltip.Content
-                                side="top"
-                                sideOffset={6}
-                                className="z-50 rounded-md bg-background px-2 py-1 text-xs font-semibold text-foreground shadow-lg border border-border"
-                              >
-                                {item.tooltip ?? item.label}
-                                <Tooltip.Arrow className="fill-border" />
-                              </Tooltip.Content>
-                            </Tooltip.Portal>
-                          </Tooltip.Root>
-                        ) : (
-                          <div className="relative group">
-                            <div className="absolute inset-0 rounded-2xl bg-accent/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                            <div className="contact-icon relative h-14 w-14 rounded-2xl bg-secondary flex items-center justify-center text-black dark:text-white border border-black/25 dark:border-white/25 transition-all duration-500 shadow-minimal group-hover:border-accent/70 group-hover:bg-accent/15">
-                              <Icon className="h-6 w-6 transition-colors" />
-                            </div>
-                          </div>
-                        )}
-
-                        <div className="space-y-0.5 min-w-0">
-                          <p
-                            className={cn(
-                              "text-[12px] font-black uppercase tracking-[0.25em] transition-colors",
-                              "text-muted-foreground/80",
-                              "group-hover:text-accent",
-                              "dark:group-hover:text-accent"
-                            )}
+                  return (
+                    <div
+                      key={item.label}
+                      className="group flex min-w-0 flex-col items-center gap-3 text-center"
+                    >
+                      <Tooltip.Root>
+                        <Tooltip.Trigger asChild>
+                          <a
+                            href={item.href}
+                            target={item.external ? "_blank" : undefined}
+                            rel={
+                              item.external ? "noopener noreferrer" : undefined
+                            }
+                            aria-label={item.label}
+                            className="block"
                           >
-                            {item.label}
-                          </p>
+                            <div className="relative">
+                              <div className="absolute inset-0 rounded-2xl bg-accent/10 blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                              <div className={contactIconClass}>
+                                <Icon className="h-6 w-6 transition-colors" />
+                              </div>
+                            </div>
+                          </a>
+                        </Tooltip.Trigger>
 
-                          {item.href ? (
-                            <a
-                              href={item.href}
-                              target={item.external ? "_blank" : undefined}
-                              rel={item.external ? "noopener noreferrer" : undefined}
-                              className="text-lg font-bold tracking-tight hover:text-accent transition-colors underline underline-offset-4 decoration-border/60 hover:decoration-accent whitespace-nowrap"
-                            >
-                              {item.value}
-                            </a>
-                          ) : (
-                            <p className="text-lg font-bold tracking-tight">{item.value}</p>
+                        <Tooltip.Portal>
+                          <Tooltip.Content
+                            side="top"
+                            sideOffset={6}
+                            className="z-50 rounded-md border border-border bg-background px-2 py-1 text-xs font-semibold text-foreground shadow-lg"
+                          >
+                            {item.tooltip}
+                            <Tooltip.Arrow className="fill-border" />
+                          </Tooltip.Content>
+                        </Tooltip.Portal>
+                      </Tooltip.Root>
+
+                      <div className="min-w-0 space-y-0.5">
+                        <p
+                          className={cn(
+                            "text-[12px] font-black uppercase tracking-[0.25em] text-muted-foreground/80 transition-colors",
+                            "group-hover:text-accent"
                           )}
-                        </div>
+                        >
+                          {item.label}
+                        </p>
                       </div>
-                    );
-                  })}
+                    </div>
+                  );
+                })}
+              </div>
+            </Tooltip.Provider>
+          </div>
+
+          <SurfacePanel className="group relative overflow-hidden rounded-[2.5rem] p-3 md:p-20">
+            <div className="absolute top-0 right-0 scale-150 rotate-12 p-3 opacity-10 transition-all duration-1000 group-hover:rotate-0">
+              <Rocket className="h-16 w-16" />
+            </div>
+
+            <form onSubmit={handleSubmit} className="relative z-10 space-y-10">
+              <div className="mt-6 text-center md:mt-0">
+                <h3
+                  className={cn(
+                    "text-center text-3xl font-black tracking-tight text-foreground transition-colors duration-300 md:text-4xl",
+                    "group-hover:text-accent group-focus-within:text-accent"
+                  )}
+                >
+                  Contact Form
+                </h3>
+              </div>
+
+              <div className="space-y-6">
+                <div className={inputWrapperClass}>
+                  <label
+                    htmlFor="fullName"
+                    className="ml-1 text-[12px] font-black uppercase tracking-widest text-foreground/80 transition-colors group-hover:text-accent"
+                  >
+                    Full Name*
+                  </label>
+                  <input
+                    id="fullName"
+                    name="fullName"
+                    autoComplete="name"
+                    type="text"
+                    required
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    placeholder="Jane Doe"
+                    className="w-full border-none bg-transparent p-0 text-lg font-bold text-foreground outline-none placeholder:text-foreground/45 focus:ring-0 md:text-xl"
+                  />
                 </div>
-              </Tooltip.Provider>
-              </div>
 
-            {/* Form */}
-            <div className="bg-secondary/25 p-3 md:p-20 rounded-[2.5rem] border border-border/60 ring-1 ring-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)] relative overflow-hidden group">
-              <div className="absolute top-0 right-0 p-3 opacity-10 scale-150 rotate-12 group-hover:rotate-0 transition-all duration-1000">
-                <Rocket className="h-16 w-16" />
-              </div>
+                <div className={inputWrapperClass}>
+                  <label
+                    htmlFor="emailAddress"
+                    className="ml-1 text-[12px] font-black uppercase tracking-widest text-foreground/80 transition-colors group-hover:text-accent"
+                  >
+                    Email Address*
+                  </label>
+                  <input
+                    id="emailAddress"
+                    name="email"
+                    autoComplete="email"
+                    type="email"
+                    required
+                    value={emailAddress}
+                    onChange={(e) => setEmailAddress(e.target.value)}
+                    placeholder="jane.doe@example.com"
+                    className="w-full border-none bg-transparent p-0 text-lg font-bold text-foreground outline-none placeholder:text-foreground/45 focus:ring-0 md:text-xl"
+                  />
+                </div>
 
-              <form onSubmit={handleSubmit} className="relative z-10 space-y-10">
-                <div className="text-center mt-6 md:mt-0">
-                  <h3
+                <div className={inputWrapperClass}>
+                  <label
+                    htmlFor="userMessage"
+                    className="ml-1 text-[12px] font-black uppercase tracking-widest text-foreground/80 transition-colors group-hover:text-accent"
+                  >
+                    Your Message*
+                  </label>
+                  <textarea
+                    id="userMessage"
+                    name="message"
+                    autoComplete="off"
+                    required
+                    value={userMessage}
+                    onChange={(e) => setUserMessage(e.target.value)}
+                    placeholder="Describe your vision..."
+                    className="min-h-[9.375rem] w-full resize-none border-none bg-transparent p-0 text-lg font-bold text-foreground outline-none placeholder:text-foreground/45 focus:ring-0 md:text-xl"
+                  />
+                </div>
+
+                {status !== "idle" && statusMessage ? (
+                  <div
                     className={cn(
-                      "text-center text-3xl md:text-4xl font-black tracking-tight",
-                      "text-foreground transition-colors duration-300",
-                      "group-hover:text-accent group-focus-within:text-accent"
+                      "rounded-2xl border px-4 py-3 text-sm font-bold",
+                      status === "success"
+                        ? "border-emerald-500/35 bg-emerald-500/10 text-emerald-400"
+                        : "border-border/60 bg-secondary/40 text-muted-foreground"
                     )}
                   >
-                    Contact Form:
-                  </h3>
-                </div>
-
-                <div className="space-y-6">
-                  <div className={inputWrapperClass}>
-                    <label
-                      htmlFor="fullName"
-                      className="text-[12px] font-black uppercase tracking-widest text-foreground/80 ml-1 group-hover:text-accent transition-colors"
-                    >
-                      Full Name*
-                    </label>
-                    <input
-                      id="fullName"
-                      name="fullName"
-                      autoComplete="name"
-                      type="text"
-                      required
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                      placeholder="Jane Doe"
-                      className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/45 focus:ring-0 outline-none"
-                    />
+                    {statusMessage}
                   </div>
+                ) : null}
+              </div>
 
-                  <div className={inputWrapperClass}>
-                    <label
-                      htmlFor="emailAddress"
-                      className="text-[12px] font-black uppercase tracking-widest text-foreground/80 ml-1 group-hover:text-accent transition-colors"
-                    >
-                      Email Address*
-                    </label>
-                    <input
-                      id="emailAddress"
-                      name="email"
-                      autoComplete="email"
-                      type="email"
-                      required
-                      value={emailAddress}
-                      onChange={(e) => setEmailAddress(e.target.value)}
-                      placeholder="jane.doe@example.com"
-                      className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/45 focus:ring-0 outline-none"
-                    />
-                  </div>
-
-                  <div className={inputWrapperClass}>
-                    <label
-                      htmlFor="userMessage"
-                      className="text-[12px] font-black uppercase tracking-widest text-foreground/80 ml-1 group-hover:text-accent transition-colors"
-                    >
-                      Your Message*
-                    </label>
-                    <textarea
-                      id="userMessage"
-                      name="message"
-                      autoComplete="off"
-                      required
-                      value={userMessage}
-                      onChange={(e) => setUserMessage(e.target.value)}
-                      placeholder="Describe your vision..."
-                      className="w-full bg-transparent border-none p-0 text-lg md:text-xl font-bold text-foreground placeholder:text-foreground/45 focus:ring-0 outline-none min-h-37.5 resize-none"
-                    />
-                  </div>
-
-                  {/* Success / Fail message */}
-                  {status !== "idle" && statusMessage && (
-                    <div
-                      className={cn(
-                        "rounded-2xl border px-4 py-3 text-sm font-bold",
-                        status === "success"
-                          ? "border-emerald-500/35 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                          : "border-border/60 bg-secondary/40 text-muted-foreground"
-                      )}
-                    >
-                      {statusMessage}
-                    </div>
-                  )}
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={isSending}
-                  className={cn(
-                    "w-full relative overflow-hidden",
-                    "-mt-4 md:mt-0",
-                    "h-14 px-6 md:px-10 rounded-full",
-                    "bg-accent text-white hover:bg-accent",
-                    "font-black uppercase tracking-[0.25em] text-sm",
-                    "border border-accent/40",
-                    "ring-1 ring-white/25 dark:ring-white/10",
-                    "shadow-[0_14px_34px_rgba(0,0,0,0.16)] dark:shadow-[0_18px_50px_rgba(0,0,0,0.45)]",
-                    "transition-all duration-300",
-                    "hover:scale-105 active:scale-[1.02]",
-                    isSending && "opacity-70 cursor-not-allowed hover:scale-100",
-                    "group",
-                    "before:absolute before:inset-0 before:pointer-events-none",
-                    "before:bg-linear-to-b before:from-white/25 before:to-transparent",
-                    "hover:[&>svg]:translate-x-1"
-                  )}
-                >
-                  <span className="relative z-10">
-                    {isSending ? "Sending..." : "Send Message"}
-                  </span>
-                  <ArrowRight
-                    size={16}
-                    className="relative z-10 ml-2 transition-transform"
-                  />
-                </Button>
-              </form>
-            </div>
+              <Button
+                type="submit"
+                disabled={isSending}
+                className={cn(
+                  "group relative w-full overflow-hidden",
+                  "h-14 rounded-full border border-accent/40 bg-accent px-6 text-sm font-black uppercase tracking-[0.25em] text-white md:px-10",
+                  "ring-1 ring-white/10",
+                  "shadow-[0_18px_50px_rgba(0,0,0,0.45)]",
+                  "transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]",
+                  isSending && "cursor-not-allowed opacity-70 hover:scale-100",
+                  "before:absolute before:inset-0 before:pointer-events-none",
+                  "before:bg-linear-to-b before:from-white/25 before:to-transparent"
+                )}
+              >
+                <span className="relative z-10">
+                  {isSending ? "Sending..." : "Send Message"}
+                </span>
+                <ArrowRight
+                  size={16}
+                  className="relative z-10 ml-2 transition-transform group-hover:translate-x-1"
+                />
+              </Button>
+            </form>
+          </SurfacePanel>
         </div>
       </div>
     </section>
