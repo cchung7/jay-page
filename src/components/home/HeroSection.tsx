@@ -88,7 +88,7 @@ export const HeroSection = () => {
 
               <div className="absolute inset-0 rounded-full overflow-hidden transition-transform duration-500 group-hover:scale-110">
                 <Image
-                  src="/images/jay_pic.jpg"
+                  src="/images/jay_pic2.jpg"
                   alt="Profile Picture"
                   fill
                   sizes="(max-width: 768px) 160px, 160px"

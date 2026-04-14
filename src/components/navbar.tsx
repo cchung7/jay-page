@@ -11,7 +11,6 @@ import {
 import * as Dialog from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Menu, X, ArrowUpRight, User, Briefcase, Mail } from "lucide-react";
 
 const navLinks = [
@@ -32,7 +31,6 @@ export function Navbar() {
     setScrolled(latest > 50);
   });
 
-  // Buttons
   const actionClass = cn(
     "h-10 w-10 rounded-full",
     "bg-transparent border border-border/60",
@@ -99,14 +97,11 @@ export function Navbar() {
             </div>
           </nav>
 
-          {/* Right Actions */}
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-2">
-            <ThemeToggle className={actionClass} />
-
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 md:hidden">
             <Button
               variant="ghost"
               size="icon"
-              className={cn("md:hidden", actionClass)}
+              className={actionClass}
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open menu"
             >
@@ -116,7 +111,6 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <Dialog.Root open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
         <AnimatePresence>
           {mobileMenuOpen && (
