@@ -2,7 +2,7 @@ export const projects = [
   {
     name: "UT Dallas Student Veterans Association Administrative Platform",
     type: "Student Organization & Events Management Platform",
-    desc: "desc: AP is a full-stack web platform developed for the UT Dallas Student Veterans Association to support member engagement, event registration, attendance tracking, and administrative workflows. The system features role-based access control, secure JWT cookie-based authentication, registration and check-in flows, and dedicated dashboards for members and administrators.",
+    desc: "AP is a full-stack web platform developed for the UT Dallas Student Veterans Association to support member engagement, event registration, attendance tracking, and administrative workflows. The system features role-based access control, secure JWT cookie-based authentication, registration and check-in flows, and dedicated dashboards for members and administrators.",
     links: {
       live: [
         {
