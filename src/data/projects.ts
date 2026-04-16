@@ -13,14 +13,14 @@ export const projects = [
       ],
       git: [
         {
-          label: "Frontend Repository (Private)",
+          label: "Frontend Repository (Public)",
           url: "https://github.com/cchung7/ap_fe",
-          disabled: true,
+          disabled: false,
         },
         {
-          label: "Backend Repository (Private)",
+          label: "Backend Repository (Public)",
           url: "https://github.com/cchung7/ap_be",
-          disabled: true,
+          disabled: false,
         },
       ],
     },
